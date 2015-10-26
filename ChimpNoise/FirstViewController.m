@@ -14,10 +14,13 @@
 @interface FirstViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocationManager *locationManager2;
-@property (weak, nonatomic) IBOutlet UILabel *rangeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *majorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *minorLabel;
+//@property (nonatomic, strong) CLLocationManager *locationManager2;
+
+@property (nonatomic) NSDictionary *placesByBeacons;
+
+@property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -45,12 +48,25 @@
     [self.locationManager requestStateForRegion:region];
     
 //Monkey Patch to range Beacon on Background
-    self.locationManager2 = [[CLLocationManager alloc] init];
-    self.locationManager2.delegate = self;
-    self.locationManager2.desiredAccuracy = kCLLocationAccuracyKilometer;
-    [self.locationManager2 startUpdatingLocation];
-//------------------------------------------
+//    self.locationManager2 = [[CLLocationManager alloc] init];
+//    self.locationManager2.delegate = self;
+//    self.locationManager2.desiredAccuracy = kCLLocationAccuracyKilometer;
+//    [self.locationManager2 startUpdatingLocation];
 
+    
+//------------------------------------------
+    self.placesByBeacons = @{
+                             @"1:1":@{
+                                     @"title": @"Netshoes",
+                                     @"prompt": @"Promotion 20% shoes",
+                                     @"image": @"http://image.dhgate.com/albu_269291508_00/1.0x0.jpg"
+                                     },
+                             @"3:3":@{
+                                     @"title": @"Iphone",
+                                     @"prompt": @"50 USD off",
+                                     @"image": @"http://www.sprint.com/landings/iphone-forever/images/iphone6s_lockup.jpg"
+                                     }
+                             };
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -91,62 +107,18 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     NSLog(@"didRangeBeacons");
-    for (CLBeacon *beacon in beacons) {
-
-        NSLog(@"Ranging beacon: %@", beacon.proximityUUID);
-        NSLog(@"%@ - %@", beacon.major, beacon.minor);
-        NSLog(@"Range: %@", [self stringForProximity:beacon.proximity]);
-        
-        [self setColorForProximity:beacon.proximity];
-        self.rangeLabel.text = [self stringForProximity:beacon.proximity];
-        self.majorLabel.text = [@"major: " stringByAppendingString:[beacon.major stringValue]];
-        self.minorLabel.text = [@"minor: " stringByAppendingString:[beacon.minor stringValue]];
-    }
+    CLBeacon *nearestBeacon = (CLBeacon *)[beacons firstObject];
+    NSString *beaconKey = [NSString stringWithFormat:@"%@:%@", nearestBeacon.major, nearestBeacon.minor];
+    NSDictionary *nearestBeaconDetails = [self.placesByBeacons objectForKey:beaconKey];
+    
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[nearestBeaconDetails objectForKey:@"image"]]];
+    self.imageView.image = [UIImage imageWithData:imageData];
+    
+    self.titleLabel.title = [nearestBeaconDetails objectForKey:@"title"];
+    self.titleLabel.prompt = [nearestBeaconDetails objectForKey:@"prompt"];
+    
 }
-
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-//Monkey Patch to range Beacon on Background
-//Do nothing here, but enjoy ranging callbacks in background :-)
-}
-
 
 #pragma mark - Utility Methods
 
-- (NSString *)stringForProximity:(CLProximity)proximity {
-    switch (proximity) {
-        case CLProximityUnknown:    return @"Unknown";
-        case CLProximityFar:        return @"Far";
-        case CLProximityNear:       return @"Near";
-        case CLProximityImmediate:  return @"Immediate";
-        default:
-            return nil;
-    }
-}
-
-- (void)setColorForProximity:(CLProximity)proximity {
-    switch (proximity) {
-        case CLProximityUnknown:
-            self.view.backgroundColor = [UIColor whiteColor];
-            self.rangeLabel.backgroundColor = [UIColor whiteColor];
-            break;
-            
-        case CLProximityFar:
-            self.view.backgroundColor = [UIColor yellowColor];
-            self.rangeLabel.backgroundColor = [UIColor yellowColor];
-            break;
-            
-        case CLProximityNear:
-            self.view.backgroundColor = [UIColor orangeColor];
-            self.rangeLabel.backgroundColor = [UIColor orangeColor];
-            break;
-            
-        case CLProximityImmediate:
-            self.view.backgroundColor = [UIColor redColor];
-            self.rangeLabel.backgroundColor = [UIColor redColor];
-            break;
-            
-        default:
-            break;
-    }
-}
 @end
