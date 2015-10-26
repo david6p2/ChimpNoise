@@ -9,7 +9,7 @@
 #import "FirstViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define BEACON_UUID @"B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+#define BEACON_UUID @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
 
 @interface FirstViewController () <CLLocationManagerDelegate>
 
@@ -24,15 +24,15 @@
 @implementation FirstViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    Init CLLocationManager
+
+//Init CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-//    Show Dialog to approve Beacon Monitoring and Ranging
+//Show Dialog to approve Beacon Monitoring and Ranging
     [self.locationManager requestAlwaysAuthorization];
     
-//    Init Region
+//Init Region
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:BEACON_UUID];
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
                                                                 identifier:@"com.nsscreencast.beaconfun.region"];
@@ -40,16 +40,16 @@
     region.notifyOnExit = YES;
     region.notifyEntryStateOnDisplay = YES;
     
-//    start Monitoring
+//start Monitoring
     [self.locationManager startMonitoringForRegion:region];
     [self.locationManager requestStateForRegion:region];
     
-//    Monkey Patch to range Beacon on Background
+//Monkey Patch to range Beacon on Background
     self.locationManager2 = [[CLLocationManager alloc] init];
     self.locationManager2.delegate = self;
     self.locationManager2.desiredAccuracy = kCLLocationAccuracyKilometer;
     [self.locationManager2 startUpdatingLocation];
-//    ------------------------------------------
+//------------------------------------------
 
 }
 
@@ -57,45 +57,42 @@
 
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
     if (state == CLRegionStateInside) {
+        
         CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
         [self.locationManager startRangingBeaconsInRegion:beaconRegion];
+        NSLog(@"didDetermineState");
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
         
-//        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-//        [self.locationManager startRangingBeaconsInRegion:beaconRegion];
-        
         UILocalNotification *notification = [UILocalNotification new];
-        notification.alertAction = @"Compra!";
-        notification.alertBody = @"Aca si tenemos aguacate!";
-        notification.alertTitle = @"Titulo";
+        notification.alertAction = @"See";
+        notification.alertBody = @"Noise!";
+        notification.alertTitle = @"Noise Title";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        [self.locationManager startRangingBeaconsInRegion:beaconRegion];
+        NSLog(@"didEnterRegion");
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
         
-//        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-//        [self.locationManager stopRangingBeaconsInRegion:beaconRegion];
-        
-        UILocalNotification *notification = [UILocalNotification new];
-        notification.alertAction = @"Compra Chao!";
-        notification.alertBody = @"Chao!";
-        notification.alertTitle = @"Titulo Chao";
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        [self.locationManager stopRangingBeaconsInRegion:beaconRegion];
+        NSLog(@"didExitRegion");
     }
 }
 
 
-
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    NSLog(@"Entraaa");
+    NSLog(@"didRangeBeacons");
     for (CLBeacon *beacon in beacons) {
+
         NSLog(@"Ranging beacon: %@", beacon.proximityUUID);
         NSLog(@"%@ - %@", beacon.major, beacon.minor);
         NSLog(@"Range: %@", [self stringForProximity:beacon.proximity]);
@@ -108,8 +105,10 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    //Do nothing here, but enjoy ranging callbacks in background :-)
+//Monkey Patch to range Beacon on Background
+//Do nothing here, but enjoy ranging callbacks in background :-)
 }
+
 
 #pragma mark - Utility Methods
 
