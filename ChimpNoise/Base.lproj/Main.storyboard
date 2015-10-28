@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -23,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-35.5" y="-231.5"/>
         </scene>
-        <!--ChimpNoise-->
+        <!--No Beacons Near-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
@@ -35,16 +36,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scj-Bt-Fon">
-                                <rect key="frame" x="0.0" y="64" width="375" height="296"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scj-Bt-Fon">
+                                <rect key="frame" x="0.0" y="64" width="375" height="509"/>
                                 <animations/>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="scj-Bt-Fon" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="06H-kN-kgX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="scj-Bt-Fon" secondAttribute="trailing" constant="-20" id="45B-5Q-YWu"/>
+                            <constraint firstItem="scj-Bt-Fon" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="BpN-ET-bft"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
-                    <navigationItem key="navigationItem" title="ChimpNoise" id="xO6-JV-xIi"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" title="No Beacons Near" id="xO6-JV-xIi"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imageView" destination="scj-Bt-Fon" id="bXz-LP-zoy"/>
@@ -76,7 +82,4 @@
             <point key="canvasLocation" x="-766.5" y="-231.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first" width="30" height="30"/>
-    </resources>
 </document>

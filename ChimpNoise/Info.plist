@@ -10,7 +10,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string>NSAppTransportSecurity</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>ForgetMeNot would like to teach you how to use iBeacons!</string>
+	<string>To receive Chimp Noises and promotions!</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
