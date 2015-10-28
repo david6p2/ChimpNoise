@@ -15,6 +15,8 @@
 		BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */; };
 		BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */; };
 		BABC49571BD2F90A00DC26FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC49561BD2F90A00DC26FC /* CoreLocation.framework */; };
+		BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */; };
+		BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF9A4E91BE082E70058E1DA /* AYBeacon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		BABC494E1BD2F8FD00DC26FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BABC49501BD2F8FD00DC26FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BABC49561BD2F90A00DC26FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BAF9A4E41BE07BCC0058E1DA /* AYChimpnoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AYChimpnoise.h; path = ../AYChimpnoise.h; sourceTree = "<group>"; };
+		BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYChimpnoise.m; path = ../AYChimpnoise.m; sourceTree = "<group>"; };
+		BAF9A4E81BE082E70058E1DA /* AYBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYBeacon.h; sourceTree = "<group>"; };
+		BAF9A4E91BE082E70058E1DA /* AYBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYBeacon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 		BABC493B1BD2F8FD00DC26FC /* ChimpNoise */ = {
 			isa = PBXGroup;
 			children = (
+				BAF9A4E71BE07BE30058E1DA /* Model */,
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
 				BABC49421BD2F8FD00DC26FC /* FirstViewController.h */,
@@ -86,6 +93,17 @@
 				BABC493D1BD2F8FD00DC26FC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BAF9A4E71BE07BE30058E1DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BAF9A4E41BE07BCC0058E1DA /* AYChimpnoise.h */,
+				BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */,
+				BAF9A4E81BE082E70058E1DA /* AYBeacon.h */,
+				BAF9A4E91BE082E70058E1DA /* AYBeacon.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */,
 				BABC49471BD2F8FD00DC26FC /* SecondViewController.m in Sources */,
 				BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */,
+				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
 			);

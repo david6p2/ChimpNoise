@@ -7,6 +7,8 @@
 //
 
 #import "SecondViewController.h"
+#import "AYChimpnoise.h"
+#import "AYBeacon.h"
 
 @interface SecondViewController ()
 
@@ -16,7 +18,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"SecondView");
+    
+    AYChimpnoise *chimpnoise = [AYChimpnoise sharedInstance];
+    
+    AYBeacon * beacon = [[AYBeacon alloc] initWithUUID:@"BEACON-TEST"
+                                                 minor:[NSNumber numberWithInt:2]
+                                                 major:[NSNumber numberWithInt:2]];
+    [chimpnoise addBeacon: beacon];
+    
+    AYBeacon * beacon2 = [[AYBeacon alloc] initWithUUID:@"BEACON-TEST-DOS"
+                                                 minor:[NSNumber numberWithInt:4]
+                                                 major:[NSNumber numberWithInt:4]];
+    [chimpnoise addBeacon: beacon2];
+    
+    AYBeacon * foundBeacon = [chimpnoise findOrCreateBeaconWithUUID:@"BEACON-TEST"
+                                                                        minor: [NSNumber numberWithInt:2]
+                                                                        major: [NSNumber numberWithInt:2]];
+    AYBeacon * foundBeacon2 = [chimpnoise findOrCreateBeaconWithUUID:@"ANOTHER"
+                                                                         minor: [NSNumber numberWithInt:3]
+                                                                         major: [NSNumber numberWithInt:3]];
+    NSLog(@"%@", foundBeacon.uuid);
+    NSLog(@"%@", foundBeacon2.uuid);
+    NSLog(@"%@", [AYChimpnoise sharedInstance].beacons);
 }
 
 - (void)didReceiveMemoryWarning {
