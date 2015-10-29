@@ -17,28 +17,54 @@
 @interface FirstViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-//@property (nonatomic, strong) CLLocationManager *locationManager2;
-
-@property (nonatomic) NSDictionary *placesByBeacons;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property(nonatomic, assign) int AdIndex;
 @property (nonatomic) AYChimpnoise *chimpnoise;
 
 @end
 
 @implementation FirstViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    //Init CLLocationManager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    
+    //Init Region 1
+    NSUUID *uuid1 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_1];
+    CLBeaconRegion *region1 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid1 identifier:@"chimpnoise.one"];
+    region1.notifyOnEntry = YES;
+    region1.notifyOnExit = YES;
+    region1.notifyEntryStateOnDisplay = YES;
+    
+    //Init Region 2
+    NSUUID *uuid2 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_2];
+    CLBeaconRegion *region2 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid2 identifier:@"chimpnoise.two"];
+    region2.notifyOnEntry = YES;
+    region2.notifyOnExit = YES;
+    region2.notifyEntryStateOnDisplay = YES;
+    
+    [self.locationManager startRangingBeaconsInRegion:region1];
+    [self.locationManager startMonitoringForRegion:region1];
+    
+    [self.locationManager startRangingBeaconsInRegion:region2];
+    [self.locationManager startMonitoringForRegion:region2];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //Init Chimpnoise Model
     self.chimpnoise = [AYChimpnoise sharedInstance];
+    self.AdIndex = 0;
     
-    //Init CLLocationManager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    
+    [self displayAd];
     
     //Init Gestures
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
@@ -54,30 +80,16 @@
     
     [self.view addGestureRecognizer:leftRecognizer];
     
-    //Init Region 1
-    NSUUID *uuid1 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_1];
-    CLBeaconRegion *region1 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid1 identifier:@"chimpnoise.one"];
-    region1.notifyOnEntry = YES;
-    region1.notifyOnExit = YES;
-    region1.notifyEntryStateOnDisplay = YES;
-
-    //Init Region 2
-    NSUUID *uuid2 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_2];
-    CLBeaconRegion *region2 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid2 identifier:@"chimpnoise.two"];
-    region2.notifyOnEntry = YES;
-    region2.notifyOnExit = YES;
-    region2.notifyEntryStateOnDisplay = YES;
-    
     //start Monitoring
-    [self.locationManager startMonitoringForRegion:region1];
-    [self.locationManager performSelector:@selector(requestStateForRegion:) withObject:region1 afterDelay:1];
-    [self.locationManager performSelector:@selector(startMonitoringForRegion:) withObject:region2 afterDelay:2];
-    [self.locationManager performSelector:@selector(requestStateForRegion:) withObject:region2 afterDelay:3];
-    
-    //Show Dialog to approve Beacon Monitoring and Ranging
-    [self.locationManager requestAlwaysAuthorization];
+//    [self.locationManager startMonitoringForRegion:region1];
+//    [self.locationManager performSelector:@selector(requestStateForRegion:) withObject:region1 afterDelay:1];
+//    [self.locationManager performSelector:@selector(startMonitoringForRegion:) withObject:region2 afterDelay:2];
+//    [self.locationManager performSelector:@selector(requestStateForRegion:) withObject:region2 afterDelay:3];
     
     NSLog(@"viewDidLoad");
+    
+    //Show Dialog to approve Beacon Monitoring and Ranging
+    
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -120,11 +132,8 @@
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     
     NSLog(@"didExitRegion");
-    
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        
-        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-        [self.locationManager stopRangingBeaconsInRegion:beaconRegion];
+        [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
     }
 }
 
@@ -139,9 +148,7 @@
                                                             minor:beacon.minor
                                                             major:beacon.major];
     }
-	
-    //        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[nearestBeaconDetails objectForKey:@"image"]]];
-    //        self.imageView.image = [UIImage imageWithData:imageData];
+    [self displayAd];
     NSLog(@"%@", [self.chimpnoise beacons]);
 }
 
@@ -155,12 +162,36 @@
 {
     NSLog(@"rightSwipeHandle");
     NSLog(@"%@", [[self.chimpnoise beacons] allValues]);
+    if (self.AdIndex < [[[self.chimpnoise beacons] allValues] count] - 1) {
+        self.AdIndex++;
+        [self displayAd];
+    }
 }
 
 - (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     NSLog(@"leftSwipeHandle");
     NSLog(@"%@", [[self.chimpnoise beacons] allValues]);
+    if (self.AdIndex > 0){
+        self.AdIndex--;
+        [self displayAd];
+    }
+}
+
+#pragma mark - helpers
+
+- (void) displayAd{
+    NSArray *beaconsToDisplay = [[self.chimpnoise beacons] allValues];
+    if(beaconsToDisplay == nil || [beaconsToDisplay count] == 0){
+        self.titleLabel.title = @"No Ads to show";
+    }
+    else{
+        AYBeacon *displayBeacon = [beaconsToDisplay objectAtIndex:self.AdIndex];
+        self.titleLabel.title = displayBeacon.title;
+        self.titleLabel.prompt = displayBeacon.prompt;
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:displayBeacon.imageURL]];
+        self.imageView.image = [UIImage imageWithData:imageData];
+    }
 }
 
 @end
