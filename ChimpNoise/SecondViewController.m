@@ -23,9 +23,9 @@
     
     AYChimpnoise *chimpnoise = [AYChimpnoise sharedInstance];
     
-    AYBeacon * beacon = [[AYBeacon alloc] initWithUUID:@"BEACON-TEST"
-                                                 minor:[NSNumber numberWithInt:2]
-                                                 major:[NSNumber numberWithInt:2]];
+    AYBeacon * beacon = [[AYBeacon alloc] initWithUUID:@"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
+                                                 minor:[NSNumber numberWithInt:1]
+                                                 major:[NSNumber numberWithInt:1]];
     [chimpnoise addBeacon: beacon];
     
     AYBeacon * beacon2 = [[AYBeacon alloc] initWithUUID:@"BEACON-TEST-DOS"
@@ -34,14 +34,14 @@
     [chimpnoise addBeacon: beacon2];
     
     AYBeacon * foundBeacon = [chimpnoise findOrCreateBeaconWithUUID:@"BEACON-TEST"
-                                                                        minor: [NSNumber numberWithInt:2]
+                                                              minor: [NSNumber numberWithInt:2]
                                                                         major: [NSNumber numberWithInt:2]];
     AYBeacon * foundBeacon2 = [chimpnoise findOrCreateBeaconWithUUID:@"ANOTHER"
-                                                                         minor: [NSNumber numberWithInt:3]
-                                                                         major: [NSNumber numberWithInt:3]];
+                                                               minor: [NSNumber numberWithInt:3]
+                                                               major: [NSNumber numberWithInt:3]];
     NSLog(@"%@", foundBeacon.uuid);
     NSLog(@"%@", foundBeacon2.uuid);
-    NSLog(@"%@", [AYChimpnoise sharedInstance].beacons);
+    NSLog(@"%@", [[AYChimpnoise sharedInstance].beacons description]);
 }
 
 - (void)didReceiveMemoryWarning {

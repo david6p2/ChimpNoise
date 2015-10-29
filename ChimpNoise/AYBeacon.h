@@ -10,9 +10,15 @@
 
 @interface AYBeacon : NSObject
 
+@property (nonatomic, strong) NSDictionary *demoPLaces;
+
 @property (nonatomic, strong) NSString *uuid;
 @property (retain) NSNumber *minor;
 @property (retain) NSNumber *major;
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *prompt;
+@property (nonatomic, strong) NSString *imageURL;
 
 -(instancetype)initWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
 
