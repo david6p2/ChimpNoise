@@ -39,7 +39,22 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-//Init Region 1
+    
+    //Init Gestures
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
+    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [rightRecognizer setNumberOfTouchesRequired:1];
+    
+    //add the your gestureRecognizer , where to detect the touch..
+    [self.view addGestureRecognizer:rightRecognizer];
+    
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandle:)];
+    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [leftRecognizer setNumberOfTouchesRequired:1];
+    
+    [self.view addGestureRecognizer:leftRecognizer];
+    
+    //Init Region 1
     NSUUID *uuid1 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_1];
     CLBeaconRegion *region1 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid1 identifier:@"chimpnoise.one"];
     region1.notifyOnEntry = YES;
@@ -135,6 +150,17 @@
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
 
-#pragma mark - Utility Methods
+#pragma mark - Gesture Methods
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    NSLog(@"rightSwipeHandle");
+    NSLog(@"%@", [[self.chimpnoise beacons] allValues]);
+}
+
+- (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    NSLog(@"leftSwipeHandle");
+    NSLog(@"%@", [[self.chimpnoise beacons] allValues]);
+}
 
 @end
