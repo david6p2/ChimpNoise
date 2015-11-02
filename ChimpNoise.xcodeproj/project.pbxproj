@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
-		BA1F242C1BE6F71F0095E185 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA1F242B1BE6F71F0095E185 /* CardView.xib */; };
 		BA1F242F1BE6F7640095E185 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1F242E1BE6F7640095E185 /* CardView.m */; };
 		BABC493E1BD2F8FD00DC26FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC493D1BD2F8FD00DC26FC /* main.m */; };
 		BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49401BD2F8FD00DC26FC /* AppDelegate.m */; };
@@ -25,7 +24,6 @@
 /* Begin PBXFileReference section */
 		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
 		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
-		BA1F242B1BE6F71F0095E185 /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		BA1F242D1BE6F7640095E185 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
 		BA1F242E1BE6F7640095E185 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		BABC49391BD2F8FD00DC26FC /* ChimpNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChimpNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +110,6 @@
 				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
 				BABC493C1BD2F8FD00DC26FC /* Supporting Files */,
-				BA1F242B1BE6F71F0095E185 /* CardView.xib */,
 				BA1F242D1BE6F7640095E185 /* CardView.h */,
 				BA1F242E1BE6F7640095E185 /* CardView.m */,
 			);
@@ -201,7 +198,6 @@
 			files = (
 				BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */,
 				BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */,
-				BA1F242C1BE6F71F0095E185 /* CardView.xib in Resources */,
 				BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

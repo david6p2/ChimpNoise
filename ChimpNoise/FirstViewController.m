@@ -1,4 +1,4 @@
-//
+    //
 //  FirstViewController.m
 //  ChimpNoise
 //
@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "CardView.h"
+#import "CardViewController.h"
 
 
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
@@ -64,7 +65,6 @@
     self.swipeableView.delegate = self;
     
     [self.view addSubview:self.swipeableView];
-
     NSLog(@"viewDidLoad");
 }
 
@@ -170,32 +170,7 @@
     NSLog(@"nextViewForSwipeableView");
     
     CardView *view = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50)];
-    view.backgroundColor = [UIColor redColor];
-    
-    UIView *contentView =
-    [[NSBundle mainBundle] loadNibNamed:@"CardView" owner:self options:nil][0];
-    contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [view addSubview:contentView];
-    
-    // This is important:
-    // https://github.com/zhxnlai/ZLSwipeableView/issues/9
-    NSDictionary *metrics =
-    @{ @"height" : @(view.bounds.size.height),
-       @"width" : @(view.bounds.size.width) };
-    NSDictionary *views = NSDictionaryOfVariableBindings(contentView);
-    [view addConstraints:[NSLayoutConstraint
-                          constraintsWithVisualFormat:@"H:|[contentView(width)]"
-                          options:0
-                          metrics:metrics
-                          views:views]];
-    [view addConstraints:[NSLayoutConstraint
-                          constraintsWithVisualFormat:@"V:|[contentView(height)]"
-                          options:0
-                          metrics:metrics
-                          views:views]];
-
     return view;
-
 }
 
 #pragma mark - helpers

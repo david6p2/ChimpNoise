@@ -10,4 +10,6 @@
 
 @interface CardView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *cardTitleLabel;
+
 @end
