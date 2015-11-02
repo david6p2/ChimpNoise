@@ -7,22 +7,15 @@
 //
 
 #import "FirstViewController.h"
-#import <CoreLocation/CoreLocation.h>
-#import "AYChimpnoise.h"
+#import "CardView.h"
+
 
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
 #define BEACON_UUID_2 @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19"
 
 
-@interface FirstViewController () <CLLocationManagerDelegate>
-
-@property (nonatomic, strong) CLLocationManager *locationManager;
-
-@property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
-@property(nonatomic, assign) int AdIndex;
-@property (nonatomic) AYChimpnoise *chimpnoise;
+@interface FirstViewController ()
+@property (weak, nonatomic) IBOutlet UIView *deckView;
 
 @end
 
@@ -63,33 +56,16 @@
     //Init Chimpnoise Model
     self.chimpnoise = [AYChimpnoise sharedInstance];
     self.AdIndex = 0;
-    
     [self displayAd];
     
-    //Init Gestures
-    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
-    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [rightRecognizer setNumberOfTouchesRequired:1];
+    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
+    self.swipeableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.0];;
+    self.swipeableView.dataSource = self;
+    self.swipeableView.delegate = self;
     
-    //add the your gestureRecognizer , where to detect the touch..
-    [self.view addGestureRecognizer:rightRecognizer];
-    
-    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandle:)];
-    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    [leftRecognizer setNumberOfTouchesRequired:1];
-    
-    [self.view addGestureRecognizer:leftRecognizer];
-    
-    //start Monitoring
-//    [self.locationManager startMonitoringForRegion:region1];
-//    [self.locationManager performSelector:@selector(requestStateForRegion:) withObject:region1 afterDelay:1];
-//    [self.locationManager performSelector:@selector(startMonitoringForRegion:) withObject:region2 afterDelay:2];
-//    [self.locationManager performSelector:@selector(requestStateForRegion:) withObject:region2 afterDelay:3];
-    
+    [self.view addSubview:self.swipeableView];
+
     NSLog(@"viewDidLoad");
-    
-    //Show Dialog to approve Beacon Monitoring and Ranging
-    
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -157,25 +133,69 @@
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
 
-#pragma mark - Gesture Methods
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
-{
-    NSLog(@"rightSwipeHandle");
-    NSLog(@"%@", [[self.chimpnoise beacons] allValues]);
-    if (self.AdIndex < [[[self.chimpnoise beacons] allValues] count] - 1) {
-        self.AdIndex++;
-        [self displayAd];
-    }
+#pragma mark - ZLSwipeableViewDelegate
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+         didSwipeView:(UIView *)view
+          inDirection:(ZLSwipeableViewDirection)direction {
+    NSLog(@"did swipe in direction: %zd", direction);
 }
 
-- (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
-{
-    NSLog(@"leftSwipeHandle");
-    NSLog(@"%@", [[self.chimpnoise beacons] allValues]);
-    if (self.AdIndex > 0){
-        self.AdIndex--;
-        [self displayAd];
-    }
+- (void)swipeableView:(ZLSwipeableView *)swipeableView didCancelSwipe:(UIView *)view {
+    NSLog(@"did cancel swipe");
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+  didStartSwipingView:(UIView *)view
+           atLocation:(CGPoint)location {
+    NSLog(@"did start swiping at location: x %f, y %f", location.x, location.y);
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+          swipingView:(UIView *)view
+           atLocation:(CGPoint)location
+          translation:(CGPoint)translation {
+    NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y,
+          translation.x, translation.y);
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+    didEndSwipingView:(UIView *)view
+           atLocation:(CGPoint)location {
+    NSLog(@"did end swiping at location: x %f, y %f", location.x, location.y);
+}
+
+#pragma mark - ZLSwipeableViewDataSource
+- (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
+    NSLog(@"nextViewForSwipeableView");
+    
+    CardView *view = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50)];
+    view.backgroundColor = [UIColor redColor];
+    
+    UIView *contentView =
+    [[NSBundle mainBundle] loadNibNamed:@"CardView" owner:self options:nil][0];
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [view addSubview:contentView];
+    
+    // This is important:
+    // https://github.com/zhxnlai/ZLSwipeableView/issues/9
+    NSDictionary *metrics =
+    @{ @"height" : @(view.bounds.size.height),
+       @"width" : @(view.bounds.size.width) };
+    NSDictionary *views = NSDictionaryOfVariableBindings(contentView);
+    [view addConstraints:[NSLayoutConstraint
+                          constraintsWithVisualFormat:@"H:|[contentView(width)]"
+                          options:0
+                          metrics:metrics
+                          views:views]];
+    [view addConstraints:[NSLayoutConstraint
+                          constraintsWithVisualFormat:@"V:|[contentView(height)]"
+                          options:0
+                          metrics:metrics
+                          views:views]];
+
+    return view;
+
 }
 
 #pragma mark - helpers

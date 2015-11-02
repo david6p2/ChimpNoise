@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "ZLSwipeableView.h"
+#import "AYChimpnoise.h"
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController
+    : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate>
 
--(void)displayAd;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property(nonatomic, assign) int AdIndex;
+@property (nonatomic) AYChimpnoise *chimpnoise;
+@property (nonatomic, strong) ZLSwipeableView *swipeableView;
+
+- (void)displayAd;
 
 @end
 

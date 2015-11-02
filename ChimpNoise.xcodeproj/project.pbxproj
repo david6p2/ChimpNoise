@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
+		BA1F242C1BE6F71F0095E185 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA1F242B1BE6F71F0095E185 /* CardView.xib */; };
+		BA1F242F1BE6F7640095E185 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1F242E1BE6F7640095E185 /* CardView.m */; };
 		BABC493E1BD2F8FD00DC26FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC493D1BD2F8FD00DC26FC /* main.m */; };
 		BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49401BD2F8FD00DC26FC /* AppDelegate.m */; };
 		BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49431BD2F8FD00DC26FC /* FirstViewController.m */; };
@@ -20,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
+		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
+		BA1F242B1BE6F71F0095E185 /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		BA1F242D1BE6F7640095E185 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		BA1F242E1BE6F7640095E185 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		BABC49391BD2F8FD00DC26FC /* ChimpNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChimpNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABC493D1BD2F8FD00DC26FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -37,6 +45,7 @@
 		BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYChimpnoise.m; path = ../AYChimpnoise.m; sourceTree = "<group>"; };
 		BAF9A4E81BE082E70058E1DA /* AYBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYBeacon.h; sourceTree = "<group>"; };
 		BAF9A4E91BE082E70058E1DA /* AYBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYBeacon.m; sourceTree = "<group>"; };
+		DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChimpNoise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,18 +54,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				BABC49571BD2F90A00DC26FC /* CoreLocation.framework in Frameworks */,
+				AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31E7A95867AD1AFB7B8A7BD7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A0B9E8A9437EC690F963F7CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */,
+				65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BABC49301BD2F8FD00DC26FC = {
 			isa = PBXGroup;
 			children = (
 				BABC49561BD2F90A00DC26FC /* CoreLocation.framework */,
 				BABC493B1BD2F8FD00DC26FC /* ChimpNoise */,
 				BABC493A1BD2F8FD00DC26FC /* Products */,
+				A0B9E8A9437EC690F963F7CF /* Pods */,
+				31E7A95867AD1AFB7B8A7BD7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +112,9 @@
 				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
 				BABC493C1BD2F8FD00DC26FC /* Supporting Files */,
+				BA1F242B1BE6F71F0095E185 /* CardView.xib */,
+				BA1F242D1BE6F7640095E185 /* CardView.h */,
+				BA1F242E1BE6F7640095E185 /* CardView.m */,
 			);
 			path = ChimpNoise;
 			sourceTree = "<group>";
@@ -113,9 +145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BABC49531BD2F8FD00DC26FC /* Build configuration list for PBXNativeTarget "ChimpNoise" */;
 			buildPhases = (
+				54195C117C2F2E8814C91F45 /* Check Pods Manifest.lock */,
 				BABC49351BD2F8FD00DC26FC /* Sources */,
 				BABC49361BD2F8FD00DC26FC /* Frameworks */,
 				BABC49371BD2F8FD00DC26FC /* Resources */,
+				CBBFE08C89A83AC5C1069806 /* Embed Pods Frameworks */,
+				900FCF787F5EFF7CD468CFFB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -166,11 +201,60 @@
 			files = (
 				BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */,
 				BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */,
+				BA1F242C1BE6F71F0095E185 /* CardView.xib in Resources */,
 				BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54195C117C2F2E8814C91F45 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		900FCF787F5EFF7CD468CFFB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBBFE08C89A83AC5C1069806 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BABC49351BD2F8FD00DC26FC /* Sources */ = {
@@ -183,6 +267,7 @@
 				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
+				BA1F242F1BE6F7640095E185 /* CardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +375,7 @@
 		};
 		BABC49541BD2F8FD00DC26FC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -304,6 +390,7 @@
 		};
 		BABC49551BD2F8FD00DC26FC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
