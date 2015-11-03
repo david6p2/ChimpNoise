@@ -18,23 +18,82 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon{
     self = [super initWithFrame:frame];
     if (self) {
-        [self setup];
+        if(beacon){
+            [self setupWithBeacon:beacon];
+        }
+        else{
+            [self setup];
+        }
     }
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon{
     self = [super initWithCoder:aDecoder];
-    if (self) {
+    if(beacon){
+        [self setupWithBeacon:beacon];
+    }
+    else{
         [self setup];
     }
     return self;
 }
 
 - (void)setup {
+    [self cardSetup];
+    
+    [self addTitleLabel: @"Setup sin Beacon"];
+    [self addImage: @"https://s-media-cache-ak0.pinimg.com/236x/20/a0/6a/20a06aed6797d0ffe0d6a524bd61cd1f.jpg"];
+    [self addTimer];
+}
+
+- (void)setupWithBeacon:(AYBeacon *) beacon {
+    [self cardSetup];
+    
+    [self addTitleLabel: beacon.title];
+    [self addImage: beacon.imageURL];
+    [self addTimer];
+}
+
+-(void) addTitleLabel:(NSString *) title{
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 2/10)];
+    titleLabel.text = title;
+    titleLabel.backgroundColor = [UIColor colorWithRed:0.13 green:0.59 blue:0.95 alpha:1.0];;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.numberOfLines = 1;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.minimumScaleFactor = 10.0f/12.0f;
+    titleLabel.clipsToBounds = YES;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:titleLabel];
+}
+
+-(void) addImage:(NSString *) imageUrlString{
+    NSURL * imageURL = [NSURL URLWithString: imageUrlString];
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage * image = [UIImage imageWithData:imageData];
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, self.frame.size.height * 2/10, self.frame.size.width, self.frame.size.height * 7/10);
+    [self addSubview:imageView];
+}
+
+-(void) addTimer{
+    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height * 9/10, self.frame.size.width, self.frame.size.height * 1/10)];
+    timeLabel.text = @"time remaining: 5:00";
+    timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];;
+    timeLabel.textColor = [UIColor whiteColor];
+    timeLabel.numberOfLines = 1;
+    timeLabel.adjustsFontSizeToFitWidth = YES;
+    timeLabel.minimumScaleFactor = 10.0f/12.0f;
+    timeLabel.clipsToBounds = YES;
+    timeLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:timeLabel];
+}
+
+-(void) cardSetup{
     // Shadow
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.layer.shadowOpacity = 0.33;
@@ -46,42 +105,8 @@
     // Corner Radius
     self.layer.cornerRadius = 0;
     
-    
-    
-    
-    
     //Card Setup
     self.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 2/10)];
-    titleLabel.text = @"CardTitleLabeeeel";
-    titleLabel.backgroundColor = [UIColor colorWithRed:0.13 green:0.59 blue:0.95 alpha:1.0];;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.numberOfLines = 1;
-    titleLabel.adjustsFontSizeToFitWidth = YES;
-    titleLabel.minimumScaleFactor = 10.0f/12.0f;
-    titleLabel.clipsToBounds = YES;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:titleLabel];
-    
-    NSURL * imageURL = [NSURL URLWithString:@"http://www.gannett-cdn.com/-mm-/ac1394dbdcca6a36cbf486633b129cd813095ac3/r=x404&c=534x401/local/-/media/USATODAY/USATODAY/2012/09/30/kindle-paperwhite-4_3.jpg"];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.frame = CGRectMake(0, self.frame.size.height * 2/10, self.frame.size.width, self.frame.size.height * 7/10);
-    [self addSubview:imageView];
-    
-    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.frame.size.height * 9/10, self.frame.size.width, self.frame.size.height * 1/10)];
-    timeLabel.text = @"time remaining: 5:00";
-    timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];;
-    timeLabel.textColor = [UIColor whiteColor];
-    timeLabel.numberOfLines = 1;
-    timeLabel.adjustsFontSizeToFitWidth = YES;
-    timeLabel.minimumScaleFactor = 10.0f/12.0f;
-    timeLabel.clipsToBounds = YES;
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:timeLabel];
-
 }
 
 @end

@@ -57,7 +57,6 @@
     //Init Chimpnoise Model
     self.chimpnoise = [AYChimpnoise sharedInstance];
     self.AdIndex = 0;
-    [self displayAd];
     
     self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
     self.swipeableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.0];;
@@ -124,7 +123,6 @@
                                                             minor:beacon.minor
                                                             major:beacon.major];
     }
-    [self displayAd];
     NSLog(@"%@", [self.chimpnoise beacons]);
 }
 
@@ -168,25 +166,12 @@
 #pragma mark - ZLSwipeableViewDataSource
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
+    CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50)
+                                                   beacon: nil];
     
-    CardView *view = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50)];
-    return view;
+    return cardView;
 }
 
 #pragma mark - helpers
-
-- (void) displayAd{
-    NSArray *beaconsToDisplay = [[self.chimpnoise beacons] allValues];
-    if(beaconsToDisplay == nil || [beaconsToDisplay count] == 0){
-        self.titleLabel.title = @"No Ads to show";
-    }
-    else{
-        AYBeacon *displayBeacon = [beaconsToDisplay objectAtIndex:self.AdIndex];
-        self.titleLabel.title = displayBeacon.title;
-        self.titleLabel.prompt = displayBeacon.prompt;
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:displayBeacon.imageURL]];
-        self.imageView.image = [UIImage imageWithData:imageData];
-    }
-}
 
 @end

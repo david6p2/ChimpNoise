@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AYBeacon.h"
 
 @interface CardView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *cardTitleLabel;
-
+- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon;
 @end
