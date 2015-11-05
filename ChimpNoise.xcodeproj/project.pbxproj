@@ -98,20 +98,14 @@
 		BABC493B1BD2F8FD00DC26FC /* ChimpNoise */ = {
 			isa = PBXGroup;
 			children = (
-				BAF9A4E71BE07BE30058E1DA /* Model */,
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
-				BABC49421BD2F8FD00DC26FC /* FirstViewController.h */,
-				BABC49431BD2F8FD00DC26FC /* FirstViewController.m */,
-				BABC49451BD2F8FD00DC26FC /* SecondViewController.h */,
-				BABC49461BD2F8FD00DC26FC /* SecondViewController.m */,
-				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
+				BAF299411BEBED0200348B20 /* Controller */,
+				BAF299401BEBECFA00348B20 /* View */,
+				BAF9A4E71BE07BE30058E1DA /* Model */,
 				BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */,
-				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
 				BABC493C1BD2F8FD00DC26FC /* Supporting Files */,
-				BA1F242D1BE6F7640095E185 /* CardView.h */,
-				BA1F242E1BE6F7640095E185 /* CardView.m */,
 			);
 			path = ChimpNoise;
 			sourceTree = "<group>";
@@ -122,6 +116,28 @@
 				BABC493D1BD2F8FD00DC26FC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BAF299401BEBECFA00348B20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA1F242D1BE6F7640095E185 /* CardView.h */,
+				BA1F242E1BE6F7640095E185 /* CardView.m */,
+				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
+				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BAF299411BEBED0200348B20 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BABC49421BD2F8FD00DC26FC /* FirstViewController.h */,
+				BABC49431BD2F8FD00DC26FC /* FirstViewController.m */,
+				BABC49451BD2F8FD00DC26FC /* SecondViewController.h */,
+				BABC49461BD2F8FD00DC26FC /* SecondViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		BAF9A4E71BE07BE30058E1DA /* Model */ = {
