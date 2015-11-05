@@ -21,7 +21,5 @@
 @property (nonatomic) AYChimpnoise *chimpnoise;
 @property (nonatomic, strong) ZLSwipeableView *swipeableView;
 
-- (UIView *)displayAd;
-
 @end
 

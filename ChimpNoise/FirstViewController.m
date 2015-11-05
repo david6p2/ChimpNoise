@@ -59,12 +59,18 @@
     self.AdIndex = 0;
     
     self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
-    self.swipeableView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.0];;
+    self.swipeableView.backgroundColor = [UIColor whiteColor];
     self.swipeableView.dataSource = self;
     self.swipeableView.delegate = self;
     
+    [self updateNumberOfBeacons];
+    
     [self.view addSubview:self.swipeableView];
     NSLog(@"viewDidLoad");
+}
+
+- (void)viewDidLayoutSubviews {
+    [self.swipeableView loadViewsIfNeeded];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -124,6 +130,9 @@
                                                             major:beacon.major];
     }
     NSLog(@"%@", [self.chimpnoise beacons]);
+
+    [self updateNumberOfBeacons];
+    [self.swipeableView loadViewsIfNeeded];
 }
 
 -(void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error{
@@ -131,47 +140,25 @@
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
 
-#pragma mark - ZLSwipeableViewDelegate
-
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-         didSwipeView:(UIView *)view
-          inDirection:(ZLSwipeableViewDirection)direction {
-    NSLog(@"did swipe in direction: %zd", direction);
-}
-
-- (void)swipeableView:(ZLSwipeableView *)swipeableView didCancelSwipe:(UIView *)view {
-    NSLog(@"did cancel swipe");
-}
-
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-  didStartSwipingView:(UIView *)view
-           atLocation:(CGPoint)location {
-    NSLog(@"did start swiping at location: x %f, y %f", location.x, location.y);
-}
-
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-          swipingView:(UIView *)view
-           atLocation:(CGPoint)location
-          translation:(CGPoint)translation {
-    NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y,
-          translation.x, translation.y);
-}
-
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-    didEndSwipingView:(UIView *)view
-           atLocation:(CGPoint)location {
-    NSLog(@"did end swiping at location: x %f, y %f", location.x, location.y);
-}
-
 #pragma mark - ZLSwipeableViewDataSource
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
-    CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50)
-                                                   beacon: nil];
+    
+    AYBeacon * beaconToShow = [[self.chimpnoise beaconsArray] objectAtIndex:self.AdIndex];
+    CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0,
+                                                                     0,
+                                                                     swipeableView.frame.size.width - 50,
+                                                                     swipeableView.frame.size.height - 50)
+                                                   beacon: beaconToShow];
     
     return cardView;
 }
 
 #pragma mark - helpers
-
+-(void) updateNumberOfBeacons{
+    NSUInteger *numberOfBeacons = [self.chimpnoise beaconsCount];
+    
+    self.swipeableView.numberOfActiveViews = numberOfBeacons;
+    self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%d)", numberOfBeacons ];
+}
 @end

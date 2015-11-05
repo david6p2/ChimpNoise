@@ -4,6 +4,6 @@
 # use_frameworks!
 
 target 'ChimpNoise' do
-  pod 'ZLSwipeableView', '0.0.7'
+  pod 'ZLSwipeableView', '0.0.8'
 end
 

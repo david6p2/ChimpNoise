@@ -37,4 +37,18 @@ static AYChimpnoise *sharedInstance = nil;
     return beacon;
 }
 
+-(NSUInteger) beaconsCount{
+    NSArray *beacons = [self.beacons allValues];
+    if(beacons == nil || [beacons count] == 0){
+        return 0;
+    }
+    else{
+        return [beacons count];
+    }
+}
+
+-(NSArray *) beaconsArray{
+    return [self.beacons allValues];
+}
+
 @end

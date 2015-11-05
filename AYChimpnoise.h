@@ -16,7 +16,8 @@
 + (AYChimpnoise *) sharedInstance;
 
 -(void) addBeacon:(AYBeacon *) beacon;
-
 -(AYBeacon *) findOrCreateBeaconWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
+-(NSUInteger) beaconsCount;
+-(NSArray *) beaconsArray;
 
 @end
