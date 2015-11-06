@@ -51,4 +51,13 @@ static AYChimpnoise *sharedInstance = nil;
     return [self.beacons allValues];
 }
 
+-(AYBeacon *) beaconToDisplayOnScreen{
+    for (AYBeacon *beacon in [self beaconsArray]) {
+        if(beacon.onScreen == NO){
+            return beacon;
+        }
+    }
+    return nil;
+}
+
 @end

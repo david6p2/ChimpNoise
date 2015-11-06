@@ -37,6 +37,7 @@
     new.uuid = uuid;
     new.minor = minor;
     new.major = major;
+    new.onScreen = NO;
     
     [new fetch];
     return new;
@@ -57,6 +58,13 @@
 
 -(NSString *) key{
     return [NSString stringWithFormat:@"%@:%@:%@", self.uuid, self.major, self.minor];
+}
+
+-(void) display{
+    self.onScreen = YES;
+}
+-(void) hide{
+    self.onScreen = NO;
 }
 
 @end

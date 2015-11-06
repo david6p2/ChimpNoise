@@ -12,6 +12,7 @@
 @interface CardView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *cardTitleLabel;
+@property (weak, nonatomic) AYBeacon *beacon;
 - (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon;
 @end

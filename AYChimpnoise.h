@@ -19,5 +19,5 @@
 -(AYBeacon *) findOrCreateBeaconWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
 -(NSUInteger) beaconsCount;
 -(NSArray *) beaconsArray;
-
+-(AYBeacon *) beaconToDisplayOnScreen;
 @end

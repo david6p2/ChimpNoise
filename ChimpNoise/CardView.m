@@ -53,6 +53,8 @@
 - (void)setupWithBeacon:(AYBeacon *) beacon {
     [self cardSetup];
     
+    self.beacon = beacon;
+    
     [self addTitleLabel: beacon.title];
     [self addImage: beacon.imageURL];
     [self addTimer];

@@ -59,6 +59,7 @@
     self.AdIndex = 0;
     
     self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
+    self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
     self.swipeableView.backgroundColor = [UIColor whiteColor];
     self.swipeableView.dataSource = self;
     self.swipeableView.delegate = self;
@@ -139,12 +140,50 @@
     NSLog(@"monitorDidFailForRegion");
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
+#pragma mark - ZLSwipeableViewDelegate
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+         didSwipeView:(UIView *)view
+          inDirection:(ZLSwipeableViewDirection)direction {
+    
+    CardView *cardView = (CardView *) view;
+    [cardView.beacon hide];
+    
+    // Left Swipe: Direction 1
+    // Right Swipe: Direction 2
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView didCancelSwipe:(UIView *)view {
+    NSLog(@"did cancel swipe");
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+  didStartSwipingView:(UIView *)view
+           atLocation:(CGPoint)location {
+    NSLog(@"did start swiping at location: x %f, y %f", location.x, location.y);
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+          swipingView:(UIView *)view
+           atLocation:(CGPoint)location
+          translation:(CGPoint)translation {
+    NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y,
+          translation.x, translation.y);
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+    didEndSwipingView:(UIView *)view
+           atLocation:(CGPoint)location {
+    NSLog(@"did end swiping at location: x %f, y %f", location.x, location.y);
+}
 
 #pragma mark - ZLSwipeableViewDataSource
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
     
-    AYBeacon * beaconToShow = [[self.chimpnoise beaconsArray] objectAtIndex:self.AdIndex];
+    AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
+    [beaconToShow display];
+    
     CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0,
                                                                      0,
                                                                      swipeableView.frame.size.width - 50,

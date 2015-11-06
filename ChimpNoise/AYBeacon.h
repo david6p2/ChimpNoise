@@ -19,7 +19,9 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *prompt;
 @property (nonatomic, strong) NSString *imageURL;
+@property BOOL onScreen;
 
 -(instancetype)initWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
-
+-(void) display;
+-(void) hide;
 @end
