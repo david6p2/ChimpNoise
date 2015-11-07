@@ -5,5 +5,6 @@
 
 target 'ChimpNoise' do
   pod 'ZLSwipeableView', '0.0.8'
+  pod 'SDWebImage', '~> 3.7.3'
 end
 

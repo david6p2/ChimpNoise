@@ -197,7 +197,15 @@
 -(void) updateNumberOfBeacons{
     NSUInteger *numberOfBeacons = [self.chimpnoise beaconsCount];
     
-    self.swipeableView.numberOfActiveViews = numberOfBeacons;
-    self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%d)", numberOfBeacons ];
+    if (numberOfBeacons >= 3) {
+        self.swipeableView.numberOfActiveViews = 3;
+        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%d)", numberOfBeacons];
+    }
+    else{
+        self.swipeableView.numberOfActiveViews = numberOfBeacons;
+        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%d)", numberOfBeacons];
+    }
+    
+
 }
 @end

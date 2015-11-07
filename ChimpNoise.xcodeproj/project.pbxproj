@@ -17,6 +17,7 @@
 		BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */; };
 		BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */; };
 		BABC49571BD2F90A00DC26FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC49561BD2F90A00DC26FC /* CoreLocation.framework */; };
+		BACAF1D81BED23F1004965B0 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BACAF1D71BED23F1004965B0 /* placeholder.jpg */; };
 		BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */; };
 		BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF9A4E91BE082E70058E1DA /* AYBeacon.m */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		BABC494E1BD2F8FD00DC26FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BABC49501BD2F8FD00DC26FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BABC49561BD2F90A00DC26FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BACAF1D71BED23F1004965B0 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
 		BAF9A4E41BE07BCC0058E1DA /* AYChimpnoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AYChimpnoise.h; path = ../AYChimpnoise.h; sourceTree = "<group>"; };
 		BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYChimpnoise.m; path = ../AYChimpnoise.m; sourceTree = "<group>"; };
 		BAF9A4E81BE082E70058E1DA /* AYBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYBeacon.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		BABC493B1BD2F8FD00DC26FC /* ChimpNoise */ = {
 			isa = PBXGroup;
 			children = (
+				BACAF1D71BED23F1004965B0 /* placeholder.jpg */,
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
 				BAF299411BEBED0200348B20 /* Controller */,
@@ -215,6 +218,7 @@
 				BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */,
 				BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */,
 				BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */,
+				BACAF1D81BED23F1004965B0 /* placeholder.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
