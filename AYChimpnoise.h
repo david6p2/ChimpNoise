@@ -20,4 +20,5 @@
 -(NSUInteger) beaconsCount;
 -(NSArray *) beaconsArray;
 -(AYBeacon *) beaconToDisplayOnScreen;
+-(BOOL) deleteBeacon:(AYBeacon *) beacon;
 @end

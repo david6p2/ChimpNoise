@@ -24,4 +24,5 @@
 -(instancetype)initWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
 -(void) display;
 -(void) hide;
+-(NSString *) key;
 @end

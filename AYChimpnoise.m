@@ -37,6 +37,16 @@ static AYChimpnoise *sharedInstance = nil;
     return beacon;
 }
 
+-(BOOL) deleteBeacon:(AYBeacon *) beacon{
+    if([self.beacons objectForKey:beacon.key]){
+        [self.beacons removeObjectForKey: beacon.key];
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 -(NSUInteger) beaconsCount{
     NSArray *beacons = [self.beacons allValues];
     if(beacons == nil || [beacons count] == 0){

@@ -122,8 +122,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     NSLog(@"didRangeBeacons");
-    NSLog(@"Region: %@", region.identifier);
-    NSLog(@"# Beacons: %ld", [beacons count]);
     
     for (CLBeacon *beacon in beacons) {
         [self.chimpnoise findOrCreateBeaconWithUUID:[beacon.proximityUUID UUIDString]
@@ -149,32 +147,28 @@
     CardView *cardView = (CardView *) view;
     [cardView.beacon hide];
     
-    // Left Swipe: Direction 1
-    // Right Swipe: Direction 2
-}
+    if (direction == ZLSwipeableViewDirectionLeft) {
+        [self skipCard: cardView];
+    }
 
-- (void)swipeableView:(ZLSwipeableView *)swipeableView didCancelSwipe:(UIView *)view {
-    NSLog(@"did cancel swipe");
-}
+    if (direction == ZLSwipeableViewDirectionRight) {
+        [self deleteCard: cardView];
+    }
 
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-  didStartSwipingView:(UIView *)view
-           atLocation:(CGPoint)location {
-    NSLog(@"did start swiping at location: x %f, y %f", location.x, location.y);
 }
 
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
           swipingView:(UIView *)view
            atLocation:(CGPoint)location
           translation:(CGPoint)translation {
-    NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y,
-          translation.x, translation.y);
-}
-
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-    didEndSwipingView:(UIView *)view
-           atLocation:(CGPoint)location {
-    NSLog(@"did end swiping at location: x %f, y %f", location.x, location.y);
+    NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y, translation.x, translation.y);
+    
+    if (10 <= translation.x) {
+        self.titleLabel.title = @"Delete Card";
+    }
+    else if (translation.x <= -10){
+        self.titleLabel.title = @"Skip Card";
+    }
 }
 
 #pragma mark - ZLSwipeableViewDataSource
@@ -195,17 +189,32 @@
 
 #pragma mark - helpers
 -(void) updateNumberOfBeacons{
-    NSUInteger *numberOfBeacons = [self.chimpnoise beaconsCount];
+    NSUInteger numberOfBeacons = [self.chimpnoise beaconsCount];
     
     if (numberOfBeacons >= 3) {
         self.swipeableView.numberOfActiveViews = 3;
-        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%d)", numberOfBeacons];
+        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
     }
     else{
         self.swipeableView.numberOfActiveViews = numberOfBeacons;
-        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%d)", numberOfBeacons];
+        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
     }
-    
+}
+
+-(void) deleteCard:(CardView *) view{
+
+    BOOL eliminado = [self.chimpnoise deleteBeacon:view.beacon];
+    if (eliminado) {
+        self.titleLabel.title = @"Deleted!";
+        [self updateNumberOfBeacons];
+    }
+    else{
+        self.titleLabel.title = @"Card Not Found!";
+    }
+}
+
+-(void) skipCard:(CardView *) view {
 
 }
+
 @end
