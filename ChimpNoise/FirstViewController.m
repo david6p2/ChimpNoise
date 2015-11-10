@@ -84,7 +84,6 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    
     NSLog(@"didEnterRegion");
     
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
@@ -178,12 +177,9 @@
     AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
     [beaconToShow display];
     
-    CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0,
-                                                                     0,
-                                                                     swipeableView.frame.size.width - 50,
+    CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50,
                                                                      swipeableView.frame.size.height - 50)
                                                    beacon: beaconToShow];
-    
     return cardView;
 }
 
