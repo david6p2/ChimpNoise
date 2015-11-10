@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 #import "CardView.h"
 #import "CardViewController.h"
+#import "NSUserDefaults+RMSaveCustomObject.h"
 
 
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
@@ -48,15 +49,21 @@
     
     [self.locationManager startRangingBeaconsInRegion:region2];
     [self.locationManager startMonitoringForRegion:region2];
-
+    
+    //Init Chimpnoise Model
+    AYChimpnoise *storedChimpnoise = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"chimpnoise"];
+    
+    if (storedChimpnoise) {
+        self.chimpnoise = storedChimpnoise;
+        [self.chimpnoise hideAllBeacons];
+    }
+    else{
+        self.chimpnoise = [AYChimpnoise sharedInstance];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //Init Chimpnoise Model
-    self.chimpnoise = [AYChimpnoise sharedInstance];
-    self.AdIndex = 0;
     
     self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
     self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
@@ -69,6 +76,8 @@
     [self.view addSubview:self.swipeableView];
     NSLog(@"viewDidLoad");
 }
+
+
 
 - (void)viewDidLayoutSubviews {
     [self.swipeableView loadViewsIfNeeded];
@@ -128,7 +137,7 @@
                                                             major:beacon.major];
     }
     NSLog(@"%@", [self.chimpnoise beacons]);
-
+    [self saveModel];
     [self updateNumberOfBeacons];
     [self.swipeableView loadViewsIfNeeded];
 }
@@ -207,10 +216,16 @@
     else{
         self.titleLabel.title = @"Card Not Found!";
     }
+    [self saveModel];
 }
 
 -(void) skipCard:(CardView *) view {
 
+}
+
+-(void) saveModel{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults rm_setCustomObject:self.chimpnoise forKey:@"chimpnoise"];
 }
 
 @end

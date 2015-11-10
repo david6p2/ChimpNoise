@@ -38,6 +38,8 @@ static AYChimpnoise *sharedInstance = nil;
 }
 
 -(BOOL) deleteBeacon:(AYBeacon *) beacon{
+    NSString *key = beacon.key;
+    NSMutableDictionary *nBeacons = self.beacons;
     if([self.beacons objectForKey:beacon.key]){
         [self.beacons removeObjectForKey: beacon.key];
         return YES;
@@ -68,6 +70,12 @@ static AYChimpnoise *sharedInstance = nil;
         }
     }
     return nil;
+}
+
+-(void) hideAllBeacons{
+    for (AYBeacon *beacon in [self beaconsArray]) {
+        beacon.onScreen = NO;
+    }
 }
 
 @end
