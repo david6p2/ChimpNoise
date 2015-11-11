@@ -22,7 +22,6 @@
     
     [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
                                                                                                          categories:nil]];
-    
     return YES;
 }
 
