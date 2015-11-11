@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "AYBeacon.h"
+#import "NSObject+RMArchivable.h"
+#import "RMMapper.h"
 
-@interface AYChimpnoise : NSObject
+@interface AYChimpnoise : NSObject <RMMapping>
 
 @property (nonatomic, strong) NSMutableDictionary *beacons;
 
@@ -21,4 +23,5 @@
 -(NSArray *) beaconsArray;
 -(AYBeacon *) beaconToDisplayOnScreen;
 -(BOOL) deleteBeacon:(AYBeacon *) beacon;
+-(void) hideAllBeacons;
 @end

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+RMArchivable.h"
+#import "RMMapper.h"
 
-@interface AYBeacon : NSObject
+@interface AYBeacon : NSObject <RMMapping>
 
 @property (nonatomic, strong) NSDictionary *demoPLaces;
 

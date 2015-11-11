@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
+		BA0E04811BF2F2420087E586 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0E04801BF2F2420087E586 /* Default.png */; };
 		BA1F242F1BE6F7640095E185 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1F242E1BE6F7640095E185 /* CardView.m */; };
 		BABC493E1BD2F8FD00DC26FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC493D1BD2F8FD00DC26FC /* main.m */; };
 		BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49401BD2F8FD00DC26FC /* AppDelegate.m */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
 		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
+		BA0E04801BF2F2420087E586 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA1F242D1BE6F7640095E185 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
 		BA1F242E1BE6F7640095E185 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		BABC49391BD2F8FD00DC26FC /* ChimpNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChimpNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BA0E047F1BF2F17C0087E586 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				BACAF1D71BED23F1004965B0 /* placeholder.jpg */,
+				BA0E04801BF2F2420087E586 /* Default.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
 		BABC49301BD2F8FD00DC26FC = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +111,7 @@
 		BABC493B1BD2F8FD00DC26FC /* ChimpNoise */ = {
 			isa = PBXGroup;
 			children = (
-				BACAF1D71BED23F1004965B0 /* placeholder.jpg */,
+				BA0E047F1BF2F17C0087E586 /* img */,
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
 				BAF299411BEBED0200348B20 /* Controller */,
@@ -219,6 +230,7 @@
 				BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */,
 				BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */,
 				BACAF1D81BED23F1004965B0 /* placeholder.jpg in Resources */,
+				BA0E04811BF2F2420087E586 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
