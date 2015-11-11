@@ -58,13 +58,12 @@
     
     self.beacon = beacon;
     
-    [self addTitleLabel: beacon.title];
+//    [self addTitleLabel: beacon.title];
     [self addImage: beacon.imageURL];
     [self addTimer];
 }
 
--
-(void) addTitleLabel:(NSString *) title{
+-(void) addTitleLabel:(NSString *) title{
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 2/10)];
     titleLabel.text = title;
     titleLabel.backgroundColor = [UIColor colorWithRed:0.13 green:0.59 blue:0.95 alpha:1.0];;
@@ -80,7 +79,7 @@
 -(void) addImage:(NSString *) imageUrlString{
     
     UIImageView * imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(0, self.frame.size.height * 2/10, self.frame.size.width, self.frame.size.height * 7/10);
+    imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 9/10);
     [imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
                  placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
     [self addSubview:imageView];
