@@ -143,11 +143,11 @@
     [cardView.beacon hide];
     
     if (direction == ZLSwipeableViewDirectionLeft) {
-        [self skipCard: cardView];
+        [self deleteCard: cardView];
     }
 
     if (direction == ZLSwipeableViewDirectionRight) {
-        [self deleteCard: cardView];
+        [self skipCard: cardView];
     }
 
 }
@@ -159,10 +159,11 @@
     NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y, translation.x, translation.y);
     
     if (10 <= translation.x) {
-        self.titleLabel.title = @"Delete Card";
+        self.titleLabel.title = @"Next";
     }
     else if (translation.x <= -10){
-        self.titleLabel.title = @"Skip Card";
+        
+        self.titleLabel.title = @"Delete";
     }
 }
 
