@@ -14,6 +14,8 @@
 
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
 #define BEACON_UUID_2 @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19"
+#define BEACON_UUID_3 @"67DED150-E522-17B6-CB70-843903F8644B"
+
 
 
 @interface FirstViewController ()
@@ -30,25 +32,9 @@
     self.locationManager.delegate = self;
     [self.locationManager requestAlwaysAuthorization];
     
-    //Init Region 1
-    NSUUID *uuid1 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_1];
-    CLBeaconRegion *region1 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid1 identifier:@"chimpnoise.one"];
-    region1.notifyOnEntry = YES;
-    region1.notifyOnExit = YES;
-    region1.notifyEntryStateOnDisplay = YES;
-    
-    //Init Region 2
-    NSUUID *uuid2 = [[NSUUID alloc] initWithUUIDString:BEACON_UUID_2];
-    CLBeaconRegion *region2 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid2 identifier:@"chimpnoise.two"];
-    region2.notifyOnEntry = YES;
-    region2.notifyOnExit = YES;
-    region2.notifyEntryStateOnDisplay = YES;
-    
-    [self.locationManager startRangingBeaconsInRegion:region1];
-    [self.locationManager startMonitoringForRegion:region1];
-    
-    [self.locationManager startRangingBeaconsInRegion:region2];
-    [self.locationManager startMonitoringForRegion:region2];
+    [self initRegionWithUUID:BEACON_UUID_1 identifier:@"chimpnoise.one"];
+    [self initRegionWithUUID:BEACON_UUID_2 identifier:@"chimpnoise.two"];
+    [self initRegionWithUUID:BEACON_UUID_3 identifier:@"chimpnoise.three"];
     
     //Init Chimpnoise Model
     AYChimpnoise *storedChimpnoise = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"chimpnoise"];
@@ -146,6 +132,7 @@
     NSLog(@"monitorDidFailForRegion");
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
+    
 #pragma mark - ZLSwipeableViewDelegate
 
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
@@ -206,6 +193,18 @@
     }
 }
 
+-(void) initRegionWithUUID:(NSString *)uuidString identifier:(NSString *) identifier{
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
+    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:identifier];
+    region.notifyOnEntry = YES;
+    region.notifyOnExit = YES;
+    region.notifyEntryStateOnDisplay = YES;
+    
+    [self.locationManager startRangingBeaconsInRegion:region];
+    [self.locationManager startMonitoringForRegion:region];
+}
+
+#pragma mark - Card Swipes
 -(void) deleteCard:(CardView *) view{
 
     BOOL eliminado = [self.chimpnoise deleteBeacon:view.beacon];

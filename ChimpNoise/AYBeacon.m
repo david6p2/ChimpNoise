@@ -17,14 +17,19 @@
         self.imageURL = nil;
         self.demoPLaces = @{
                             @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D:1:1":@{
-                                    @"title": @"Netshoes",
-                                    @"prompt": @"Promotion 20% shoes",
-                                    @"image": @"http://image.dhgate.com/albu_269291508_00/1.0x0.jpg"
+                                    @"title": @"DRONE EXPO",
+                                    @"prompt": @"Come fly with us!",
+                                    @"image": @"http://www.lacoliseum.com/wp-content/uploads/2014/10/UAVSA-Drone-Expo-FLYER.jpg"
+                                    },
+                            @"67DED150-E522-17B6-CB70-843903F8644B:2:2":@{
+                                    @"title": @"Porsche",
+                                    @"prompt": @"1992 - 968 Series",
+                                    @"image": @"http://www.vintageautolit.com/images/1992_porsche_.jpg"
                                     },
                             @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19:3:3":@{
-                                    @"title": @"Iphone",
-                                    @"prompt": @"50 USD off",
-                                    @"image": @"http://www.sprint.com/landings/iphone-forever/images/iphone6s_lockup.jpg"
+                                    @"title": @"COFFEE NIGHT",
+                                    @"prompt": @"Monday August 19th  at Eco Mini Park",
+                                    @"image": @"http://www.onlinedesigny.com/wp-content/uploads/2014/10/12-Coffee-Shop-Special-Invite-Flyer.png"
                                     }
                             };
         
