@@ -7,10 +7,7 @@
 //
 
 #import "FirstViewController.h"
-#import "CardView.h"
-#import "CardViewController.h"
 #import "NSUserDefaults+RMSaveCustomObject.h"
-
 
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
 #define BEACON_UUID_2 @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19"
@@ -172,13 +169,20 @@
     NSLog(@"nextViewForSwipeableView");
     
     AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
-    [beaconToShow display];
     
-    CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50,
-                                                                     swipeableView.frame.size.height - 50)
-                                                   beacon: beaconToShow
-                                                 delegate: self];
-    return cardView;
+    if (beaconToShow == nil) {
+        [self updateNumberOfBeacons];
+        [self.swipeableView loadViewsIfNeeded];
+    }
+    else{
+        [beaconToShow display];
+        CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50,
+                                                                         swipeableView.frame.size.height - 50)
+                                                       beacon: beaconToShow];
+        return cardView;
+    }
+    return nil;
+    
 }
 
 #pragma mark - helpers
@@ -211,6 +215,7 @@
 
     BOOL eliminado = [self.chimpnoise deleteBeacon:view.beacon];
     if (eliminado) {
+        [view stopTimer];
         self.titleLabel.title = @"Deleted!";
         [self updateNumberOfBeacons];
     }
@@ -221,9 +226,10 @@
 }
 
 -(void) skipCard:(CardView *) view {
-
+    [view stopTimer];
 }
 
+#pragma mark - Persistance
 -(void) saveModel{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults rm_setCustomObject:self.chimpnoise forKey:@"chimpnoise"];

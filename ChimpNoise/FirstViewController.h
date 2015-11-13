@@ -10,9 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ZLSwipeableView.h"
 #import "AYChimpnoise.h"
+#import "CardView.h"
 
-@interface FirstViewController
-    : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate>
+
+@interface FirstViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;

@@ -19,7 +19,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(UIViewController *)delegate{
+- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon{
     self = [super initWithFrame:frame];
     if (self) {
         if(beacon){
@@ -53,12 +53,11 @@
     [self addTimer];
 }
 
-- (void)setupWithBeacon:(AYBeacon *) beacon {
+- (void)setupWithBeacon:(AYBeacon *) beacon{
     [self cardSetup];
     
     self.beacon = beacon;
     
-//    [self addTitleLabel: beacon.title];
     [self addImage: beacon.imageURL];
     [self addTimer];
 }
@@ -92,10 +91,9 @@
                                                          userInfo:nil
                                                           repeats:YES];
 
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                   self.frame.size.height * 9/10,
-                                                                   self.frame.size.width,
-                                                                   self.frame.size.height * 1/10)];
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height * 9/10,
+                                                                  self.frame.size.width,
+                                                                  self.frame.size.height * 1/10)];
     self.timeLabel.text = @"Ends in";
     self.timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];
     self.timeLabel.textColor = [UIColor whiteColor];
@@ -107,23 +105,21 @@
     [self addSubview:self.timeLabel];
 }
 
-- (void)updateTimer
-{
-    if (self.beacon.startDate == nil) {
-        [self.beacon startCountdown];
-        self.timeLabel.text = @"Ends in";
+- (void)updateTimer{
+    // Create date from the elapsed time
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate: self.beacon.startDate];
+    NSLog(@"time interval %f", timeInterval);
+    
+    //300 seconds count down
+    NSTimeInterval timeIntervalCountDown = self.beacon.duration - timeInterval;
+    if (timeIntervalCountDown < 0) {
+        [self stopTimer];
+        self.timeLabel.text = @"Ended";
     }
     else{
-        // Create date from the elapsed time
-        NSDate *currentDate = [NSDate date];
-        NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate: self.beacon.startDate];
-        NSLog(@"time interval %f", timeInterval);
-        
-        //300 seconds count down
-        NSTimeInterval timeIntervalCountDown = self.beacon.duration - timeInterval;
-        
-        NSDate *timerDate = [NSDate
-                             dateWithTimeIntervalSince1970:timeIntervalCountDown];
+        NSLog(@"time after %f", timeIntervalCountDown);
+        NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeIntervalCountDown];
         
         // Create a date formatter
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -136,6 +132,11 @@
         NSLog(@"count: %@", timeString);
         self.timeLabel.text = [NSString stringWithFormat:@"Ends in %@", timeString];
     }
+}
+
+- (void)stopTimer{
+    [self.stopWatchTimer invalidate];
+    self.stopWatchTimer = nil;
 }
 
 
@@ -155,27 +156,6 @@
     // Card Setup
     self.backgroundColor = [UIColor whiteColor];
 }
-
-//- (void)stopTimer
-//{
-//    [self.stopWatchTimer invalidate];
-//    self.stopWatchTimer = nil;
-//    [self updateTimer];
-//    
-//}
-//
-//- (void)startTimer
-//{
-//    
-//    if (self.stopWatchTimer) {
-//        [self.stopWatchTimer invalidate];
-//        self.stopWatchTimer = nil;
-//    }
-//    
-//    self.startDate = [NSDate date];
-//    
-//    // Create the stop watch timer that fires every 100 ms
-//}
 
 @end
 

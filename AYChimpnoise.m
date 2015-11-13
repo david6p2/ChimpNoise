@@ -66,26 +66,16 @@ static AYChimpnoise *sharedInstance = nil;
         if (beacon.onScreen == NO){
             if (beacon.firstTimeOnScreen == YES) {
                 [beacon startCountdown];
-                NSArray *array = [self beaconsArray];
                 return beacon;
             }
             else{
-                if(beacon.endDate == nil){
-                    [beacon startCountdown];
-                    NSArray *array = [self beaconsArray];
-                    return beacon;
+                if ([beacon expired] == YES) {
+                    [self deleteBeacon:beacon];
                 }
                 else{
-                    NSArray *array = [self beaconsArray];
-                    if ([beacon expired] == YES) {
-                        [self deleteBeacon:beacon];
-                    }
-                    else{
-                        return beacon;
-                    }
+                    return beacon;
                 }
             }
-
         }
     }
     return nil;
