@@ -19,7 +19,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon{
+- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(UIViewController *)delegate{
     self = [super initWithFrame:frame];
     if (self) {
         if(beacon){
@@ -86,20 +86,58 @@
 }
 
 -(void) addTimer{
-    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
+                                                           target:self
+                                                         selector:@selector(updateTimer)
+                                                         userInfo:nil
+                                                          repeats:YES];
+
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                    self.frame.size.height * 9/10,
                                                                    self.frame.size.width,
                                                                    self.frame.size.height * 1/10)];
-    timeLabel.text = @"time remaining: 5:00";
-    timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];
-    timeLabel.textColor = [UIColor whiteColor];
-    timeLabel.numberOfLines = 1;
-    timeLabel.adjustsFontSizeToFitWidth = YES;
-    timeLabel.minimumScaleFactor = 10.0f/12.0f;
-    timeLabel.clipsToBounds = YES;
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:timeLabel];
+    self.timeLabel.text = @"Ends in";
+    self.timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];
+    self.timeLabel.textColor = [UIColor whiteColor];
+    self.timeLabel.numberOfLines = 1;
+    self.timeLabel.adjustsFontSizeToFitWidth = YES;
+    self.timeLabel.minimumScaleFactor = 10.0f/12.0f;
+    self.timeLabel.clipsToBounds = YES;
+    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.timeLabel];
 }
+
+- (void)updateTimer
+{
+    if (self.beacon.startDate == nil) {
+        [self.beacon startCountdown];
+        self.timeLabel.text = @"Ends in";
+    }
+    else{
+        // Create date from the elapsed time
+        NSDate *currentDate = [NSDate date];
+        NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate: self.beacon.startDate];
+        NSLog(@"time interval %f", timeInterval);
+        
+        //300 seconds count down
+        NSTimeInterval timeIntervalCountDown = self.beacon.duration - timeInterval;
+        
+        NSDate *timerDate = [NSDate
+                             dateWithTimeIntervalSince1970:timeIntervalCountDown];
+        
+        // Create a date formatter
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0.0]];
+        
+        
+        // Format the elapsed time and set it to the label
+        NSString *timeString = [dateFormatter stringFromDate:timerDate];
+        NSLog(@"count: %@", timeString);
+        self.timeLabel.text = [NSString stringWithFormat:@"Ends in %@", timeString];
+    }
+}
+
 
 -(void) cardSetup{
     
@@ -114,9 +152,30 @@
     // Corner Radius
     self.layer.cornerRadius = 0;
     
-    //Card Setup
+    // Card Setup
     self.backgroundColor = [UIColor whiteColor];
 }
+
+//- (void)stopTimer
+//{
+//    [self.stopWatchTimer invalidate];
+//    self.stopWatchTimer = nil;
+//    [self updateTimer];
+//    
+//}
+//
+//- (void)startTimer
+//{
+//    
+//    if (self.stopWatchTimer) {
+//        [self.stopWatchTimer invalidate];
+//        self.stopWatchTimer = nil;
+//    }
+//    
+//    self.startDate = [NSDate date];
+//    
+//    // Create the stop watch timer that fires every 100 ms
+//}
 
 @end
 

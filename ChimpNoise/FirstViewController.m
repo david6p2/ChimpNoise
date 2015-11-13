@@ -176,7 +176,8 @@
     
     CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50,
                                                                      swipeableView.frame.size.height - 50)
-                                                   beacon: beaconToShow];
+                                                   beacon: beaconToShow
+                                                 delegate: self];
     return cardView;
 }
 

@@ -12,7 +12,9 @@
 @interface CardView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *cardTitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) AYBeacon *beacon;
-- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon;
+@property (weak, nonatomic) NSTimer *stopWatchTimer;
+- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(UIViewController *) delegate;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon;
 @end

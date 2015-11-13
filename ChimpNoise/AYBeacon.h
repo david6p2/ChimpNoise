@@ -22,9 +22,17 @@
 @property (nonatomic, strong) NSString *prompt;
 @property (nonatomic, strong) NSString *imageURL;
 @property BOOL onScreen;
+@property BOOL firstTimeOnScreen;
+@property (strong, nonatomic) NSDate * startDate;
+@property NSTimeInterval duration;
+@property (strong, nonatomic) NSDate * endDate;
+
 
 -(instancetype)initWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
 -(void) display;
 -(void) hide;
 -(NSString *) key;
+
+-(void) startCountdown;
+-(BOOL) expired;
 @end
