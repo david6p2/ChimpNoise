@@ -95,8 +95,8 @@
                                                                   self.frame.size.width,
                                                                   self.frame.size.height * 1/10)];
     self.timeLabel.text = @"Ends in";
-    self.timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];
-    self.timeLabel.textColor = [UIColor whiteColor];
+    self.timeLabel.backgroundColor = [UIColor colorWithRed:0.298 green:0.686 blue:0.314 alpha:1]; /*#4caf50*/
+    self.timeLabel.textColor = [UIColor blackColor];
     self.timeLabel.numberOfLines = 1;
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.minimumScaleFactor = 10.0f/12.0f;
@@ -118,6 +118,10 @@
         self.timeLabel.text = @"Ended";
     }
     else{
+        if (timeIntervalCountDown < 40) {
+            self.timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];
+            self.timeLabel.textColor = [UIColor whiteColor];
+        }
         NSLog(@"time after %f", timeIntervalCountDown);
         NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeIntervalCountDown];
         
