@@ -95,7 +95,7 @@
                                                                   self.frame.size.width,
                                                                   self.frame.size.height * 1/10)];
     self.timeLabel.text = @"Ends in";
-    self.timeLabel.backgroundColor = [UIColor colorWithRed:0.298 green:0.686 blue:0.314 alpha:1]; /*#4caf50*/
+    self.timeLabel.backgroundColor = [UIColor whiteColor];
     self.timeLabel.textColor = [UIColor blackColor];
     self.timeLabel.numberOfLines = 1;
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
