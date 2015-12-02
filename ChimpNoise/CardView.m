@@ -162,6 +162,7 @@
 #pragma mark - AYBeaconDelegate
 -(void)beaconUpdate{
     NSLog(@"entra");
+    [[AYChimpnoise sharedInstance] saveModel];
     [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
     [self.beacon startCountdown];
     [self addTimer];

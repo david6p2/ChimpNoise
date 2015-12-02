@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "NSUserDefaults+RMSaveCustomObject.h"
 
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
 #define BEACON_UUID_2 @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19"
@@ -120,7 +119,7 @@
                                                             major:beacon.major];
     }
     NSLog(@"%@", [self.chimpnoise beacons]);
-    [self saveModel];
+
     [self updateNumberOfBeacons];
     [self.swipeableView loadViewsIfNeeded];
 }
@@ -225,17 +224,11 @@
     else{
         self.titleLabel.title = @"Card Not Found!";
     }
-    [self saveModel];
 }
 
 -(void) skipCard:(CardView *) view {
     [view stopTimer];
 }
 
-#pragma mark - Persistance
--(void) saveModel{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults rm_setCustomObject:self.chimpnoise forKey:@"chimpnoise"];
-}
 
 @end

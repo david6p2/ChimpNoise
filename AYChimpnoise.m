@@ -23,11 +23,6 @@ static AYChimpnoise *sharedInstance = nil;
     }
 }
 
--(void)addBeacon:(AYBeacon *)beacon{
-    [self.beacons setObject:beacon
-                     forKey:[NSString stringWithFormat:@"%@:%@:%@", beacon.uuid, beacon.major, beacon.minor]];
-}
-
 -(AYBeacon *)findOrCreateBeaconWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major{
     AYBeacon *beacon = [self.beacons objectForKey:[NSString stringWithFormat:@"%@:%@:%@", uuid, major, minor]];
     if (beacon == nil) {
@@ -37,12 +32,20 @@ static AYChimpnoise *sharedInstance = nil;
     return beacon;
 }
 
+-(void) addBeacon:(AYBeacon *)beacon{
+    [self.beacons setObject:beacon
+                     forKey:[NSString stringWithFormat:@"%@:%@:%@", beacon.uuid, beacon.major, beacon.minor]];
+    [self saveModel];
+}
+
 -(BOOL) deleteBeacon:(AYBeacon *) beacon{
     if([self.beacons objectForKey:beacon.key]){
         [self.beacons removeObjectForKey: beacon.key];
+        [self saveModel];
         return YES;
     }
     else{
+        [self saveModel];
         return NO;
     }
 }
@@ -65,6 +68,7 @@ static AYChimpnoise *sharedInstance = nil;
     for (AYBeacon *beacon in [self beaconsArray]) {
         if (beacon.onScreen == NO){
             if (beacon.fetchFromServer == NO) {
+                [beacon fetch];
                 return beacon;
             }
             else{
@@ -92,5 +96,12 @@ static AYChimpnoise *sharedInstance = nil;
         beacon.onScreen = NO;
     }
 }
+
+#pragma mark - Persistance
+-(void) saveModel{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults rm_setCustomObject:self forKey:@"chimpnoise"];
+}
+
 
 @end

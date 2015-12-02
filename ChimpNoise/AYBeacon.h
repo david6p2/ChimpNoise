@@ -45,4 +45,5 @@
 
 -(void) startCountdown;
 -(BOOL) expired;
+-(void) fetch;
 @end

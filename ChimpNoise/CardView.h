@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AYChimpnoise.h"
 #import "AYBeacon.h"
 
 @interface CardView : UIView <AYBeaconDelegate>

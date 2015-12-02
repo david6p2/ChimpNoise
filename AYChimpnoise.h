@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AYBeacon.h"
+#import "NSUserDefaults+RMSaveCustomObject.h"
 #import "NSObject+RMArchivable.h"
 #import "RMMapper.h"
 
@@ -24,4 +25,5 @@
 -(AYBeacon *) beaconToDisplayOnScreen;
 -(BOOL) deleteBeacon:(AYBeacon *) beacon;
 -(void) hideAllBeacons;
+-(void) saveModel;
 @end
