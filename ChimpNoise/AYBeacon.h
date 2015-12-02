@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+RMArchivable.h"
 #import "RMMapper.h"
+#import <AFHTTPRequestOperationManager.h>
+
+@class AYBeacon;
+@protocol AYBeaconDelegate <NSObject>
+
+-(void)beaconUpdate;
+
+@end
 
 @interface AYBeacon : NSObject <RMMapping>
 
-@property (nonatomic, strong) NSDictionary *demoPLaces;
 
 @property (nonatomic, strong) NSString *uuid;
 @property (retain) NSNumber *minor;
@@ -23,10 +30,13 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property BOOL onScreen;
 @property BOOL firstTimeOnScreen;
+@property BOOL fetchFromServer;
 @property (nonatomic, strong) NSDate * startDate;
 @property NSTimeInterval duration;
 @property (nonatomic, strong) NSDate * endDate;
 
+//PROTOCOL - AYBeaconDelegate
+@property (nonatomic, assign) id delegate;
 
 -(instancetype)initWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
 -(void) display;

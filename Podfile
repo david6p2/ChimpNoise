@@ -7,5 +7,6 @@ target 'ChimpNoise' do
   pod 'ZLSwipeableView', '0.0.8'
   pod 'SDWebImage',      '~> 3.7.3'
   pod 'RMMapper',        '~> 1.1.5'
+  pod 'AFNetworking',    '~> 2.5'
 end
 
