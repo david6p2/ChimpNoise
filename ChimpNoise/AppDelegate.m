@@ -20,8 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
-                                                                                                         categories:nil]];
+    [[UIApplication sharedApplication]registerUserNotificationSettings:
+     [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
+                                       categories:nil]];
     return YES;
 }
 
