@@ -10,6 +10,8 @@
 
 @implementation AYBeacon
 
+@synthesize delegate;
+
 -(instancetype)init{
     if (self = [super init]) {
         self.title = nil;
@@ -47,6 +49,9 @@
                      self.duration = [noise[@"activity_time_qty"] intValue] * 60;
                  }
                  self.fetchFromServer = YES;
+                 
+                 //Call Delegate to Update View
+                 [delegate beaconUpdate];
              }
              NSLog(@"JSON: %@", responseObject);
          }

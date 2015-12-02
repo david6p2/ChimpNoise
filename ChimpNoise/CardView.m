@@ -76,11 +76,11 @@
 }
 
 -(void) addImage:(NSString *) imageUrlString{
-    UIImageView * imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 9/10);
-    [imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 9/10);
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
                  placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
-    [self addSubview:imageView];
+    [self addSubview:self.imageView];
 }
 
 -(void) addTimer{
@@ -88,13 +88,11 @@
                                                                self.frame.size.width,
                                                                self.frame.size.height * 1/10)];
     self.timeLabel.text = @"Loading";
-    if(self.beacon.fetchFromServer == YES){
-        self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
-                                                               target:self
-                                                             selector:@selector(updateTimer)
-                                                             userInfo:nil
-                                                              repeats:YES];
-    }
+    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
+                                                           target:self
+                                                         selector:@selector(updateTimer)
+                                                         userInfo:nil
+                                                          repeats:YES];
     self.timeLabel.backgroundColor = [UIColor whiteColor];
     self.timeLabel.textColor = [UIColor blackColor];
     self.timeLabel.numberOfLines = 1;
@@ -159,6 +157,14 @@
     
     // Card Setup
     self.backgroundColor = [UIColor whiteColor];
+}
+
+#pragma mark - AYBeaconDelegate
+-(void)beaconUpdate{
+    NSLog(@"entra");
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
+    [self.beacon startCountdown];
+    [self addTimer];
 }
 
 @end

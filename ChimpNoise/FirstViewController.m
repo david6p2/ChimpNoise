@@ -179,6 +179,9 @@
         CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50,
                                                                          swipeableView.frame.size.height - 50)
                                                        beacon: beaconToShow];
+        
+        //AYBeaconDelegate Protocol to update Card after fetching from Server
+        beaconToShow.delegate = cardView;
         return cardView;
     }
     return nil;
@@ -189,8 +192,8 @@
 -(void) updateNumberOfBeacons{
     NSUInteger numberOfBeacons = [self.chimpnoise beaconsCount];
     
-    if (numberOfBeacons >= 3) {
-        self.swipeableView.numberOfActiveViews = 3;
+    if (numberOfBeacons >= 2) {
+        self.swipeableView.numberOfActiveViews = 2;
         self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
     }
     else{

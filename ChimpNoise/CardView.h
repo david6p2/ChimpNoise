@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AYBeacon.h"
 
-@interface CardView : UIView
+@interface CardView : UIView <AYBeaconDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *cardTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) UIImageView * imageView;
 @property (strong, nonatomic) AYBeacon *beacon;
 @property (strong, nonatomic) NSTimer *stopWatchTimer;
 - (void)stopTimer;
