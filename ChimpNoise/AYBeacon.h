@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+RMArchivable.h"
 #import "RMMapper.h"
+#import <AFHTTPRequestOperationManager.h>
 
 @interface AYBeacon : NSObject <RMMapping>
 
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property BOOL onScreen;
 @property BOOL firstTimeOnScreen;
+@property BOOL fetchFromServer;
 @property (nonatomic, strong) NSDate * startDate;
 @property NSTimeInterval duration;
 @property (nonatomic, strong) NSDate * endDate;

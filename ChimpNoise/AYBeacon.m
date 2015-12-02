@@ -17,29 +17,9 @@
         self.imageURL = nil;
         self.onScreen = NO;
         self.firstTimeOnScreen = YES;
+        self.fetchFromServer = NO;
         self.startDate = nil;
         self.endDate = nil;
-        self.demoPLaces = @{
-                            @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D:1:1":@{
-                                    @"title": @"DRONE EXPO",
-                                    @"prompt": @"Come fly with us!",
-                                    @"image": @"http://www.lacoliseum.com/wp-content/uploads/2014/10/UAVSA-Drone-Expo-FLYER.jpg",
-                                    @"duration": @600
-                                    },
-                            @"67DED150-E522-17B6-CB70-843903F8644B:2:2":@{
-                                    @"title": @"Porsche",
-                                    @"prompt": @"1992 - 968 Series",
-                                    @"image": @"http://www.vintageautolit.com/images/1992_porsche_.jpg",
-                                    @"duration": @1200
-                                    },
-                            @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19:3:3":@{
-                                    @"title": @"COFFEE NIGHT",
-                                    @"prompt": @"Monday August 19th  at Eco Mini Park",
-                                    @"image": @"http://www.onlinedesigny.com/wp-content/uploads/2014/10/12-Coffee-Shop-Special-Invite-Flyer.png",
-                                    @"duration": @60
-                                    }
-                            };
-        
     }
     return self;
 }
@@ -54,19 +34,25 @@
     return new;
 }
 
--(bool) fetch{
-    NSDictionary * response = [self.demoPLaces objectForKey:[self key]];
-    if(response == nil){
-        return false;
-    }
-    else{
-        self.title = [response objectForKey:@"title"];
-        self.prompt = [response objectForKey:@"prompt"];
-        self.imageURL = [response objectForKey:@"image"];
-        NSNumber *dur = (NSNumber *)[response objectForKey:@"duration"];
-        self.duration = [dur intValue];
-    }
-    return true;
+-(void) fetch{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://chimpnoise.com/api/noise/beacon/0D24BE5C-FE93-707E-041E-CEFBCACA4D2D-1-1"
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSArray *noises = responseObject[@"noises"];
+             for (NSDictionary *noise in noises) {
+                 self.imageURL = noise[@"image"];
+                 self.prompt = noise[@"subject"];
+                 if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
+                     self.duration = [noise[@"activity_time_qty"] intValue] * 60;
+                 }
+                 self.fetchFromServer = YES;
+             }
+             NSLog(@"JSON: %@", responseObject);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
+         }];
 }
 
 -(NSString *) key{
