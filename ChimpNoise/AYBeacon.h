@@ -31,6 +31,7 @@
 @property BOOL onScreen;
 @property BOOL firstTimeOnScreen;
 @property BOOL fetchFromServer;
+@property BOOL localNotification;
 @property (nonatomic, strong) NSDate * startDate;
 @property NSTimeInterval duration;
 @property (nonatomic, strong) NSDate * endDate;
@@ -46,4 +47,5 @@
 -(void) startCountdown;
 -(BOOL) expired;
 -(void) fetch;
+-(void) showNotification;
 @end

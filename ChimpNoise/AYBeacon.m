@@ -20,6 +20,7 @@
         self.onScreen = NO;
         self.firstTimeOnScreen = YES;
         self.fetchFromServer = NO;
+        self.localNotification = NO;
         self.startDate = nil;
         self.endDate = nil;
     }
@@ -37,27 +38,29 @@
 }
 
 -(void) fetch{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://chimpnoise.com/api/noise/beacon/0D24BE5C-FE93-707E-041E-CEFBCACA4D2D-1-1"
-      parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSArray *noises = responseObject[@"noises"];
-             for (NSDictionary *noise in noises) {
-                 self.imageURL = noise[@"image"];
-                 self.prompt = noise[@"subject"];
-                 if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
-                     self.duration = [noise[@"activity_time_qty"] intValue] * 60;
+    if (self.fetchFromServer == NO) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:@"http://chimpnoise.com/api/noise/beacon/0D24BE5C-FE93-707E-041E-CEFBCACA4D2D-1-1"
+          parameters:nil
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 NSArray *noises = responseObject[@"noises"];
+                 for (NSDictionary *noise in noises) {
+                     self.imageURL = noise[@"image"];
+                     self.prompt = noise[@"subject"];
+                     if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
+                         self.duration = [noise[@"activity_time_qty"] intValue] * 60;
+                     }
+                     self.fetchFromServer = YES;
+                     
+                     //Call Delegate to Update View
+                     [delegate beaconUpdate];
                  }
-                 self.fetchFromServer = YES;
-                 
-                 //Call Delegate to Update View
-                 [delegate beaconUpdate];
+                 NSLog(@"JSON: %@", responseObject);
              }
-             NSLog(@"JSON: %@", responseObject);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
-         }];
+             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 NSLog(@"Error: %@", error);
+             }];
+    }
 }
 
 -(NSString *) key{
@@ -86,6 +89,9 @@
     else{
         return NO;
     }
+}
+-(void) showNotification{
+    self.localNotification = YES;
 }
 
 @end

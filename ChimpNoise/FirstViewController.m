@@ -32,6 +32,12 @@
     [self initRegionWithUUID:BEACON_UUID_2 identifier:@"chimpnoise.two"];
     [self initRegionWithUUID:BEACON_UUID_3 identifier:@"chimpnoise.three"];
     
+    //Init CLLocationManager2 for Backgorund Range
+    self.locationManagerBackground = [[CLLocationManager alloc] init];
+    self.locationManagerBackground.delegate = self;
+    self.locationManagerBackground.desiredAccuracy = kCLLocationAccuracyKilometer;
+    [self.locationManagerBackground startUpdatingLocation];
+    
     //Init Chimpnoise Model
     AYChimpnoise *storedChimpnoise = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"chimpnoise"];
     
@@ -78,26 +84,8 @@
     NSLog(@"didEnterRegion");
     
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        
         CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-        UILocalNotification *notification = [UILocalNotification new];
-        
-        if ([beaconRegion.identifier isEqualToString:@"chimpnoise.one"]) {
-            notification.alertAction = @"See";
-            notification.alertBody = @"Shoes Discount!";
-            notification.alertTitle = @"Converse";
-        }
-        else {
-            notification.alertAction = @"See";
-            notification.alertBody = @"Iphone offer!";
-            notification.alertTitle = @"Apple Store";
-        }
-        
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
         [self.locationManager startRangingBeaconsInRegion:beaconRegion];
-
     }
 }
 
@@ -111,15 +99,14 @@
 
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    NSLog(@"didRangeBeacons");
+
+    NSLog(@"didRangeBeacons %ld", [beacons count]);
     
     for (CLBeacon *beacon in beacons) {
         [self.chimpnoise findOrCreateBeaconWithUUID:[beacon.proximityUUID UUIDString]
-                                                            minor:beacon.minor
-                                                            major:beacon.major];
+                                              minor:beacon.minor
+                                              major:beacon.major];
     }
-    NSLog(@"%@", [self.chimpnoise beacons]);
-
     [self updateNumberOfBeacons];
     [self.swipeableView loadViewsIfNeeded];
 }
@@ -152,13 +139,11 @@
           swipingView:(UIView *)view
            atLocation:(CGPoint)location
           translation:(CGPoint)translation {
-    NSLog(@"swiping at location: x %f, y %f, translation: x %f, y %f", location.x, location.y, translation.x, translation.y);
     
     if (10 <= translation.x) {
         self.titleLabel.title = @"Next";
     }
     else if (translation.x <= -10){
-        
         self.titleLabel.title = @"Delete";
     }
 }
@@ -228,6 +213,13 @@
 
 -(void) skipCard:(CardView *) view {
     [view stopTimer];
+}
+
+#pragma mark - Background Location Manager
+-(void)locationManager:(CLLocationManager *)manager
+   didUpdateToLocation:(CLLocation *)newLocation
+          fromLocation:(CLLocation *)oldLocation{
+    //TODO
 }
 
 

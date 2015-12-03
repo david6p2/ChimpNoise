@@ -68,7 +68,6 @@ static AYChimpnoise *sharedInstance = nil;
     for (AYBeacon *beacon in [self beaconsArray]) {
         if (beacon.onScreen == NO){
             if (beacon.fetchFromServer == NO) {
-                [beacon fetch];
                 return beacon;
             }
             else{

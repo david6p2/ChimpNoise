@@ -16,6 +16,7 @@
 @interface FirstViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocationManager *locationManagerBackground;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property(nonatomic, assign) int AdIndex;

@@ -107,7 +107,6 @@
     // Create date from the elapsed time
     NSDate *currentDate = [NSDate date];
     NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate: self.beacon.startDate];
-    NSLog(@"time interval %f", timeInterval);
     
     //300 seconds count down
     NSTimeInterval timeIntervalCountDown = self.beacon.duration - timeInterval;
@@ -120,7 +119,6 @@
             self.timeLabel.backgroundColor = [UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0];
             self.timeLabel.textColor = [UIColor whiteColor];
         }
-        NSLog(@"time after %f", timeIntervalCountDown);
         NSDate *timerDate = [NSDate dateWithTimeIntervalSince1970:timeIntervalCountDown];
         
         // Create a date formatter
@@ -131,7 +129,6 @@
         
         // Format the elapsed time and set it to the label
         NSString *timeString = [dateFormatter stringFromDate:timerDate];
-        NSLog(@"count: %@", timeString);
         self.timeLabel.text = [NSString stringWithFormat:@"Ends in %@", timeString];
     }
 }
@@ -161,11 +158,27 @@
 
 #pragma mark - AYBeaconDelegate
 -(void)beaconUpdate{
-    NSLog(@"entra");
+    
     [[AYChimpnoise sharedInstance] saveModel];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
-    [self.beacon startCountdown];
-    [self addTimer];
+
+    if ([[UIApplication sharedApplication] applicationState]==UIApplicationStateBackground) {
+        if (self.beacon.localNotification == NO) {
+            UILocalNotification *notification = [UILocalNotification new];
+            notification.alertTitle = @"Chimpnoise";
+            notification.alertBody = self.beacon.prompt;
+            notification.alertAction = @"See Noise";
+            notification.soundName = UILocalNotificationDefaultSoundName;
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            [self.beacon showNotification];
+        }
+    }
+    else{
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
+        [self.beacon startCountdown];
+        [self addTimer];
+    }
+
+    
 }
 
 @end
