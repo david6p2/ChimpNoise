@@ -57,6 +57,7 @@
     [self cardSetup];
     
     self.beacon = beacon;
+    beacon.delegate = self; //AYBeaconDelegate Protocol
     
     [self addImage: beacon.imageURL];
     [self addTimer];
@@ -177,8 +178,6 @@
         [self.beacon startCountdown];
         [self addTimer];
     }
-
-    
 }
 
 @end
