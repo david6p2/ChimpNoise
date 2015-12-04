@@ -65,7 +65,10 @@ static AYChimpnoise *sharedInstance = nil;
 }
 
 -(AYBeacon *) beaconToDisplayOnScreen{
-    for (AYBeacon *beacon in [self beaconsArray]) {
+    NSMutableArray *beaconsArray = [NSMutableArray arrayWithArray:[self beaconsArray]];
+    while ([beaconsArray count] >0){
+        NSUInteger randomIndex = arc4random() % [beaconsArray count];
+        AYBeacon *beacon = beaconsArray[randomIndex];
         if (beacon.onScreen == NO){
             if (beacon.fetchFromServer == NO) {
                 return beacon;
@@ -84,7 +87,7 @@ static AYChimpnoise *sharedInstance = nil;
                     }
                 }
             }
-            
+            [beaconsArray removeObjectAtIndex:randomIndex];
         }
     }
     return nil;
