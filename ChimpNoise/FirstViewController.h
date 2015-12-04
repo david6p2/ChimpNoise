@@ -11,6 +11,7 @@
 #import "ZLSwipeableView.h"
 #import "AYChimpnoise.h"
 #import "CardView.h"
+#import "TutorialCardView.h"
 
 
 @interface FirstViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate>

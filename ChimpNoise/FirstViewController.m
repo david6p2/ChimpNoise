@@ -62,7 +62,6 @@
     [self updateNumberOfBeacons];
     
     [self.view addSubview:self.swipeableView];
-    NSLog(@"viewDidLoad");
 }
 
 
@@ -121,18 +120,24 @@
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
          didSwipeView:(UIView *)view
           inDirection:(ZLSwipeableViewDirection)direction {
-    
-    CardView *cardView = (CardView *) view;
-    [cardView.beacon hide];
-    
-    if (direction == ZLSwipeableViewDirectionLeft) {
-        [self deleteCard: cardView];
-    }
 
-    if (direction == ZLSwipeableViewDirectionRight) {
-        [self skipCard: cardView];
+    if ([view class] == [CardView class]) {
+        CardView *cardView = (CardView *) view;
+        [cardView.beacon hide];
+        
+        if (direction == ZLSwipeableViewDirectionLeft) {
+            [self deleteCard: cardView];
+        }
+        
+        if (direction == ZLSwipeableViewDirectionRight) {
+            [self skipCard: cardView];
+        }
     }
-
+    else if ([view class] == [TutorialCardView class]){
+        TutorialCardView *tutorialCardView = (TutorialCardView *)view;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:tutorialCardView.key];
+    }
 }
 
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
@@ -152,37 +157,73 @@
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
     
-    AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
+    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50);
+
+    // 1. Display Tutorial.
+    UIView *tutorial = [self displayTutorial:swipeableView frame:frame];
+    if (tutorial){
+        return tutorial;
+    }
     
+    // 2. If no tutorial to display then display beacon.
+    UIView *beaconCardView = [self beaconCardViewToDisplay:swipeableView frame:frame];
+    if (beaconCardView) {
+        return beaconCardView;
+    }
+    
+    // 3. If no beacon to display then return nil.
+    return nil;
+}
+
+#pragma mark - Tutorial
+-(UIView *) displayTutorial:(ZLSwipeableView *)swipeableView frame:(CGRect) frame{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"swipeRightTutorial"] == NO) {
+        return [[TutorialCardView alloc] initWithFrame: frame
+                                                   key: @"swipeRightTutorial"
+                                              imageURL:@"http://www.mailboxapp.com/assets/images/help/tutorial/tutorial-defer-swipe.png"];
+    }
+    if ([defaults boolForKey:@"swipeLeftTutorial"] == NO) {
+        return [[TutorialCardView alloc] initWithFrame: frame
+                                                   key: @"swipeLeftTutorial"
+                                              imageURL:@"http://www.mailboxapp.com/assets/images/help/tutorial/tutorial-trash-swipe.png"];
+    }
+    return nil;
+}
+
+#pragma mark - ChooseBeaconToDisplay
+-(UIView *) beaconCardViewToDisplay:(ZLSwipeableView *)swipeableView frame:(CGRect)frame{
+    AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
     if (beaconToShow == nil) {
         [self updateNumberOfBeacons];
         [self.swipeableView loadViewsIfNeeded];
     }
     else{
         [beaconToShow display];
-        CardView * cardView = [[CardView alloc] initWithFrame:CGRectMake(0, 0, swipeableView.frame.size.width - 50,
-                                                                         swipeableView.frame.size.height - 50)
-                                                       beacon: beaconToShow];
-        
-        //AYBeaconDelegate Protocol to update Card after fetching from Server
-        beaconToShow.delegate = cardView;
+        CardView * cardView = [[CardView alloc] initWithFrame: frame beacon: beaconToShow];
         return cardView;
     }
     return nil;
-    
 }
 
 #pragma mark - helpers
 -(void) updateNumberOfBeacons{
-    NSUInteger numberOfBeacons = [self.chimpnoise beaconsCount];
     
-    if (numberOfBeacons >= 2) {
-        self.swipeableView.numberOfActiveViews = 2;
-        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"swipeRightTutorial"] == NO || [defaults boolForKey:@"swipeLeftTutorial"] == NO) {
+        self.swipeableView.numberOfActiveViews = 1;
     }
     else{
-        self.swipeableView.numberOfActiveViews = numberOfBeacons;
-        self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
+        NSUInteger numberOfBeacons = [self.chimpnoise beaconsCount];
+        if (numberOfBeacons >= 2) {
+            self.swipeableView.numberOfActiveViews = 2;
+            self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
+        }
+        else{
+            self.swipeableView.numberOfActiveViews = numberOfBeacons;
+            self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
+        }
     }
 }
 
