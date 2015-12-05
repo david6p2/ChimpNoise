@@ -67,7 +67,7 @@
 
 
 - (void)viewDidLayoutSubviews {
-    [self.swipeableView loadViewsIfNeeded];
+    [self updateNavBar];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -127,6 +127,7 @@
         
         if (direction == ZLSwipeableViewDirectionLeft) {
             [self deleteCard: cardView];
+            [self updateNavBar];
         }
         
         if (direction == ZLSwipeableViewDirectionRight) {
@@ -174,6 +175,7 @@
     }
     
     // 3. If no beacon to display then return nil.
+    
     return nil;
 }
 
@@ -227,6 +229,20 @@
     }
 }
 
+-(void) updateNavBar{
+    [self.swipeableView loadViewsIfNeeded];
+    CardView * top = (CardView *)[self.swipeableView topView];
+    if (top == nil) {
+        self.titleLabel.title = @"Searching...";
+        self.titleLabel.prompt = @"Walk Around your town";
+    }
+    else{
+        self.titleLabel.title = top.cardTitle;
+        self.titleLabel.prompt = top.cardPrompt;
+    }
+    
+}
+
 -(void) initRegionWithUUID:(NSString *)uuidString identifier:(NSString *) identifier{
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:identifier];
@@ -262,11 +278,9 @@
     //TODO
 }
 
-#pragma mark - CardViewDelegate Protocol
--(void) cardViewUpdateTitle:(NSString *)title prompt:(NSString *)prompt{
-    self.titleLabel.title = title;
-    self.titleLabel.prompt = prompt;
+#pragma mark - AYCardViewDelegate Protocol
+-(void)topCardViewUpdate{
+    [self updateNavBar];
 }
-
 
 @end

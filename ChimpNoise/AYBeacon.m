@@ -14,8 +14,8 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.title = nil;
-        self.prompt = nil;
+        self.title = @"Chimpnoise";
+        self.prompt = @"loading..";
         self.imageURL = nil;
         self.onScreen = NO;
         self.firstTimeOnScreen = YES;

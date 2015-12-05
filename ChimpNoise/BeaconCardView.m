@@ -59,6 +59,8 @@
     
     self.beacon = beacon;
     beacon.delegate = self; //AYBeaconDelegate Protocol
+    self.cardTitle = self.beacon.title;
+    self.cardPrompt = self.beacon.prompt;
     
     [self addImage: beacon.imageURL];
     [self addTimer];
@@ -150,7 +152,9 @@
         [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
         [self.beacon startCountdown];
         [self addTimer];
-        [self.delegate cardViewUpdateTitle:self.beacon.title prompt:self.beacon.prompt];
+        self.cardTitle = self.beacon.title;
+        self.cardPrompt = self.beacon.prompt;
+        [self.delegate topCardViewUpdate];
     }
 }
 

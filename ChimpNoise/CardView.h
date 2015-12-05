@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class CardView;
-@protocol CardViewDelegate <NSObject>
+@protocol AYCardViewDelegate <NSObject>
 
--(void) cardViewUpdateTitle:(NSString *)title prompt:(NSString *)prompt;
+-(void) topCardViewUpdate;
 
 @end
 
-
 @interface CardView : UIView
-@property (strong, nonatomic) IBOutlet UILabel *cardTitleLabel;
+@property (strong, nonatomic) NSString *cardTitle;
+@property (strong, nonatomic) NSString *cardPrompt;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) UIImageView * imageView;
 

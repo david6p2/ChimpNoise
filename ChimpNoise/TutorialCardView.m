@@ -27,10 +27,17 @@
     if (self) {
         self.key = key;
         self.delegate = delegate;
+        self.cardTitle = @"Tutorial";
+        if([key isEqualToString:@"swipeRightTutorial"]){
+            self.cardPrompt = @"Step 1 of 2";
+        }
+        else{
+            self.cardPrompt = @"Step 2 of 2";
+        }
+        
         [self cardSetup];
         [self addImage: key];
         [self addTimer];
-        [self.delegate cardViewUpdateTitle:@"Tutorial" prompt:@"Step 1 of 2"];
     }
     return self;
 }
