@@ -157,7 +157,7 @@
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
     
-    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 50);
+    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 70);
 
     // 1. Display Tutorial.
     UIView *tutorial = [self displayTutorial:swipeableView frame:frame];
@@ -217,6 +217,7 @@
         if (numberOfBeacons >= 2) {
             self.swipeableView.numberOfActiveViews = 2;
             self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
+            self.titleLabel.prompt = @"Drone Expo - 25 Dic Aug 12";
         }
         else{
             self.swipeableView.numberOfActiveViews = numberOfBeacons;
