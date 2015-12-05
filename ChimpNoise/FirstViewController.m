@@ -157,7 +157,7 @@
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
     
-    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 70);
+    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 100);
 
     // 1. Display Tutorial.
     UIView *tutorial = [self displayTutorial:swipeableView frame:frame];
