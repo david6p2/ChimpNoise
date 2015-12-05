@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardView.h"
 
-@interface TutorialCardView : UIView
+@interface TutorialCardView : CardView
 
-@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
-@property (strong, nonatomic) UIImageView * imageView;
-@property (strong, nonatomic) NSTimer *stopWatchTimer;
 @property (strong, nonatomic) NSString *key;
 
-- (instancetype)initWithFrame:(CGRect)frame key:(NSString *) key;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder key:(NSString *) key;
+- (instancetype)initWithFrame:(CGRect)frame key:(NSString *) key delegate:(id) delegate;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder key:(NSString *) key delegate:(id) delegate;
 
 @end

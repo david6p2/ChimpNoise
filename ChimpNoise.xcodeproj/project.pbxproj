@@ -13,6 +13,7 @@
 		BA306DA01C11FB7E000B2949 /* TutorialCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */; };
 		BA306DB61C12791E000B2949 /* swipeRightTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BA306DB41C12791E000B2949 /* swipeRightTutorial.png */; };
 		BA306DB71C12791E000B2949 /* swipeLeftTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BA306DB51C12791E000B2949 /* swipeLeftTutorial.png */; };
+		BA7A26531C1342FE00361159 /* BeaconCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7A26521C1342FE00361159 /* BeaconCardView.m */; };
 		BA86F4CB1C12A8870058CB9D /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86F4CA1C12A8870058CB9D /* placeholder.png */; };
 		BA86F4CD1C12A88E0058CB9D /* placeholderBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86F4CC1C12A88E0058CB9D /* placeholderBlue.png */; };
 		BABC493E1BD2F8FD00DC26FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC493D1BD2F8FD00DC26FC /* main.m */; };
@@ -37,6 +38,8 @@
 		BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCardView.m; sourceTree = "<group>"; };
 		BA306DB41C12791E000B2949 /* swipeRightTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeRightTutorial.png; sourceTree = "<group>"; };
 		BA306DB51C12791E000B2949 /* swipeLeftTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeLeftTutorial.png; sourceTree = "<group>"; };
+		BA7A26511C1342FE00361159 /* BeaconCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconCardView.h; sourceTree = "<group>"; };
+		BA7A26521C1342FE00361159 /* BeaconCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconCardView.m; sourceTree = "<group>"; };
 		BA86F4CA1C12A8870058CB9D /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		BA86F4CC1C12A88E0058CB9D /* placeholderBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholderBlue.png; sourceTree = "<group>"; };
 		BABC49391BD2F8FD00DC26FC /* ChimpNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChimpNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,10 +150,12 @@
 		BAF299401BEBECFA00348B20 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BA1F242D1BE6F7640095E185 /* CardView.h */,
-				BA1F242E1BE6F7640095E185 /* CardView.m */,
 				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
 				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
+				BA1F242D1BE6F7640095E185 /* CardView.h */,
+				BA1F242E1BE6F7640095E185 /* CardView.m */,
+				BA7A26511C1342FE00361159 /* BeaconCardView.h */,
+				BA7A26521C1342FE00361159 /* BeaconCardView.m */,
 				BA306D9E1C11FB7E000B2949 /* TutorialCardView.h */,
 				BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */,
 			);
@@ -308,6 +313,7 @@
 			files = (
 				BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */,
 				BABC49471BD2F8FD00DC26FC /* SecondViewController.m in Sources */,
+				BA7A26531C1342FE00361159 /* BeaconCardView.m in Sources */,
 				BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */,
 				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,

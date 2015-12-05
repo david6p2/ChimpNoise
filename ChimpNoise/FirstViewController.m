@@ -121,8 +121,8 @@
          didSwipeView:(UIView *)view
           inDirection:(ZLSwipeableViewDirection)direction {
 
-    if ([view class] == [CardView class]) {
-        CardView *cardView = (CardView *) view;
+    if ([view class] == [BeaconCardView class]) {
+        BeaconCardView *cardView = (BeaconCardView *) view;
         [cardView.beacon hide];
         
         if (direction == ZLSwipeableViewDirectionLeft) {
@@ -146,10 +146,12 @@
           translation:(CGPoint)translation {
     
     if (10 <= translation.x) {
-        self.titleLabel.title = @"Next";
+        // Show Next Label Image
+        //TODO
     }
     else if (translation.x <= -10){
-        self.titleLabel.title = @"Delete";
+        // Show Delete Label Image
+        //TODO
     }
 }
 
@@ -181,11 +183,13 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults boolForKey:@"swipeRightTutorial"] == NO) {
         return [[TutorialCardView alloc] initWithFrame: frame
-                                                   key: @"swipeRightTutorial"];
+                                                   key: @"swipeRightTutorial"
+                                              delegate:self];
     }
     if ([defaults boolForKey:@"swipeLeftTutorial"] == NO) {
         return [[TutorialCardView alloc] initWithFrame: frame
-                                                   key: @"swipeLeftTutorial"];
+                                                   key: @"swipeLeftTutorial"
+                                              delegate:self];
     }
     return nil;
 }
@@ -199,7 +203,7 @@
     }
     else{
         [beaconToShow display];
-        CardView * cardView = [[CardView alloc] initWithFrame: frame beacon: beaconToShow];
+        BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame beacon: beaconToShow delegate:self];
         return cardView;
     }
     return nil;
@@ -216,12 +220,9 @@
         NSUInteger numberOfBeacons = [self.chimpnoise beaconsCount];
         if (numberOfBeacons >= 2) {
             self.swipeableView.numberOfActiveViews = 2;
-            self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
-            self.titleLabel.prompt = @"Drone Expo - 25 Dic Aug 12";
         }
         else{
             self.swipeableView.numberOfActiveViews = numberOfBeacons;
-            self.titleLabel.title = [[NSString alloc] initWithFormat:@"Noise (%ld)", numberOfBeacons];
         }
     }
 }
@@ -238,20 +239,19 @@
 }
 
 #pragma mark - Card Swipes
--(void) deleteCard:(CardView *) view{
+-(void) deleteCard:(BeaconCardView *) view{
 
     BOOL eliminado = [self.chimpnoise deleteBeacon:view.beacon];
     if (eliminado) {
         [view stopTimer];
-        self.titleLabel.title = @"Deleted!";
         [self updateNumberOfBeacons];
     }
     else{
-        self.titleLabel.title = @"Card Not Found!";
+        //Beacon Not Found
     }
 }
 
--(void) skipCard:(CardView *) view {
+-(void) skipCard:(BeaconCardView *) view {
     [view stopTimer];
 }
 
@@ -260,6 +260,12 @@
    didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation{
     //TODO
+}
+
+#pragma mark - CardViewDelegate Protocol
+-(void) cardViewUpdateTitle:(NSString *)title prompt:(NSString *)prompt{
+    self.titleLabel.title = title;
+    self.titleLabel.prompt = prompt;
 }
 
 

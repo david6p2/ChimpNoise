@@ -21,22 +21,27 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-                          key:(NSString *)key{
+                          key:(NSString *)key
+                     delegate:(id)delegate{
     self = [super initWithFrame:frame];
     if (self) {
         self.key = key;
+        self.delegate = delegate;
         [self cardSetup];
         [self addImage: key];
         [self addTimer];
+        [self.delegate cardViewUpdateTitle:@"Tutorial" prompt:@"Step 1 of 2"];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
-                          key:(NSString *)key{
+                          key:(NSString *)key
+                     delegate:(id)delegate{
     self = [super initWithCoder:aDecoder];
     if(self){
         self.key = key;
+        self.delegate = delegate;
         [self cardSetup];
         [self addImage: key];
         [self addTimer];
@@ -65,23 +70,4 @@
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.timeLabel];
 }
-
-
--(void) cardSetup{
-    
-    // Shadow
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.33;
-    self.layer.shadowOffset = CGSizeMake(0, 1.5);
-    self.layer.shadowRadius = 4.0;
-    self.layer.shouldRasterize = YES;
-    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    
-    // Corner Radius
-    self.layer.cornerRadius = 0;
-    
-    // Card Setup
-    self.backgroundColor = [UIColor whiteColor];
-}
-
 @end

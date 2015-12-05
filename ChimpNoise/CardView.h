@@ -7,19 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AYChimpnoise.h"
-#import "AYBeacon.h"
 
-@interface CardView : UIView <AYBeaconDelegate>
+@class CardView;
+@protocol CardViewDelegate <NSObject>
 
+-(void) cardViewUpdateTitle:(NSString *)title prompt:(NSString *)prompt;
+
+@end
+
+
+@interface CardView : UIView
 @property (strong, nonatomic) IBOutlet UILabel *cardTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) UIImageView * imageView;
-@property (strong, nonatomic) AYBeacon *beacon;
-@property (strong, nonatomic) NSTimer *stopWatchTimer;
-- (void)stopTimer;
-- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon;
+
+//PROTOCOL - CardViewDelegate
+@property (nonatomic, assign) id delegate;
+
+-(void) cardSetup;
+
 @end
 
 
