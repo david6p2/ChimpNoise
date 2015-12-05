@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSTimer *stopWatchTimer;
 @property (strong, nonatomic) NSString *key;
 
-- (instancetype)initWithFrame:(CGRect)frame key:(NSString *) key imageURL: (NSString *) imageURL;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder key:(NSString *) key imageURL: (NSString *) imageURL;
+- (instancetype)initWithFrame:(CGRect)frame key:(NSString *) key;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder key:(NSString *) key;
 
 @end

@@ -181,13 +181,11 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults boolForKey:@"swipeRightTutorial"] == NO) {
         return [[TutorialCardView alloc] initWithFrame: frame
-                                                   key: @"swipeRightTutorial"
-                                              imageURL:@"http://www.mailboxapp.com/assets/images/help/tutorial/tutorial-defer-swipe.png"];
+                                                   key: @"swipeRightTutorial"];
     }
     if ([defaults boolForKey:@"swipeLeftTutorial"] == NO) {
         return [[TutorialCardView alloc] initWithFrame: frame
-                                                   key: @"swipeLeftTutorial"
-                                              imageURL:@"http://www.mailboxapp.com/assets/images/help/tutorial/tutorial-trash-swipe.png"];
+                                                   key: @"swipeLeftTutorial"];
     }
     return nil;
 }

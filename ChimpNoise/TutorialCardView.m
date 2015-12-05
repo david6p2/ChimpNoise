@@ -21,26 +21,24 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-                          key:(NSString *)key
-                     imageURL:(NSString *)imageURL{
+                          key:(NSString *)key{
     self = [super initWithFrame:frame];
     if (self) {
         self.key = key;
         [self cardSetup];
-        [self addImage: imageURL];
+        [self addImage: key];
         [self addTimer];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
-                          key:(NSString *)key
-                     imageURL:(NSString *)imageURL{
+                          key:(NSString *)key{
     self = [super initWithCoder:aDecoder];
     if(self){
         self.key = key;
         [self cardSetup];
-        [self addImage: imageURL];
+        [self addImage: key];
         [self addTimer];
     }
     return self;
@@ -49,8 +47,7 @@
 -(void) addImage:(NSString *) imageUrlString{
     self.imageView = [[UIImageView alloc] init];
     self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 9/10);
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+    self.imageView.image = [UIImage imageNamed:imageUrlString];
     [self addSubview:self.imageView];
 }
 
