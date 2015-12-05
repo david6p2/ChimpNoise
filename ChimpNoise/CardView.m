@@ -80,7 +80,7 @@
     self.imageView = [[UIImageView alloc] init];
     self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 9/10);
     [self.imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
-                 placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+                 placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self addSubview:self.imageView];
 }
 
