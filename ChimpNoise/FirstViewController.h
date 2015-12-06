@@ -21,6 +21,8 @@
 @property (nonatomic, strong) CLLocationManager *locationManagerBackground;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIView *pulseView;
+@property (strong, nonatomic) UIImageView *backgroundPulseView;
 @property(nonatomic, assign) int AdIndex;
 @property (nonatomic) AYChimpnoise *chimpnoise;
 @property (nonatomic, strong) ZLSwipeableView *swipeableView;

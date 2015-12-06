@@ -53,15 +53,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
-    self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
-    self.swipeableView.backgroundColor = [UIColor whiteColor];
-    self.swipeableView.dataSource = self;
-    self.swipeableView.delegate = self;
+    [self initSwipeableView];
     
     [self updateNumberOfBeacons];
     
-    [self.view addSubview:self.swipeableView];
+    [self initPulse];
 }
 
 
@@ -72,14 +68,18 @@
 
 #pragma mark - CLLocationManagerDelegate
 
-- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager
+      didDetermineState:(CLRegionState)state
+              forRegion:(CLRegion *)region {
 
     if (state == CLRegionStateInside) {
         [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager
+         didEnterRegion:(CLRegion *)region {
+    
     NSLog(@"didEnterRegion");
     
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
@@ -88,7 +88,8 @@
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager
+          didExitRegion:(CLRegion *)region {
     
     NSLog(@"didExitRegion");
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
@@ -97,7 +98,9 @@
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+- (void)locationManager:(CLLocationManager *)manager
+        didRangeBeacons:(NSArray *)beacons
+               inRegion:(CLBeaconRegion *)region {
 
     NSLog(@"didRangeBeacons %ld", [beacons count]);
     
@@ -110,7 +113,9 @@
     [self.swipeableView loadViewsIfNeeded];
 }
 
--(void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error{
+-(void)    locationManager:(CLLocationManager *)manager
+monitoringDidFailForRegion:(CLRegion *)region
+                 withError:(NSError *)error{
     NSLog(@"monitorDidFailForRegion");
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
@@ -167,7 +172,7 @@
     if (tutorial){
         return tutorial;
     }
-    
+    [self showPulse];
     // 2. If no tutorial to display then display beacon.
     UIView *beaconCardView = [self beaconCardViewToDisplay:swipeableView frame:frame];
     if (beaconCardView) {
@@ -175,7 +180,6 @@
     }
     
     // 3. If no beacon to display then return nil.
-    
     return nil;
 }
 
@@ -233,14 +237,66 @@
     [self.swipeableView loadViewsIfNeeded];
     CardView * top = (CardView *)[self.swipeableView topView];
     if (top == nil) {
-        self.titleLabel.title = @"Searching...";
-        self.titleLabel.prompt = @"Walk Around your town";
+        [self emptyView];
+
     }
     else{
         self.titleLabel.title = top.cardTitle;
         self.titleLabel.prompt = top.cardPrompt;
+        [self hidePulse];
     }
     
+}
+
+-(void) hidePulse{
+    self.pulseView.hidden = YES;
+    self.backgroundPulseView.hidden = YES;
+}
+
+-(void) showPulse{
+    self.pulseView.hidden = NO;
+    self.backgroundPulseView.hidden = NO;
+}
+
+-(void)emptyView{
+    self.titleLabel.title = @"Searching...";
+    self.titleLabel.prompt = @"Walk Around your town";
+    [self showPulse];
+}
+
+#pragma mark - Init Methods
+-(void) initSwipeableView{
+    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
+    self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
+    self.swipeableView.backgroundColor = [UIColor whiteColor];
+    self.swipeableView.dataSource = self;
+    self.swipeableView.delegate = self;
+    [self.view addSubview:self.swipeableView];
+}
+
+-(void) initPulse{
+    self.pulseView = [[UIView alloc] initWithFrame:CGRectMake(self.swipeableView.frame.size.width/2 - 50,
+                                                              self.swipeableView.frame.size.height/2 - 50,
+                                                              100, 100)];
+    self.pulseView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
+    self.pulseView.layer.cornerRadius = 50;
+    self.backgroundPulseView = [[UIImageView alloc] initWithFrame:CGRectMake(self.swipeableView.frame.size.width/2 - 50,
+                                                                             self.swipeableView.frame.size.height/2 - 50,
+                                                                             100, 100)];
+    self.backgroundPulseView.image = [UIImage imageNamed:@"pulseBackground.png"];
+    
+    [self.swipeableView addSubview:self.pulseView];
+    [self.swipeableView addSubview:self.backgroundPulseView];
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    animation.duration = 0.8;
+    animation.repeatCount = HUGE_VAL;
+    animation.autoreverses = YES;
+    animation.removedOnCompletion = false;
+    animation.fromValue = [NSNumber numberWithFloat:1.4];
+    animation.toValue = [NSNumber numberWithFloat:2];
+    
+    [self.pulseView.layer addAnimation:animation forKey:@"scale"];
 }
 
 -(void) initRegionWithUUID:(NSString *)uuidString identifier:(NSString *) identifier{
