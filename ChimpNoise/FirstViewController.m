@@ -172,7 +172,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     if (tutorial){
         return tutorial;
     }
-    [self showPulse];
+    [self emptyView];
     // 2. If no tutorial to display then display beacon.
     UIView *beaconCardView = [self beaconCardViewToDisplay:swipeableView frame:frame];
     if (beaconCardView) {
