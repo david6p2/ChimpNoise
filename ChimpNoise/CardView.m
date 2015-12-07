@@ -21,6 +21,8 @@
     self.layer.shadowOffset = CGSizeMake(0, 1.5);
     self.layer.shadowRadius = 4.0;
     self.layer.shouldRasterize = YES;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.layer.borderWidth = 1;
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     // Corner Radius

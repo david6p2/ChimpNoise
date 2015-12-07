@@ -268,7 +268,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 -(void) initSwipeableView{
     self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
     self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
-    self.swipeableView.backgroundColor = [UIColor whiteColor];
+    self.swipeableView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
     self.swipeableView.dataSource = self;
     self.swipeableView.delegate = self;
     [self.view addSubview:self.swipeableView];
