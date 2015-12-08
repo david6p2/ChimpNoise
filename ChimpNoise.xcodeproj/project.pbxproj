@@ -13,8 +13,8 @@
 		BA306DA01C11FB7E000B2949 /* TutorialCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */; };
 		BA306DB61C12791E000B2949 /* swipeRightTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BA306DB41C12791E000B2949 /* swipeRightTutorial.png */; };
 		BA306DB71C12791E000B2949 /* swipeLeftTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BA306DB51C12791E000B2949 /* swipeLeftTutorial.png */; };
+		BA6FCA4B1C15F88E006FD9FF /* pulseBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6FCA4A1C15F88E006FD9FF /* pulseBackground.png */; };
 		BA7A26531C1342FE00361159 /* BeaconCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7A26521C1342FE00361159 /* BeaconCardView.m */; };
-		BA7A265B1C13C85A00361159 /* pulseBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7A265A1C13C85A00361159 /* pulseBackground.png */; };
 		BA86F4CB1C12A8870058CB9D /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86F4CA1C12A8870058CB9D /* placeholder.png */; };
 		BA86F4CD1C12A88E0058CB9D /* placeholderBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = BA86F4CC1C12A88E0058CB9D /* placeholderBlue.png */; };
 		BABC493E1BD2F8FD00DC26FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC493D1BD2F8FD00DC26FC /* main.m */; };
@@ -39,9 +39,9 @@
 		BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCardView.m; sourceTree = "<group>"; };
 		BA306DB41C12791E000B2949 /* swipeRightTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeRightTutorial.png; sourceTree = "<group>"; };
 		BA306DB51C12791E000B2949 /* swipeLeftTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeLeftTutorial.png; sourceTree = "<group>"; };
+		BA6FCA4A1C15F88E006FD9FF /* pulseBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulseBackground.png; sourceTree = "<group>"; };
 		BA7A26511C1342FE00361159 /* BeaconCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconCardView.h; sourceTree = "<group>"; };
 		BA7A26521C1342FE00361159 /* BeaconCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconCardView.m; sourceTree = "<group>"; };
-		BA7A265A1C13C85A00361159 /* pulseBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulseBackground.png; sourceTree = "<group>"; };
 		BA86F4CA1C12A8870058CB9D /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		BA86F4CC1C12A88E0058CB9D /* placeholderBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholderBlue.png; sourceTree = "<group>"; };
 		BABC49391BD2F8FD00DC26FC /* ChimpNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChimpNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +102,7 @@
 				BA306DB51C12791E000B2949 /* swipeLeftTutorial.png */,
 				BA86F4CA1C12A8870058CB9D /* placeholder.png */,
 				BA86F4CC1C12A88E0058CB9D /* placeholderBlue.png */,
-				BA7A265A1C13C85A00361159 /* pulseBackground.png */,
+				BA6FCA4A1C15F88E006FD9FF /* pulseBackground.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -251,11 +251,11 @@
 				BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */,
 				BA86F4CD1C12A88E0058CB9D /* placeholderBlue.png in Resources */,
 				BA306DB71C12791E000B2949 /* swipeLeftTutorial.png in Resources */,
-				BA7A265B1C13C85A00361159 /* pulseBackground.png in Resources */,
 				BA306DB61C12791E000B2949 /* swipeRightTutorial.png in Resources */,
 				BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */,
 				BA86F4CB1C12A8870058CB9D /* placeholder.png in Resources */,
 				BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */,
+				BA6FCA4B1C15F88E006FD9FF /* pulseBackground.png in Resources */,
 				BA0E04811BF2F2420087E586 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

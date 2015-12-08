@@ -278,7 +278,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     self.pulseView = [[UIView alloc] initWithFrame:CGRectMake(self.swipeableView.frame.size.width/2 - 50,
                                                               self.swipeableView.frame.size.height/2 - 50,
                                                               100, 100)];
-    self.pulseView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
+    self.pulseView.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
     self.pulseView.layer.cornerRadius = 50;
     self.backgroundPulseView = [[UIImageView alloc] initWithFrame:CGRectMake(self.swipeableView.frame.size.width/2 - 50,
                                                                              self.swipeableView.frame.size.height/2 - 50,
