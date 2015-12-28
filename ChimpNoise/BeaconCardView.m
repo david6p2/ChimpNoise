@@ -46,6 +46,9 @@
     
     [self addImage: beacon.imageURL];
     [self addTimer];
+    if (self.beacon.fetchFromServer == YES) {
+        [self startTimer];
+    }
 }
 
 -(void) addImage:(NSString *) imageUrlString{
@@ -61,11 +64,6 @@
                                                                self.frame.size.width,
                                                                self.frame.size.height * 1/10)];
     self.timeLabel.text = @"Loading";
-    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
-                                                           target:self
-                                                         selector:@selector(updateTimer)
-                                                         userInfo:nil
-                                                          repeats:YES];
     self.timeLabel.backgroundColor = [UIColor whiteColor];
     self.timeLabel.textColor = [UIColor blackColor];
     self.timeLabel.numberOfLines = 1;
@@ -74,6 +72,14 @@
     self.timeLabel.clipsToBounds = YES;
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.timeLabel];
+}
+
+-(void) startTimer{
+    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
+                                                           target:self
+                                                         selector:@selector(updateTimer)
+                                                         userInfo:nil
+                                                          repeats:YES];
 }
 
 - (void)updateTimer{
@@ -133,7 +139,7 @@
     else{
         [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
         [self.beacon startCountdown];
-        [self addTimer];
+        [self startTimer];
         self.cardTitle = self.beacon.title;
         self.cardPrompt = self.beacon.prompt;
         [self.delegate topCardViewUpdate];
