@@ -13,9 +13,6 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        [self setup];
-    }
     return self;
 }
 
@@ -25,9 +22,6 @@
         self.delegate = delegate;
         if(beacon){
             [self setupWithBeacon:beacon];
-        }
-        else{
-            [self setup];
         }
     }
     return self;
@@ -39,19 +33,7 @@
     if(beacon){
         [self setupWithBeacon:beacon];
     }
-    else{
-        [self setup];
-    }
     return self;
-}
-
-- (void)setup {
-    [self cardSetup];
-    
-    self.beacon = nil;
-    
-    [self addImage: @"https://s-media-cache-ak0.pinimg.com/236x/20/a0/6a/20a06aed6797d0ffe0d6a524bd61cd1f.jpg"];
-    [self addTimer];
 }
 
 - (void)setupWithBeacon:(AYBeacon *) beacon{

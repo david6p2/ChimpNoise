@@ -12,6 +12,7 @@
 
 static AYChimpnoise *sharedInstance = nil;
 
+#pragma mark - singleton
 + (AYChimpnoise *) sharedInstance{
     
     @synchronized(self) {
@@ -23,6 +24,8 @@ static AYChimpnoise *sharedInstance = nil;
     }
 }
 
+
+#pragma mark - CRUD
 -(AYBeacon *)findOrCreateBeaconWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major{
     AYBeacon *beacon = [self.beacons objectForKey:[NSString stringWithFormat:@"%@:%@:%@", uuid, major, minor]];
     if (beacon == nil) {
@@ -50,6 +53,7 @@ static AYChimpnoise *sharedInstance = nil;
     }
 }
 
+#pragma mark - Beacons Array Methods
 -(NSUInteger) beaconsCount{
     NSArray *beacons = [self.beacons allValues];
     if(beacons == nil || [beacons count] == 0){
@@ -64,6 +68,7 @@ static AYChimpnoise *sharedInstance = nil;
     return [self.beacons allValues];
 }
 
+#pragma mark - Display Logic Methods
 -(AYBeacon *) beaconToDisplayOnScreen{
     NSMutableArray *beaconsArray = [NSMutableArray arrayWithArray:[self beaconsArray]];
     while ([beaconsArray count] >0){

@@ -22,6 +22,7 @@
 @implementation FirstViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
     //Init CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
@@ -51,16 +52,13 @@
 }
 
 - (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForegroundNotification)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
     [super viewDidLoad];
-    
     [self initSwipeableView];
-    
     [self updateNumberOfBeacons];
-    
     [self initPulse];
 }
-
-
 
 - (void)viewDidLayoutSubviews {
     [self updateNavBar];
@@ -213,6 +211,14 @@ monitoringDidFailForRegion:(CLRegion *)region
         return cardView;
     }
     return nil;
+}
+
+#pragma mark - UIApplicationWillEnterForegroundNotification Notification
+-(void) appWillEnterForegroundNotification{
+    [self updateNumberOfBeacons];
+    [self.chimpnoise hideAllBeacons];
+    [self.swipeableView discardAllViews];
+    [self.swipeableView loadViewsIfNeeded];
 }
 
 #pragma mark - helpers

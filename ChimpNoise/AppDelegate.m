@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "AYChimpnoise.h"
 #import "FirstViewController.h"
-#import "NSUserDefaults+RMSaveCustomObject.h"
 
 @interface AppDelegate ()
 

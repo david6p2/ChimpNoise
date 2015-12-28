@@ -18,12 +18,17 @@
 
 + (AYChimpnoise *) sharedInstance;
 
--(void) addBeacon:(AYBeacon *) beacon;
 -(AYBeacon *) findOrCreateBeaconWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
+-(void) addBeacon:(AYBeacon *) beacon;
+-(BOOL) deleteBeacon:(AYBeacon *) beacon;
+
 -(NSUInteger) beaconsCount;
 -(NSArray *) beaconsArray;
+
 -(AYBeacon *) beaconToDisplayOnScreen;
--(BOOL) deleteBeacon:(AYBeacon *) beacon;
+
 -(void) hideAllBeacons;
+-(void) fetchAllBeacons;
+
 -(void) saveModel;
 @end
