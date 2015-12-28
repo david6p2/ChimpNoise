@@ -20,7 +20,6 @@
 
 @interface AYBeacon : NSObject <RMMapping>
 
-
 @property (nonatomic, strong) NSString *uuid;
 @property (retain) NSNumber *minor;
 @property (retain) NSNumber *major;
@@ -28,6 +27,8 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *prompt;
 @property (nonatomic, strong) NSString *imageURL;
+@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *url;
 @property BOOL onScreen;
 @property BOOL firstTimeOnScreen;
 @property BOOL fetchFromServer;

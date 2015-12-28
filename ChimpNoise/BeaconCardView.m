@@ -158,5 +158,11 @@
     }
 }
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if ([self.beacon.type isEqualToString:@"url"] ) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.beacon.url]];
+    }
+}
+
 
 @end

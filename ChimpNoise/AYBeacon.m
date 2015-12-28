@@ -42,19 +42,7 @@
     [manager GET:[NSString stringWithFormat:@"http://chimpnoise.com/api/noise/beacon/%@", [self key]]
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSArray *noises = responseObject[@"noises"];
-             for (NSDictionary *noise in noises) {
-                 self.imageURL = noise[@"image"];
-                 self.prompt = noise[@"subject"];
-                 if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
-                     self.duration = [noise[@"activity_time_qty"] intValue] * 60;
-                 }
-                 self.fetchFromServer = YES;
-                 
-                 //Call Delegate to Update View
-                 [delegate beaconUpdate];
-             }
-             NSLog(@"JSON: %@", responseObject);
+             [self handleFetchSuccess: responseObject];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
@@ -90,6 +78,25 @@
 }
 -(void) showNotification{
     self.localNotification = YES;
+}
+
+-(void) handleFetchSuccess:(id) responseObject{
+    NSArray *noises = responseObject[@"noises"];
+    for (NSDictionary *noise in noises) {
+        self.imageURL = noise[@"image"];
+        self.url      = noise[@"url"];
+        self.prompt   = noise[@"subject"];
+        self.type     = noise[@"type"];
+        
+        if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
+            self.duration = [noise[@"activity_time_qty"] intValue] * 60;
+        }
+        self.fetchFromServer = YES;
+        
+        //Call Delegate to Update View
+        [delegate beaconUpdate];
+    }
+    NSLog(@"JSON: %@", responseObject);
 }
 
 @end

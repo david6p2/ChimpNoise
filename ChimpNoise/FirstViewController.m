@@ -152,11 +152,11 @@ monitoringDidFailForRegion:(CLRegion *)region
           translation:(CGPoint)translation {
     
     if (10 <= translation.x) {
-        // Show Next Label Image
+        // Show Next Label
         //TODO
     }
     else if (translation.x <= -10){
-        // Show Delete Label Image
+        // Show Delete Label
         //TODO
     }
 }
