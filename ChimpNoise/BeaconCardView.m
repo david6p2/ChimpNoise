@@ -53,20 +53,22 @@
 
 -(void) addImage:(NSString *) imageUrlString{
     self.imageView = [[UIImageView alloc] init];
-    self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 9/10);
+    self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 10/10);
     [self.imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self addSubview:self.imageView];
 }
 
 -(void) addTimer{
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height * 9/10,
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
+                                                               self.frame.size.height * 8/10 + 39.5,
                                                                self.frame.size.width,
-                                                               self.frame.size.height * 1/10)];
+                                                               self.frame.size.height * 1.5/10)];
+    self.timeLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
     self.timeLabel.text = @"Loading";
-    self.timeLabel.backgroundColor = [UIColor whiteColor];
-    self.timeLabel.textColor = [UIColor blackColor];
-    self.timeLabel.numberOfLines = 1;
+    self.timeLabel.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
+    self.timeLabel.textColor = [UIColor whiteColor];
+    self.timeLabel.numberOfLines = 2;
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.timeLabel.minimumScaleFactor = 10.0f/12.0f;
     self.timeLabel.clipsToBounds = YES;
@@ -108,7 +110,7 @@
         
         // Format the elapsed time and set it to the label
         NSString *timeString = [dateFormatter stringFromDate:timerDate];
-        self.timeLabel.text = [NSString stringWithFormat:@"Ends in %@", timeString];
+        self.timeLabel.text = [NSString stringWithFormat:@"Ends in\n %@", timeString];
     }
 }
 
