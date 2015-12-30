@@ -29,9 +29,11 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon delegate:(id)delegate{
     self = [super initWithCoder:aDecoder];
-    self.delegate = delegate;
-    if(beacon){
-        [self setupWithBeacon:beacon];
+    if (self) {
+        self.delegate = delegate;
+        if(beacon){
+            [self setupWithBeacon:beacon];
+        }
     }
     return self;
 }
@@ -142,8 +144,8 @@
         [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
         [self.beacon startCountdown];
         [self startTimer];
-        self.cardTitle = self.beacon.title;
-        self.cardPrompt = self.beacon.prompt;
+        self.cardTitle = self.beacon.prompt;
+        self.cardPrompt = self.beacon.title;
         [self.delegate topCardViewUpdate];
     }
 }

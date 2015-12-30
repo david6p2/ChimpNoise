@@ -26,12 +26,12 @@
     if (self) {
         self.key = key;
         self.delegate = delegate;
-        self.cardTitle = @"Tutorial";
+        self.cardPrompt = @"Tutorial";
         if([key isEqualToString:@"swipeRightTutorial"]){
-            self.cardPrompt = @"Step 1 of 2";
+            self.cardTitle = @"Step 1 of 2";
         }
         else{
-            self.cardPrompt = @"Step 2 of 2";
+            self.cardTitle = @"Step 2 of 2";
         }
         
         [self cardSetup];
