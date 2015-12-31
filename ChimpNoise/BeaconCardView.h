@@ -19,8 +19,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(id) delegate;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon delegate:(id) delegate;
-- (void)setupWithBeacon:(AYBeacon *) beacon;
-- (void) addTimer;
-- (void) startTimer;
+- (void)body;
+- (void)addTimer;
+- (void)startTimer;
 - (void)stopTimer;
 @end

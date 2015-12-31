@@ -10,17 +10,8 @@
 
 @implementation ImageBeaconCardView
 
-- (void)setupWithBeacon:(AYBeacon *) beacon{    
-    self.beacon = beacon;
-    beacon.delegate = self; //AYBeaconDelegate Protocol
-    self.cardTitle = self.beacon.title;
-    self.cardPrompt = self.beacon.prompt;
-    
-    [self addImage: beacon.imageURL];
-    [self addTimer];
-    if (self.beacon.fetchFromServer == YES) {
-        [self startTimer];
-    }
+- (void)body{
+    [self addImage: self.beacon.imageURL];
 }
 
 #pragma mark - Body

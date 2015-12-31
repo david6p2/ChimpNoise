@@ -19,10 +19,21 @@
 - (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(id)delegate{
     self = [super initWithFrame:frame];
     if (self) {
-        self.delegate = delegate;
         if(beacon){
             [self cardSetup];
-            [self setupWithBeacon:beacon];
+            self.beacon = beacon;
+            self.delegate = delegate;
+
+            beacon.delegate = self; //AYBeaconDelegate Protocol
+            self.cardTitle = self.beacon.title;
+            self.cardPrompt = self.beacon.prompt;
+            
+            [self body];
+            
+            [self addTimer];
+            if (self.beacon.fetchFromServer == YES) {
+                [self startTimer];
+            }
         }
     }
     return self;
@@ -31,17 +42,39 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon delegate:(id)delegate{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.delegate = delegate;
         if(beacon){
             [self cardSetup];
-            [self setupWithBeacon:beacon];
+            self.beacon = beacon;
+            self.delegate = delegate;
+            beacon.delegate = self; //AYBeaconDelegate Protocol
+            
+            self.cardTitle = self.beacon.title;
+            self.cardPrompt = self.beacon.prompt;
+            
+            [self body];
+            
+            [self addTimer];
+            if (self.beacon.fetchFromServer == YES) {
+                [self startTimer];
+            }
+
         }
     }
     return self;
 }
 
-- (void)setupWithBeacon:(AYBeacon *) beacon{
-    NSLog(@"BeaconCardView- Implement setupWithBeacon: to setup your CardView");
+- (void)body{
+    NSLog(@"BeaconCardView- Implement body: to setup your CardView");
+}
+
+#pragma mark - AYBeaconDelegate
+-(void)beaconUpdate{
+    NSLog(@"BeaconCardView- Implement beaconUpdate: to setup your CardView");
+}
+
+#pragma mark - UIView Touch Events
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"BeaconCardView- Implement touchesEnded:withEvent: to setup your CardView");
 }
 
 
@@ -105,19 +138,4 @@
     [self.stopWatchTimer invalidate];
     self.stopWatchTimer = nil;
 }
-
-
-
-
-#pragma mark - AYBeaconDelegate
--(void)beaconUpdate{
-    NSLog(@"BeaconCardView- Implement beaconUpdate: to setup your CardView");
-}
-
-#pragma mark - UIView Touch Events
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-     NSLog(@"BeaconCardView- Implement touchesEnded:withEvent: to setup your CardView");
-}
-
-
 @end
