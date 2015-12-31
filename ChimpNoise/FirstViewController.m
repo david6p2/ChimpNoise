@@ -124,7 +124,7 @@ monitoringDidFailForRegion:(CLRegion *)region
          didSwipeView:(UIView *)view
           inDirection:(ZLSwipeableViewDirection)direction {
 
-    if ([view class] == [BeaconCardView class]) {
+    if ([view.class isSubclassOfClass:[BeaconCardView class]]) {
         BeaconCardView *cardView = (BeaconCardView *) view;
         [cardView.beacon hide];
         
@@ -213,7 +213,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     }
     else{
         [beaconToShow display];
-        BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame beacon: beaconToShow delegate:self];
+        BeaconCardView * cardView = [[ImageBeaconCardView alloc] initWithFrame:frame beacon:beaconToShow delegate:self];
         return cardView;
     }
     return nil;

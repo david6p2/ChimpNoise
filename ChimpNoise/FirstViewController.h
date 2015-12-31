@@ -11,7 +11,7 @@
 #import "ZLSwipeableView.h"
 #import "AYChimpnoise.h"
 #import "CardView.h"
-#import "BeaconCardView.h"
+#import "ImageBeaconCardView.h"
 #import "TutorialCardView.h"
 
 

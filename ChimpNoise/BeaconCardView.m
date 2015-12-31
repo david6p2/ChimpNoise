@@ -21,6 +21,7 @@
     if (self) {
         self.delegate = delegate;
         if(beacon){
+            [self cardSetup];
             [self setupWithBeacon:beacon];
         }
     }
@@ -32,6 +33,7 @@
     if (self) {
         self.delegate = delegate;
         if(beacon){
+            [self cardSetup];
             [self setupWithBeacon:beacon];
         }
     }
@@ -39,28 +41,11 @@
 }
 
 - (void)setupWithBeacon:(AYBeacon *) beacon{
-    [self cardSetup];
-    
-    self.beacon = beacon;
-    beacon.delegate = self; //AYBeaconDelegate Protocol
-    self.cardTitle = self.beacon.title;
-    self.cardPrompt = self.beacon.prompt;
-    
-    [self addImage: beacon.imageURL];
-    [self addTimer];
-    if (self.beacon.fetchFromServer == YES) {
-        [self startTimer];
-    }
+    NSLog(@"BeaconCardView- Implement setupWithBeacon: to setup your CardView");
 }
 
--(void) addImage:(NSString *) imageUrlString{
-    self.imageView = [[UIImageView alloc] init];
-    self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 10/10);
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    [self addSubview:self.imageView];
-}
 
+#pragma mark - Timer
 -(void) addTimer{
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
                                                                self.frame.size.height * 8/10 + 39.5,
@@ -126,34 +111,12 @@
 
 #pragma mark - AYBeaconDelegate
 -(void)beaconUpdate{
-    
-    [[AYChimpnoise sharedInstance] saveModel];
-    
-    if ([[UIApplication sharedApplication] applicationState]==UIApplicationStateBackground) {
-        if (self.beacon.localNotification == NO) {
-            UILocalNotification *notification = [UILocalNotification new];
-            notification.alertTitle = @"Chimpnoise";
-            notification.alertBody = self.beacon.prompt;
-            notification.alertAction = @"See Noise";
-            notification.soundName = UILocalNotificationDefaultSoundName;
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-            [self.beacon showNotification];
-        }
-    }
-    else{
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
-        [self.beacon startCountdown];
-        [self startTimer];
-        self.cardTitle = self.beacon.prompt;
-        self.cardPrompt = self.beacon.title;
-        [self.delegate topCardViewUpdate];
-    }
+    NSLog(@"BeaconCardView- Implement beaconUpdate: to setup your CardView");
 }
 
+#pragma mark - UIView Touch Events
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    if ([self.beacon.type isEqualToString:@"url"] ) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.beacon.url]];
-    }
+     NSLog(@"BeaconCardView- Implement touchesEnded:withEvent: to setup your CardView");
 }
 
 

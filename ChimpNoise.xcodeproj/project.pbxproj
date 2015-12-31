@@ -25,6 +25,7 @@
 		BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */; };
 		BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */; };
 		BABC49571BD2F90A00DC26FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC49561BD2F90A00DC26FC /* CoreLocation.framework */; };
+		BAC37E931C34A6AD006CD8CB /* ImageBeaconCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAC37E921C34A6AD006CD8CB /* ImageBeaconCardView.m */; };
 		BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */; };
 		BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF9A4E91BE082E70058E1DA /* AYBeacon.m */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,8 @@
 		BABC494E1BD2F8FD00DC26FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BABC49501BD2F8FD00DC26FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BABC49561BD2F90A00DC26FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BAC37E911C34A6AD006CD8CB /* ImageBeaconCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBeaconCardView.h; sourceTree = "<group>"; };
+		BAC37E921C34A6AD006CD8CB /* ImageBeaconCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBeaconCardView.m; sourceTree = "<group>"; };
 		BAF9A4E41BE07BCC0058E1DA /* AYChimpnoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AYChimpnoise.h; path = ../AYChimpnoise.h; sourceTree = "<group>"; };
 		BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYChimpnoise.m; path = ../AYChimpnoise.m; sourceTree = "<group>"; };
 		BAF9A4E81BE082E70058E1DA /* AYBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYBeacon.h; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				BA1F242E1BE6F7640095E185 /* CardView.m */,
 				BA7A26511C1342FE00361159 /* BeaconCardView.h */,
 				BA7A26521C1342FE00361159 /* BeaconCardView.m */,
+				BAC37E911C34A6AD006CD8CB /* ImageBeaconCardView.h */,
+				BAC37E921C34A6AD006CD8CB /* ImageBeaconCardView.m */,
 				BA306D9E1C11FB7E000B2949 /* TutorialCardView.h */,
 				BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */,
 			);
@@ -321,6 +326,7 @@
 				BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */,
 				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,
+				BAC37E931C34A6AD006CD8CB /* ImageBeaconCardView.m in Sources */,
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
 				BA306DA01C11FB7E000B2949 /* TutorialCardView.m in Sources */,
 				BA1F242F1BE6F7640095E185 /* CardView.m in Sources */,
