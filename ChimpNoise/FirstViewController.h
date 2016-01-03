@@ -12,6 +12,7 @@
 #import "AYChimpnoise.h"
 #import "CardView.h"
 #import "ImageBeaconCardView.h"
+#import "UrlBeaconCardView.h"
 #import "TutorialCardView.h"
 
 

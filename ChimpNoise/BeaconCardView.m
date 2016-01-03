@@ -64,17 +64,17 @@
 }
 
 - (void)body{
-    NSLog(@"BeaconCardView- Implement body: to setup your CardView");
+    NSLog(@"BeaconCardView- Implement body: to setup your CardView.");
 }
 
 #pragma mark - AYBeaconDelegate
 -(void)beaconUpdate{
-    NSLog(@"BeaconCardView- Implement beaconUpdate: to setup your CardView");
+    NSLog(@"BeaconCardView- Implement beaconUpdate: to update AYBeacon attributes.");
 }
 
 #pragma mark - UIView Touch Events
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSLog(@"BeaconCardView- Implement touchesEnded:withEvent: to setup your CardView");
+    NSLog(@"BeaconCardView- Implement touchesEnded:withEvent: to setup touchesEnded event.");
 }
 
 

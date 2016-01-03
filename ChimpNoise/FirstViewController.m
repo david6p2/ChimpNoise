@@ -207,13 +207,23 @@ monitoringDidFailForRegion:(CLRegion *)region
 #pragma mark - ChooseBeaconToDisplay
 -(UIView *) beaconCardViewToDisplay:(ZLSwipeableView *)swipeableView frame:(CGRect)frame{
     AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
+    BeaconCardView * cardView;
+    
     if (beaconToShow == nil) {
         [self updateNumberOfBeacons];
         [self.swipeableView loadViewsIfNeeded];
     }
     else{
         [beaconToShow display];
-        BeaconCardView * cardView = [[ImageBeaconCardView alloc] initWithFrame:frame beacon:beaconToShow delegate:self];
+        if (beaconToShow.type == nil) {
+            cardView = [[BeaconCardView alloc] initWithFrame:frame beacon:beaconToShow delegate:self];
+        }
+        else if ([beaconToShow.type isEqualToString:@"image"]) {
+            cardView = [[ImageBeaconCardView alloc] initWithFrame:frame beacon:beaconToShow delegate:self];
+        }
+        else if ([beaconToShow.type isEqualToString:@"url"]) {
+            cardView = [[UrlBeaconCardView alloc] initWithFrame:frame beacon:beaconToShow delegate:self];
+        }
         return cardView;
     }
     return nil;

@@ -25,7 +25,6 @@
 
 #pragma mark - AYBeaconDelegate
 -(void)beaconUpdate{
-    
     [[AYChimpnoise sharedInstance] saveModel];
     
     if ([[UIApplication sharedApplication] applicationState]==UIApplicationStateBackground) {
