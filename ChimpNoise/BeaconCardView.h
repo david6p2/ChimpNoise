@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) AYBeacon *beacon;
 @property (strong, nonatomic) NSTimer *stopWatchTimer;
+@property (strong, nonatomic) UIView *containedTypeView;
 
 - (void)stopTimer;
 - (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(id) delegate;
