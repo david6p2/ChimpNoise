@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
 		BA0E04811BF2F2420087E586 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0E04801BF2F2420087E586 /* Default.png */; };
+		BA1BE6161C3B1A140050FA6A /* ImageBeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */; };
+		BA1BE6191C3B1CA00050FA6A /* BeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE6181C3B1CA00050FA6A /* BeaconCardType.m */; };
+		BA1BE6201C3B1D8D0050FA6A /* UrlBeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE61F1C3B1D8D0050FA6A /* UrlBeaconCardType.m */; };
 		BA1F242F1BE6F7640095E185 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1F242E1BE6F7640095E185 /* CardView.m */; };
 		BA306DA01C11FB7E000B2949 /* TutorialCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */; };
 		BA306DB61C12791E000B2949 /* swipeRightTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BA306DB41C12791E000B2949 /* swipeRightTutorial.png */; };
@@ -33,6 +36,12 @@
 		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
 		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
 		BA0E04801BF2F2420087E586 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BA1BE6141C3B1A140050FA6A /* ImageBeaconCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBeaconCardType.h; sourceTree = "<group>"; };
+		BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBeaconCardType.m; sourceTree = "<group>"; };
+		BA1BE6171C3B1CA00050FA6A /* BeaconCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconCardType.h; sourceTree = "<group>"; };
+		BA1BE6181C3B1CA00050FA6A /* BeaconCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconCardType.m; sourceTree = "<group>"; };
+		BA1BE61E1C3B1D8D0050FA6A /* UrlBeaconCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlBeaconCardType.h; sourceTree = "<group>"; };
+		BA1BE61F1C3B1D8D0050FA6A /* UrlBeaconCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlBeaconCardType.m; sourceTree = "<group>"; };
 		BA1F242D1BE6F7640095E185 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
 		BA1F242E1BE6F7640095E185 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		BA306D9E1C11FB7E000B2949 /* TutorialCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCardView.h; sourceTree = "<group>"; };
@@ -107,6 +116,49 @@
 			name = img;
 			sourceTree = "<group>";
 		};
+		BA1BE61A1C3B1CED0050FA6A /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				BA1F242D1BE6F7640095E185 /* CardView.h */,
+				BA1F242E1BE6F7640095E185 /* CardView.m */,
+				BA1BE61C1C3B1D090050FA6A /* Tutorials */,
+				BA1BE61B1C3B1CFA0050FA6A /* Beacons */,
+			);
+			name = Cards;
+			sourceTree = "<group>";
+		};
+		BA1BE61B1C3B1CFA0050FA6A /* Beacons */ = {
+			isa = PBXGroup;
+			children = (
+				BA7A26511C1342FE00361159 /* BeaconCardView.h */,
+				BA7A26521C1342FE00361159 /* BeaconCardView.m */,
+				BA1BE61D1C3B1D1E0050FA6A /* Types */,
+			);
+			name = Beacons;
+			sourceTree = "<group>";
+		};
+		BA1BE61C1C3B1D090050FA6A /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				BA306D9E1C11FB7E000B2949 /* TutorialCardView.h */,
+				BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
+		BA1BE61D1C3B1D1E0050FA6A /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				BA1BE6171C3B1CA00050FA6A /* BeaconCardType.h */,
+				BA1BE6181C3B1CA00050FA6A /* BeaconCardType.m */,
+				BA1BE6141C3B1A140050FA6A /* ImageBeaconCardType.h */,
+				BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */,
+				BA1BE61E1C3B1D8D0050FA6A /* UrlBeaconCardType.h */,
+				BA1BE61F1C3B1D8D0050FA6A /* UrlBeaconCardType.m */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
 		BABC49301BD2F8FD00DC26FC = {
 			isa = PBXGroup;
 			children = (
@@ -153,14 +205,9 @@
 		BAF299401BEBECFA00348B20 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA1BE61A1C3B1CED0050FA6A /* Cards */,
 				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
 				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
-				BA1F242D1BE6F7640095E185 /* CardView.h */,
-				BA1F242E1BE6F7640095E185 /* CardView.m */,
-				BA7A26511C1342FE00361159 /* BeaconCardView.h */,
-				BA7A26521C1342FE00361159 /* BeaconCardView.m */,
-				BA306D9E1C11FB7E000B2949 /* TutorialCardView.h */,
-				BA306D9F1C11FB7E000B2949 /* TutorialCardView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -315,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1BE6191C3B1CA00050FA6A /* BeaconCardType.m in Sources */,
 				BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */,
 				BABC49471BD2F8FD00DC26FC /* SecondViewController.m in Sources */,
 				BA7A26531C1342FE00361159 /* BeaconCardView.m in Sources */,
@@ -322,6 +370,8 @@
 				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
+				BA1BE6161C3B1A140050FA6A /* ImageBeaconCardType.m in Sources */,
+				BA1BE6201C3B1D8D0050FA6A /* UrlBeaconCardType.m in Sources */,
 				BA306DA01C11FB7E000B2949 /* TutorialCardView.m in Sources */,
 				BA1F242F1BE6F7640095E185 /* CardView.m in Sources */,
 			);
