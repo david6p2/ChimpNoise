@@ -47,31 +47,32 @@
     beacon.delegate = self; //AYBeaconDelegate Protocol
     self.cardTitle = self.beacon.title;
     self.cardPrompt = self.beacon.prompt;
-    [self setupContainedType];
+    [self body];
 }
 
--(void) setupContainedType{
-    if (self.containedTypeView) {
-        [self.containedTypeView removeFromSuperview];
-        self.containedTypeView = nil;
+-(void) body{
+    if (self.beaconCardType) {
+        [self.beaconCardType removeFromSuperview];
+        self.beaconCardType = nil;
     }
     CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     
     if(self.beacon.type == nil){
-        self.containedTypeView = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+        self.beaconCardType = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
     }
     else if([self.beacon.type isEqualToString:@"url"]){
-        self.containedTypeView = [[UrlBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+        self.beaconCardType = [[UrlBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
     }
     else if ([self.beacon.type isEqualToString:@"image"]){
-        self.containedTypeView = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+        self.beaconCardType = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
     }
-    [self addSubview: self.containedTypeView];
+    [self addSubview: self.beaconCardType];
     
     [self addTimer];
     [self startTimer];
 }
 
+#pragma mark - timer
 -(void) addTimer{
     if (self.timeLabel == nil) {
         self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
@@ -153,7 +154,7 @@
         }
     }
     else{
-        [self setupContainedType];
+        [self body];
         [self.beacon startCountdown];
         self.cardTitle = self.beacon.prompt;
         self.cardPrompt = self.beacon.title;
