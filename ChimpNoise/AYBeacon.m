@@ -14,7 +14,7 @@
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.title = @"Chimpnoise";
+        self.title = @"";
         self.prompt = @"loading..";
         self.imageURL = nil;
         self.onScreen = NO;
@@ -82,12 +82,15 @@
 
 -(void) handleFetchSuccess:(id) responseObject{
     NSArray *noises = responseObject[@"noises"];
+    self.businessName = responseObject[@"business_name"];
+    self.title        = self.businessName;
+    
     for (NSDictionary *noise in noises) {
-        self.imageURL = noise[@"image"];
-        self.url      = noise[@"url"];
-        self.prompt   = noise[@"subject"];
-        self.type     = noise[@"type"];
-        
+        self.imageURL     = noise[@"image"];
+        self.url          = noise[@"url"];
+        self.prompt       = noise[@"subject"];
+        self.type         = noise[@"type"];
+
         if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
             self.duration = [noise[@"activity_time_qty"] intValue] * 60;
         }
