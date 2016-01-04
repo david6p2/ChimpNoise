@@ -9,6 +9,7 @@
 #import "BeaconCardView.h"
 #import "ImageBeaconCardType.h"
 #import "UrlBeaconCardType.h"
+#import "TextBeaconCardType.h"
 
 
 @implementation BeaconCardView
@@ -65,6 +66,9 @@
     }
     else if ([self.beacon.type isEqualToString:@"image"]){
         self.beaconCardType = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+    }
+    else if ([self.beacon.type isEqualToString:@"text"]){
+        self.beaconCardType = [[TextBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
     }
     [self addSubview: self.beaconCardType];
     

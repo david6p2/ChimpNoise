@@ -84,6 +84,7 @@
     NSArray *noises = responseObject[@"noises"];
     for (NSDictionary *noise in noises) {
         self.imageURL = noise[@"image"];
+        self.message  = noise[@"message"];
         self.url      = noise[@"url"];
         self.prompt   = noise[@"subject"];
         self.type     = noise[@"type"];
