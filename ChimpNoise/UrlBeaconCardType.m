@@ -18,7 +18,15 @@
                                  0,
                                  self.frame.size.width,
                                  self.frame.size.height * 33/100);
-    [imageView sd_setImageWithURL:[NSURL URLWithString: beacon.imageURL]
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    CGPathRef path = CGPathCreateWithRect(imageView.frame, NULL);
+    maskLayer.path = path;
+    CGPathRelease(path);
+
+    imageView.layer.mask = maskLayer;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [imageView sd_setImageWithURL:[NSURL URLWithString: beacon.urlImage]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self addSubview:imageView];
     
@@ -26,10 +34,10 @@
                                                                self.frame.size.height * 36/100,
                                                                self.frame.size.width - 40,
                                                                self.frame.size.height * 11/100)];
-    title.text = @"James tendría que pagar 50 mil euros en multas por incidente vial";
+    title.text = beacon.urlTitle;
     title.font = [title.font fontWithSize:18];
-    //    title.backgroundColor = [UIColor grayColor];
-    title.textColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];;
+    title.textColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
+    title.backgroundColor = [UIColor whiteColor];
     title.numberOfLines = 2;
     title.adjustsFontSizeToFitWidth = YES;
     title.minimumScaleFactor = 10.0f/12.0f;
@@ -41,10 +49,10 @@
                                                                      self.frame.size.height * 46/100,
                                                                      self.frame.size.width - 40,
                                                                      self.frame.size.height * 26/100)];
-    description.text = @"El incidente de transito que protagonizó James Rodríguez el primer día de 2016 podría afectar la economía del colombiano.  Y es que según el diario ‘El Mundo’, de España, el ‘10’ tendría que pagar 50 mil euros sumando diferentes multas. \n\n www.futbolred.com";
+    description.text = [NSString stringWithFormat:@"%@\n%@", beacon.urlDescription, beacon.url];
     description.font = [description.font fontWithSize:15];
-    //    description.backgroundColor = [UIColor redColor];
     description.textColor = [UIColor grayColor];
+    title.backgroundColor = [UIColor whiteColor];
     description.numberOfLines = 8;
     description.adjustsFontSizeToFitWidth = YES;
     description.minimumScaleFactor = 10.0f/12.0f;

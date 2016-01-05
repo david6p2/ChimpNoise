@@ -29,7 +29,13 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *url;
+
 @property (nonatomic, strong) NSString *message;
+
+@property (nonatomic, strong) NSString *urlTitle;
+@property (nonatomic, strong) NSString *urlDescription;
+@property (nonatomic, strong) NSString *urlImage;
+
 @property BOOL onScreen;
 @property BOOL firstTimeOnScreen;
 @property BOOL fetchFromServer;
