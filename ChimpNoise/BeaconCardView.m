@@ -7,6 +7,9 @@
 //
 
 #import "BeaconCardView.h"
+#import "ImageBeaconCardType.h"
+#import "UrlBeaconCardType.h"
+#import "TextBeaconCardType.h"
 
 
 @implementation BeaconCardView
@@ -45,45 +48,62 @@
     beacon.delegate = self; //AYBeaconDelegate Protocol
     self.cardTitle = self.beacon.title;
     self.cardPrompt = self.beacon.prompt;
-    
-    [self addImage: beacon.imageURL];
-    [self addTimer];
-    if (self.beacon.fetchFromServer == YES) {
-        [self startTimer];
+    [self body];
+}
+
+-(void) body{
+    if (self.beaconCardType) {
+        [self.beaconCardType removeFromSuperview];
+        self.beaconCardType = nil;
     }
+    CGRect frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    
+    if(self.beacon.type == nil){
+        self.beaconCardType = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+    }
+    else if([self.beacon.type isEqualToString:@"url"]){
+        self.beaconCardType = [[UrlBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+    }
+    else if ([self.beacon.type isEqualToString:@"image"]){
+        self.beaconCardType = [[ImageBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+    }
+    else if ([self.beacon.type isEqualToString:@"text"]){
+        self.beaconCardType = [[TextBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
+    }
+    [self addSubview: self.beaconCardType];
+    
+    [self addTimer];
+    [self startTimer];
 }
 
--(void) addImage:(NSString *) imageUrlString{
-    self.imageView = [[UIImageView alloc] init];
-    self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 10/10);
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString: imageUrlString]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    [self addSubview:self.imageView];
-}
-
+#pragma mark - timer
 -(void) addTimer{
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
-                                                               self.frame.size.height * 8/10 + 39.5,
-                                                               self.frame.size.width,
-                                                               self.frame.size.height * 1.5/10)];
-    self.timeLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
-    self.timeLabel.text = @"Loading";
-    self.timeLabel.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
-    self.timeLabel.textColor = [UIColor whiteColor];
-    self.timeLabel.numberOfLines = 2;
-    self.timeLabel.adjustsFontSizeToFitWidth = YES;
-    self.timeLabel.minimumScaleFactor = 10.0f/12.0f;
-    self.timeLabel.clipsToBounds = YES;
-    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    if (self.timeLabel == nil) {
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
+                                                                   self.frame.size.height * 8/10 + 39.5,
+                                                                   self.frame.size.width,
+                                                                   self.frame.size.height * 1.5/10)];
+        self.timeLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
+        self.timeLabel.text = @"Loading";
+        self.timeLabel.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
+        self.timeLabel.textColor = [UIColor whiteColor];
+        self.timeLabel.numberOfLines = 2;
+        self.timeLabel.adjustsFontSizeToFitWidth = YES;
+        self.timeLabel.minimumScaleFactor = 10.0f/12.0f;
+        self.timeLabel.clipsToBounds = YES;
+        self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    }
     [self addSubview:self.timeLabel];
 }
 
 -(void) startTimer{
-    self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
-                                                           target:self
-                                                         selector:@selector(updateTimer)
-                                                         userInfo:nil
-                                                          repeats:YES];
+    if (self.beacon.fetchFromServer == YES) {
+        self.stopWatchTimer = [NSTimer scheduledTimerWithTimeInterval:10.0/10.0
+                                                               target:self
+                                                             selector:@selector(updateTimer)
+                                                             userInfo:nil
+                                                              repeats:YES];
+    }
 }
 
 - (void)updateTimer{
@@ -121,9 +141,6 @@
     self.stopWatchTimer = nil;
 }
 
-
-
-
 #pragma mark - AYBeaconDelegate
 -(void)beaconUpdate{
     
@@ -141,9 +158,8 @@
         }
     }
     else{
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString: self.beacon.imageURL]];
+        [self body];
         [self.beacon startCountdown];
-        [self startTimer];
         self.cardTitle = self.beacon.prompt;
         self.cardPrompt = self.beacon.title;
         [self.delegate topCardViewUpdate];
