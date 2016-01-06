@@ -40,13 +40,17 @@
     [self.locationManagerBackground startUpdatingLocation];
     
     //Init Chimpnoise Model
-    AYChimpnoise *storedChimpnoise = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"chimpnoise"];
-    
-    if (storedChimpnoise) {
-        self.chimpnoise = storedChimpnoise;
-        [self.chimpnoise hideAllBeacons];
+    @try {
+        AYChimpnoise *storedChimpnoise = [[NSUserDefaults standardUserDefaults] rm_customObjectForKey:@"chimpnoise"];
+        if (storedChimpnoise) {
+            self.chimpnoise = storedChimpnoise;
+            [self.chimpnoise hideAllBeacons];
+        }
+        else{
+            self.chimpnoise = [AYChimpnoise sharedInstance];
+        }
     }
-    else{
+    @catch (NSException *exception) {
         self.chimpnoise = [AYChimpnoise sharedInstance];
     }
 }
