@@ -29,7 +29,6 @@
 -(AYBeacon *) beaconToDisplayOnScreen;
 
 -(void) hideAllBeacons;
--(void) fetchAllBeacons;
 
 -(void) restartDeletedBeaconCount: (AYBeacon *)beacon;
 -(BOOL) isMuted:(AYBeacon *)beacon;

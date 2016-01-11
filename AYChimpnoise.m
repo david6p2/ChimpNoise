@@ -33,6 +33,7 @@ static AYChimpnoise *sharedInstance = nil;
         beacon = [[AYBeacon alloc] initWithUUID:uuid minor:minor major:major];
         [self addBeacon:beacon];
     }
+    [self verifyDeletedBeacon: beacon];
     return beacon;
 }
 
@@ -145,6 +146,18 @@ static AYChimpnoise *sharedInstance = nil;
         [deletedBeacon setObject:newTimesDeleted forKey:@"timesDeleted"];
         NSDate *updatedAt = [NSDate date];
         [deletedBeacon setObject:updatedAt forKey:@"updatedAt"];
+    }
+}
+
+-(void) verifyDeletedBeacon:(AYBeacon *)beacon{
+    if ([self isMuted:beacon] == YES) {
+        NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
+        NSDate *lastUpdate = [deletedBeacon objectForKey:@"updatedAt"];
+        NSLog(@"%f", [lastUpdate timeIntervalSinceNow]);
+        NSTimeInterval fourHours = -14400;
+        if ([lastUpdate timeIntervalSinceNow] < fourHours) {
+            [self restartDeletedBeaconCount:beacon];
+        }
     }
 }
 
