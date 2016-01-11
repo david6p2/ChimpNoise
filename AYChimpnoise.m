@@ -57,13 +57,14 @@ static AYChimpnoise *sharedInstance = nil;
 
 #pragma mark - Beacons Array Methods
 -(NSUInteger) beaconsCount{
+    NSUInteger count = 0;
     NSArray *beacons = [self.beacons allValues];
-    if(beacons == nil || [beacons count] == 0){
-        return 0;
+    for (AYBeacon *beacon in beacons) {
+        if ([self isMuted:beacon] == NO) {
+            count = count + 1;
+        }
     }
-    else{
-        return [beacons count];
-    }
+    return count;
 }
 
 -(NSArray *) beaconsArray{
@@ -76,7 +77,7 @@ static AYChimpnoise *sharedInstance = nil;
     while ([beaconsArray count] >0){
         NSUInteger randomIndex = arc4random() % [beaconsArray count];
         AYBeacon *beacon = beaconsArray[randomIndex];
-        if (beacon.onScreen == NO){
+        if (beacon.onScreen == NO && [self isMuted:beacon] == NO){
             if (beacon.fetchFromServer == NO) {
                 return beacon;
             }
@@ -137,8 +138,28 @@ static AYChimpnoise *sharedInstance = nil;
     }
 }
 
+-(void) restartDeletedBeaconCount: (AYBeacon *)beacon{
+    NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
+    if (deletedBeacon != nil){
+        NSNumber *newTimesDeleted = [NSNumber numberWithInt:0];
+        [deletedBeacon setObject:newTimesDeleted forKey:@"timesDeleted"];
+        NSDate *updatedAt = [NSDate date];
+        [deletedBeacon setObject:updatedAt forKey:@"updatedAt"];
+    }
+}
+
 -(BOOL) isMuted:(AYBeacon *)beacon{
-    return FALSE;
+    NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
+    if (deletedBeacon == nil) {
+        return NO;
+    }
+    NSNumber *timesDeleted = [deletedBeacon objectForKey:@"timesDeleted"];
+    if ([timesDeleted intValue] < 3) {
+        return NO;
+    }
+    else{
+        return YES;
+    }
 }
 
 

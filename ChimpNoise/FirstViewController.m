@@ -136,6 +136,9 @@ monitoringDidFailForRegion:(CLRegion *)region
         
         if (direction == ZLSwipeableViewDirectionLeft) {
             [self deleteCard: cardView];
+            if ([self.chimpnoise isMuted:cardView.beacon]) {
+                [self notifyUserToMute: cardView.beacon];
+            }
             [self updateNavBar];
         }
         
@@ -343,6 +346,34 @@ monitoringDidFailForRegion:(CLRegion *)region
 
 -(void) skipCard:(BeaconCardView *) view {
     [view stopTimer];
+}
+
+#pragma mark - Notify User to Mute Beacon
+-(void) notifyUserToMute:(AYBeacon *)beacon{
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:[[NSString alloc] initWithFormat:@"Do you want to mute %@ for a couple of hours?", beacon.businessName]
+                                          message:@"Stop receiving Cards"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [self.chimpnoise restartDeletedBeaconCount: beacon];
+                                       NSLog(@"Cancel action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK action");
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Background Location Manager
