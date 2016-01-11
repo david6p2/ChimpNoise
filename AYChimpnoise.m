@@ -19,6 +19,7 @@ static AYChimpnoise *sharedInstance = nil;
         if (sharedInstance == nil) {
             sharedInstance = [[AYChimpnoise alloc] init];
             sharedInstance.beacons = [[NSMutableDictionary alloc] init];
+            sharedInstance.deletedBeacons = [[NSMutableDictionary alloc] init];
         }
         return(sharedInstance);
     }
@@ -44,6 +45,7 @@ static AYChimpnoise *sharedInstance = nil;
 -(BOOL) deleteBeacon:(AYBeacon *) beacon{
     if([self.beacons objectForKey:beacon.key]){
         [self.beacons removeObjectForKey: beacon.key];
+        [self addToDeletedBeacons:beacon];
         [self saveModel];
         return YES;
     }
@@ -108,6 +110,35 @@ static AYChimpnoise *sharedInstance = nil;
 -(void) saveModel{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults rm_setCustomObject:self forKey:@"chimpnoise"];
+}
+
+-(void) resetModel{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults rm_setCustomObject:nil forKey:@"chimpnoise"];
+}
+
+#pragma mark - deletedBeacons
+-(void) addToDeletedBeacons:(AYBeacon *)beacon{
+    NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
+    if (deletedBeacon == nil) {
+        deletedBeacon = [[NSMutableDictionary alloc] init];
+        [deletedBeacon setObject:[NSNumber numberWithInt:1] forKey:@"timesDeleted"];
+        NSDate *createdAt = [NSDate date];
+        [deletedBeacon setObject:createdAt forKey:@"createdAt"];
+        [deletedBeacon setObject:createdAt forKey:@"updatedAt"];
+        [self.deletedBeacons setObject:deletedBeacon forKey:beacon.key];
+    }
+    else{
+        NSNumber *timesDeleted = [deletedBeacon objectForKey:@"timesDeleted"];
+        NSNumber *newTimesDeleted = [NSNumber numberWithInt:[timesDeleted intValue] + 1];
+        [deletedBeacon setObject:newTimesDeleted forKey:@"timesDeleted"];
+        NSDate *updatedAt = [NSDate date];
+        [deletedBeacon setObject:updatedAt forKey:@"updatedAt"];
+    }
+}
+
+-(BOOL) isMuted:(AYBeacon *)beacon{
+    return FALSE;
 }
 
 

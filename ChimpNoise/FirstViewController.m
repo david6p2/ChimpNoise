@@ -47,6 +47,7 @@
             [self.chimpnoise hideAllBeacons];
         }
         else{
+            [self.chimpnoise resetModel];
             self.chimpnoise = [AYChimpnoise sharedInstance];
         }
     }
@@ -105,6 +106,7 @@
                inRegion:(CLBeaconRegion *)region {
 
     NSLog(@"didRangeBeacons %ld", [beacons count]);
+    NSLog(@"%@", self.chimpnoise.deletedBeacons);
     
     for (CLBeacon *beacon in beacons) {
         [self.chimpnoise findOrCreateBeaconWithUUID:[beacon.proximityUUID UUIDString]
