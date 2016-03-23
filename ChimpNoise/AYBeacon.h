@@ -20,31 +20,28 @@
 
 @interface AYBeacon : NSObject <RMMapping>
 
+//Beacon UUID, minor and major
 @property (nonatomic, strong) NSString *uuid;
 @property (retain) NSNumber *minor;
 @property (retain) NSNumber *major;
 
+//Card Details as Title, prompt, url and type
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *prompt;
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *url;
-
 @property (nonatomic, strong) NSString *businessName;
-
 @property (nonatomic, strong) NSString *message;
-
 @property (nonatomic, strong) NSString *urlTitle;
 @property (nonatomic, strong) NSString *urlDescription;
 @property (nonatomic, strong) NSString *urlImage;
 
+//Card Status
 @property BOOL onScreen;
 @property BOOL firstTimeOnScreen;
 @property BOOL fetchFromServer;
 @property BOOL localNotification;
-@property (nonatomic, strong) NSDate * startDate;
-@property NSTimeInterval duration;
-@property (nonatomic, strong) NSDate * endDate;
 
 //PROTOCOL - AYBeaconDelegate
 @property (nonatomic, assign) id delegate;
@@ -53,9 +50,6 @@
 -(void) display;
 -(void) hide;
 -(NSString *) key;
-
--(void) startCountdown;
--(BOOL) expired;
 -(void) fetch;
 -(void) showNotification;
 @end

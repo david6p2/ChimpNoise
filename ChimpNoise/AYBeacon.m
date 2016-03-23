@@ -21,8 +21,6 @@
         self.firstTimeOnScreen = YES;
         self.fetchFromServer = NO;
         self.localNotification = NO;
-        self.startDate = nil;
-        self.endDate = nil;
     }
     return self;
 }
@@ -60,22 +58,6 @@
     self.onScreen = NO;
 }
 
--(void) startCountdown{
-    self.firstTimeOnScreen = NO;
-    self.startDate = [NSDate date];
-    self.endDate = [self.startDate dateByAddingTimeInterval:self.duration];
-    NSLog(@"start: %@", self.startDate);
-    NSLog(@"end: %@", self.endDate);
-}
--(BOOL) expired{
-    NSDate *now = [NSDate date];
-    if([self.endDate compare: now] == NSOrderedAscending){
-        return YES;
-    }
-    else{
-        return NO;
-    }
-}
 -(void) showNotification{
     self.localNotification = YES;
 }
@@ -97,9 +79,6 @@
         self.urlDescription = noise[@"urlDetail"][@"description"];
         self.urlImage = noise[@"urlDetail"][@"image"];
 
-        if ([noise[@"activity_time_type"] isEqualToString:@"minute"]) {
-            self.duration = [noise[@"activity_time_qty"] intValue] * 60;
-        }
         self.fetchFromServer = YES;
         
         //Call Delegate to Update View

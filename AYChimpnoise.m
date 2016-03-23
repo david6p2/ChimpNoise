@@ -84,11 +84,10 @@ static AYChimpnoise *sharedInstance = nil;
             }
             else{
                 if (beacon.firstTimeOnScreen == YES) {
-                    [beacon startCountdown];
                     return beacon;
                 }
                 else{
-                    if (beacon.fetchFromServer == YES && [beacon expired] == YES) {
+                    if (beacon.fetchFromServer == YES) {
                         [self deleteBeacon:beacon];
                     }
                     else{
