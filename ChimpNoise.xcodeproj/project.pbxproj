@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0DADF411CA22A1000B667AF /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0DADF401CA22A1000B667AF /* ScanViewController.m */; };
 		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
 		BA0E04811BF2F2420087E586 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0E04801BF2F2420087E586 /* Default.png */; };
 		BA1BE6161C3B1A140050FA6A /* ImageBeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */; };
@@ -24,7 +25,6 @@
 		BABC493E1BD2F8FD00DC26FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC493D1BD2F8FD00DC26FC /* main.m */; };
 		BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49401BD2F8FD00DC26FC /* AppDelegate.m */; };
 		BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49431BD2F8FD00DC26FC /* FirstViewController.m */; };
-		BABC49471BD2F8FD00DC26FC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BABC49461BD2F8FD00DC26FC /* SecondViewController.m */; };
 		BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BABC49481BD2F8FD00DC26FC /* Main.storyboard */; };
 		BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */; };
 		BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */; };
@@ -36,6 +36,8 @@
 /* Begin PBXFileReference section */
 		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
 		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
+		A0DADF3F1CA22A1000B667AF /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		A0DADF401CA22A1000B667AF /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		BA0E04801BF2F2420087E586 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA1BE6141C3B1A140050FA6A /* ImageBeaconCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBeaconCardType.h; sourceTree = "<group>"; };
 		BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBeaconCardType.m; sourceTree = "<group>"; };
@@ -62,8 +64,6 @@
 		BABC49401BD2F8FD00DC26FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BABC49421BD2F8FD00DC26FC /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		BABC49431BD2F8FD00DC26FC /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		BABC49451BD2F8FD00DC26FC /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		BABC49461BD2F8FD00DC26FC /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		BABC49491BD2F8FD00DC26FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BABC494E1BD2F8FD00DC26FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,6 +104,15 @@
 				65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A0DADF421CA22C8C00B667AF /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				A0DADF3F1CA22A1000B667AF /* ScanViewController.h */,
+				A0DADF401CA22A1000B667AF /* ScanViewController.m */,
+			);
+			name = Scan;
 			sourceTree = "<group>";
 		};
 		BA0E047F1BF2F17C0087E586 /* img */ = {
@@ -186,6 +195,7 @@
 		BABC493B1BD2F8FD00DC26FC /* ChimpNoise */ = {
 			isa = PBXGroup;
 			children = (
+				A0DADF421CA22C8C00B667AF /* Scan */,
 				BA0E047F1BF2F17C0087E586 /* img */,
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
@@ -222,8 +232,6 @@
 			children = (
 				BABC49421BD2F8FD00DC26FC /* FirstViewController.h */,
 				BABC49431BD2F8FD00DC26FC /* FirstViewController.m */,
-				BABC49451BD2F8FD00DC26FC /* SecondViewController.h */,
-				BABC49461BD2F8FD00DC26FC /* SecondViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -369,9 +377,9 @@
 			files = (
 				BA1BE6191C3B1CA00050FA6A /* BeaconCardType.m in Sources */,
 				BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */,
-				BABC49471BD2F8FD00DC26FC /* SecondViewController.m in Sources */,
 				BA7A26531C1342FE00361159 /* BeaconCardView.m in Sources */,
 				BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */,
+				A0DADF411CA22A1000B667AF /* ScanViewController.m in Sources */,
 				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
