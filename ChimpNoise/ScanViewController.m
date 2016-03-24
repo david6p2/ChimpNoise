@@ -15,10 +15,24 @@
 
 @implementation ScanViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // Start Reanging and Monitoring Regions
+    self.nearBeaconsScanner = [NearBeaconsScanner new];
+    self.regionsScanner     = [[RegionsScanner alloc] initWithDelegate:self.nearBeaconsScanner];
+    [self.regionsScanner scan];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSwipeableView];
     [self initPulse];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:@"nearBeaconsScannerEvent" object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.regionsScanner stopScan];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,12 +40,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidLayoutSubviews{
+    [self.swipeableView loadViewsIfNeeded];
+}
+
 -(void) initSwipeableView{
-    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
+    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.view.frame];
     self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
     self.swipeableView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
     self.swipeableView.dataSource = self;
     self.swipeableView.delegate = self;
+    self.swipeableView.numberOfActiveViews = 0;
     [self.view addSubview:self.swipeableView];
 }
 
@@ -58,6 +77,98 @@
     animation.toValue = [NSNumber numberWithFloat:2];
     
     [self.pulseView.layer addAnimation:animation forKey:@"scale"];
+}
+
+-(void) hidePulse{
+    self.pulseView.hidden = YES;
+    self.backgroundPulseView.hidden = YES;
+}
+
+-(void) showPulse{
+    self.pulseView.hidden = NO;
+    self.backgroundPulseView.hidden = NO;
+}
+
+#pragma mark - ZLSwipeableViewDelegate
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+         didSwipeView:(UIView *)view
+          inDirection:(ZLSwipeableViewDirection)direction {
+    
+}
+
+- (void)swipeableView:(ZLSwipeableView *)swipeableView
+          swipingView:(UIView *)view
+           atLocation:(CGPoint)location
+          translation:(CGPoint)translation {
+    
+    if (10 <= translation.x) {
+        // Show Next Label
+        //TODO
+    }
+    else if (translation.x <= -10){
+        // Show Delete Label
+        //TODO
+    }
+}
+
+#pragma mark - ZLSwipeableViewDataSource
+- (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
+    NSLog(@"nextViewForSwipeableView");
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 150);
+    CGPathRef path = CGPathCreateWithRect(frame, NULL);
+    maskLayer.path = path;
+    CGPathRelease(path);
+    
+    // 2. If no tutorial to display then display beacon.
+    UIView *beaconCardView = [self beaconCardViewToDisplay:swipeableView frame:frame];
+    if (beaconCardView) {
+        beaconCardView.layer.mask = maskLayer;
+        return beaconCardView;
+    }
+    
+    // 3. If no beacon to display then return nil.
+    return nil;
+}
+
+#pragma mark - ChooseBeaconToDisplay
+-(UIView *) beaconCardViewToDisplay:(ZLSwipeableView *)swipeableView frame:(CGRect)frame{
+    AYBeacon * beaconToShow = [self.nearBeaconsScanner next];
+    if (beaconToShow == nil) {
+        [self.swipeableView loadViewsIfNeeded];
+    }
+    else{
+        [beaconToShow display];
+        BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame beacon: beaconToShow delegate:self];
+        return cardView;
+    }
+    return nil;
+}
+
+
+#pragma mark - Observe Changes in NearBeaconsScanner
+-(void) updateView{
+    NSUInteger nearBeaconsNumber = [self.nearBeaconsScanner.nearBeacons count];
+    
+    NSLog(@"Number of Index %i", self.nearBeaconsScanner.index);
+    NSLog(@"Number of Cards %lu", nearBeaconsNumber);
+    NSLog(@"near Beacons Array : %@", self.nearBeaconsScanner.nearBeacons);
+    
+    self.swipeableView.numberOfActiveViews = nearBeaconsNumber;
+    [self.swipeableView loadViewsIfNeeded];
+    
+    if(nearBeaconsNumber == 0){
+        [self showPulse];
+    }
+    else{
+        [self hidePulse];
+    }
+}
+
+#pragma mark - AYCardViewDelegate Protocol
+-(void)topCardViewUpdate{
 }
 
 @end

@@ -84,7 +84,7 @@
         //Call Delegate to Update View
         [delegate beaconUpdate];
     }
-    NSLog(@"JSON: %@", responseObject);
+    NSLog(@"Fetch JSON");
 }
 
 @end

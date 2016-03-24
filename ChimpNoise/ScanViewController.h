@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "ZLSwipeableView.h"
+#import "RegionsScanner.h"
+#import "NearBeaconsScanner.h"
+#import "AYBeacon.h"
+#import "BeaconCardView.h"
 
-@interface ScanViewController : UIViewController
+@interface ScanViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, AYCardViewDelegate>
+
 @property (strong, nonatomic) UIView *pulseView;
 @property (strong, nonatomic) UIImageView *backgroundPulseView;
-@property (nonatomic, strong) ZLSwipeableView *swipeableView;
+@property (strong, nonatomic) ZLSwipeableView *swipeableView;
+@property (strong, nonatomic) RegionsScanner * regionsScanner;
+@property (strong, nonatomic) NearBeaconsScanner *nearBeaconsScanner;
+
 @end
