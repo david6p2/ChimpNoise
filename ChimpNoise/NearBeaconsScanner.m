@@ -15,9 +15,29 @@
     if (self) {
         self.nearBeacons = [NSMutableArray new];
         self.nearBeaconsDictionary = [NSMutableDictionary new];
-        self.index = 0;
     }
     return self;
+}
+
+
+-(AYBeacon *) next{
+    for (AYBeacon *beacon in self.nearBeacons) {
+        if (beacon.onScreen == NO) {
+            [beacon show];
+            return beacon;
+        }
+    }
+    return nil;
+}
+
+-(AYBeacon *) findOrCreateAyBeaconwithUUID:(NSString *)uuid major:(NSNumber *) major minor:(NSNumber *) minor{
+    NSString *key = [[NSString alloc] initWithFormat:@"%@:%@:%@", uuid, major, minor];
+    AYBeacon *storedBeacon = [self.nearBeaconsDictionary objectForKey:key];
+    if(storedBeacon == nil){
+        storedBeacon = [[AYBeacon alloc] initWithUUID:uuid minor:minor major:major];
+        [self.nearBeaconsDictionary setValue:storedBeacon forKey:key];
+    }
+    return storedBeacon;
 }
 
 #pragma mark - ESTBeaconManagerDelegate
@@ -39,24 +59,4 @@
         didExitRegion:(CLBeaconRegion *)region{
     NSLog(@"++++++%@", region);
 }
-
--(AYBeacon *) next{
-    if([self.nearBeacons count] <= self.index){
-        self.index = 0;
-    }
-    AYBeacon *beacon = [self.nearBeacons objectAtIndex:self.index];
-    self.index++;
-    return beacon;
-}
-
--(AYBeacon *) findOrCreateAyBeaconwithUUID:(NSString *)uuid major:(NSNumber *) major minor:(NSNumber *) minor{
-    NSString *key = [[NSString alloc] initWithFormat:@"%@:%@:%@", uuid, major, minor];
-    AYBeacon *storedBeacon = [self.nearBeaconsDictionary objectForKey:key];
-    if(storedBeacon == nil){
-        storedBeacon = [[AYBeacon alloc] initWithUUID:uuid minor:minor major:major];
-        [self.nearBeaconsDictionary setValue:storedBeacon forKey:key];
-    }
-    return storedBeacon;
-}
-
 @end

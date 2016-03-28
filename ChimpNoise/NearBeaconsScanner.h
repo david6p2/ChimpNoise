@@ -14,6 +14,5 @@
 
 @property NSMutableArray *nearBeacons;
 @property NSMutableDictionary *nearBeaconsDictionary;
-@property int index;
 -(AYBeacon *) next;
 @end

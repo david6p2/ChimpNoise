@@ -17,7 +17,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    // Start Reanging and Monitoring Regions
+    // Start Ranging and Monitoring Regions
     self.nearBeaconsScanner = [NearBeaconsScanner new];
     self.regionsScanner     = [[RegionsScanner alloc] initWithDelegate:self.nearBeaconsScanner];
     [self.regionsScanner scan];
@@ -27,7 +27,10 @@
     [super viewDidLoad];
     [self initSwipeableView];
     [self initPulse];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:@"nearBeaconsScannerEvent" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateView)
+                                                 name:@"nearBeaconsScannerEvent"
+                                               object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -93,15 +96,18 @@
 
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
          didSwipeView:(UIView *)view
-          inDirection:(ZLSwipeableViewDirection)direction {
-    
+          inDirection:(ZLSwipeableViewDirection)direction
+{
+    NSLog(@"ScanViewController.didSwipeView");
+    BeaconCardView *beaconCardView = (BeaconCardView *)view;
+    [beaconCardView.beacon hide];
 }
 
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
           swipingView:(UIView *)view
            atLocation:(CGPoint)location
-          translation:(CGPoint)translation {
-    
+          translation:(CGPoint)translation
+{
     if (10 <= translation.x) {
         // Show Next Label
         //TODO
@@ -136,13 +142,10 @@
 #pragma mark - ChooseBeaconToDisplay
 -(UIView *) beaconCardViewToDisplay:(ZLSwipeableView *)swipeableView frame:(CGRect)frame{
     AYBeacon * beaconToShow = [self.nearBeaconsScanner next];
-    if (beaconToShow == nil) {
-        [self.swipeableView loadViewsIfNeeded];
-    }
-    else{
-        [beaconToShow display];
-        BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame beacon: beaconToShow delegate:self];
-        return cardView;
+    if (beaconToShow != nil) {
+        return [[BeaconCardView alloc] initWithFrame: frame
+                                              beacon: beaconToShow
+                                            delegate:self];
     }
     return nil;
 }
@@ -152,9 +155,8 @@
 -(void) updateView{
     NSUInteger nearBeaconsNumber = [self.nearBeaconsScanner.nearBeacons count];
     
-    NSLog(@"Number of Index %i", self.nearBeaconsScanner.index);
-    NSLog(@"Number of Cards %lu", nearBeaconsNumber);
-    NSLog(@"near Beacons Array : %@", self.nearBeaconsScanner.nearBeacons);
+    NSLog(@"nearBeaconsScanner.nearBeacons.count: %lu", nearBeaconsNumber);
+    NSLog(@"nearBeaconsScanner.nearBeacons: %@", self.nearBeaconsScanner.nearBeacons);
     
     self.swipeableView.numberOfActiveViews = nearBeaconsNumber;
     [self.swipeableView loadViewsIfNeeded];

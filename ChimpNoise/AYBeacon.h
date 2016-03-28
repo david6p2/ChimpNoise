@@ -47,7 +47,7 @@
 @property (nonatomic, assign) id delegate;
 
 -(instancetype)initWithUUID:(NSString *)uuid minor:(NSNumber *)minor major:(NSNumber *)major;
--(void) display;
+-(void) show;
 -(void) hide;
 -(NSString *) key;
 -(void) fetch;

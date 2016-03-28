@@ -253,7 +253,7 @@ monitoringDidFailForRegion:(CLRegion *)region
         [self.swipeableView loadViewsIfNeeded];
     }
     else{
-        [beaconToShow display];
+        [beaconToShow show];
         BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame beacon: beaconToShow delegate:self];
         return cardView;
     }

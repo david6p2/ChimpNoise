@@ -36,6 +36,7 @@
 }
 
 -(void) fetch{
+    NSLog(@"beacon.fetch");
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:[NSString stringWithFormat:@"http://chimpnoise.com/api/noise/beacon/%@", [self key]]
       parameters:nil
@@ -51,7 +52,7 @@
     return [NSString stringWithFormat:@"%@:%@:%@", self.uuid, self.major, self.minor];
 }
 
--(void) display{
+-(void) show{
     self.onScreen = YES;
 }
 -(void) hide{
@@ -63,6 +64,7 @@
 }
 
 -(void) handleFetchSuccess:(id) responseObject{
+    NSLog(@"beacon.handleFetchSuccess");
     NSArray *noises = responseObject[@"noises"];
     self.businessName = responseObject[@"business_name"];
     self.title        = self.businessName;
