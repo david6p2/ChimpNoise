@@ -30,7 +30,6 @@
 #define BEACON_UUID_20 @"64BCC55E-6E86-4498-9CD8-B701F71EC119"
 
 @interface FirstViewController ()
-@property (weak, nonatomic) IBOutlet UIView *deckView;
 
 @end
 
@@ -319,11 +318,11 @@ monitoringDidFailForRegion:(CLRegion *)region
 
 #pragma mark - Init Methods
 -(void) initSwipeableView{
-    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:self.deckView.frame];
+    self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-90)];
     self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
-    self.swipeableView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
-    self.swipeableView.dataSource = self;
-    self.swipeableView.delegate = self;
+    self.swipeableView.backgroundColor  = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
+    self.swipeableView.dataSource       = self;
+    self.swipeableView.delegate         = self;
     [self.view addSubview:self.swipeableView];
 }
 
