@@ -137,7 +137,9 @@
                inRegion:(CLBeaconRegion *)region {
 
     NSLog(@"didRangeBeacons %ld", [beacons count]);
-    NSLog(@"%@", self.chimpnoise.deletedBeacons);
+    NSLog(@"AYChimpnoise.beacons %ld", [self.chimpnoise beaconsCount]);
+    NSLog(@"AYChimpnoise.deletedBeacons %ld", [self.chimpnoise.deletedBeacons count]);
+    //NSLog(@"%@", self.chimpnoise.deletedBeacons);
     
     for (CLBeacon *beacon in beacons) {
         [self.chimpnoise findOrCreateBeaconWithUUID:[beacon.proximityUUID UUIDString]
@@ -388,8 +390,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
                                    style:UIAlertActionStyleCancel
-                                   handler:^(UIAlertAction *action)
-                                   {
+                                   handler:^(UIAlertAction *action){
                                        [self.chimpnoise restartDeletedBeaconCount: beacon];
                                        NSLog(@"Cancel action");
                                    }];
@@ -397,8 +398,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     UIAlertAction *okAction = [UIAlertAction
                                actionWithTitle:NSLocalizedString(@"OK", @"OK action")
                                style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction *action)
-                               {
+                               handler:^(UIAlertAction *action){
                                    NSLog(@"OK action");
                                }];
     

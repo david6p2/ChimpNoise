@@ -153,8 +153,9 @@ static AYChimpnoise *sharedInstance = nil;
     if ([self isMuted:beacon] == YES) {
         NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
         NSDate *lastUpdate = [deletedBeacon objectForKey:@"updatedAt"];
-        NSLog(@"%f", [lastUpdate timeIntervalSinceNow]);
+        //Mute Beacon 4 Hours
         NSTimeInterval fourHours = -14400;
+        NSLog(@"AyChimpnoise.verifyDeletedBeacon.lastUpdate: %f", [lastUpdate timeIntervalSinceNow]);
         if ([lastUpdate timeIntervalSinceNow] < fourHours) {
             [self restartDeletedBeaconCount:beacon];
         }

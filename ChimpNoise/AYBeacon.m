@@ -47,6 +47,7 @@
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
          }];
+    NSLog(@"AYBeacon.fetch");
 }
 
 -(NSString *) key{
@@ -64,8 +65,8 @@
     self.firstTimeOnScreen = NO;
     self.startDate = [NSDate date];
     self.endDate = [self.startDate dateByAddingTimeInterval:self.duration];
-    NSLog(@"start: %@", self.startDate);
-    NSLog(@"end: %@", self.endDate);
+    NSLog(@"AYBeacon.startCountdown");
+
 }
 -(BOOL) expired{
     NSDate *now = [NSDate date];
@@ -105,7 +106,7 @@
         //Call Delegate to Update View
         [delegate beaconUpdate];
     }
-    NSLog(@"JSON: %@", responseObject);
+    NSLog(@"AYBeacon.handleFetchSuccess");
 }
 
 @end
