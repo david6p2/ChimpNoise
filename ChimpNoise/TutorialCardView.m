@@ -36,6 +36,7 @@
         
         [self cardSetup];
         [self addImage: key];
+        [self bringSubviewToFront:self.actionLabel];
     }
     return self;
 }
@@ -45,10 +46,12 @@
                      delegate:(id)delegate{
     self = [super initWithCoder:aDecoder];
     if(self){
+        [self cardSetup];
         self.key = key;
         self.delegate = delegate;
         [self cardSetup];
         [self addImage: key];
+        [self bringSubviewToFront:self.actionLabel];
     }
     return self;
 }

@@ -30,6 +30,35 @@
     
     // Card Setup
     self.backgroundColor = [UIColor whiteColor];
+    
+    //Action Label
+    self.actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/ 10)];
+    [self.actionLabel setFont:[self.actionLabel.font fontWithSize:40]];
+    self.actionLabel.text = @"Delete";
+    self.actionLabel.textColor = [UIColor whiteColor];
+    self.actionLabel.alpha = 0;
+    self.actionLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.actionLabel];
+    [self bringSubviewToFront:self.actionLabel];
+}
+
+-(void) updateNextActionLabel{
+    [self updateActionLabelAlpha:1];
+    self.actionLabel.text = @"Next";
+}
+
+-(void) updateDeleteActionLabel{
+    [self updateActionLabelAlpha:1];
+    self.actionLabel.text = @"Delete";
+}
+
+-(void) hideActionLabel{
+    [self updateActionLabelAlpha:0];
+    self.actionLabel.text = @"";
+}
+
+-(void) updateActionLabelAlpha:(CGFloat)alpha{
+    [self.actionLabel setAlpha:alpha];
 }
 
 @end

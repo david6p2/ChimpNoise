@@ -20,11 +20,16 @@
 @property (strong, nonatomic) NSString *cardPrompt;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) UIImageView * imageView;
+@property (strong, nonatomic) UILabel *actionLabel;
 
 //PROTOCOL - CardViewDelegate
 @property (nonatomic, assign) id delegate;
 
 -(void) cardSetup;
+-(void) updateNextActionLabel;
+-(void) updateDeleteActionLabel;
+-(void) hideActionLabel;
+
 
 @end
 

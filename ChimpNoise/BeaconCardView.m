@@ -49,6 +49,7 @@
     self.cardTitle = self.beacon.title;
     self.cardPrompt = self.beacon.prompt;
     [self body];
+    [self bringSubviewToFront:self.actionLabel];
 }
 
 -(void) body{
@@ -80,9 +81,9 @@
 -(void) addTimer{
     if (self.timeLabel == nil) {
         self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
-                                                                   self.frame.size.height * 8/10 + 39.5,
+                                                                   self.frame.size.height * 8/10 + 33,
                                                                    self.frame.size.width,
-                                                                   self.frame.size.height * 1.5/10)];
+                                                                   self.frame.size.height * 1.6/10)];
         self.timeLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
         self.timeLabel.text = @"Loading";
         self.timeLabel.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
