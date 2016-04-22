@@ -8,8 +8,6 @@
 
 #import "CardView.h"
 
-#define RATIO 0.7133
-
 @implementation CardView
 
 @synthesize delegate;
@@ -67,6 +65,10 @@
 
 -(void) updateActionLabelAlpha:(CGFloat)alpha{
     [self.actionLabel setAlpha:alpha];
+}
+
++(CGFloat) cardRatio{
+    return RATIO;
 }
 
 @end

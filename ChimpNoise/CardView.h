@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define RATIO 0.65
+
 @class CardView;
 @protocol AYCardViewDelegate <NSObject>
 
@@ -25,10 +27,14 @@
 //PROTOCOL - CardViewDelegate
 @property (nonatomic, assign) id delegate;
 
++(CGFloat) cardRatio;
+
 -(void) cardSetup;
 -(void) updateNextActionLabel;
 -(void) updateDeleteActionLabel;
 -(void) hideActionLabel;
+
+
 
 
 @end

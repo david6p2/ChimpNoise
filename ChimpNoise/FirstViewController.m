@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 
 #define SWIPEABLE_RATIO 0.86
+
 #define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
 #define BEACON_UUID_2 @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19"
 #define BEACON_UUID_3 @"67DED150-E522-17B6-CB70-843903F8644B"
@@ -214,7 +215,9 @@ monitoringDidFailForRegion:(CLRegion *)region
     NSLog(@"nextViewForSwipeableView");
     
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    CGRect frame = CGRectMake(0, 0, swipeableView.frame.size.width - 50, swipeableView.frame.size.height - 100);
+    CGFloat height = swipeableView.frame.size.height * SWIPEABLE_RATIO;
+    CGFloat width  = height * [CardView cardRatio];
+    CGRect frame = CGRectMake(0, 0, width, height);
     CGPathRef path = CGPathCreateWithRect(frame, NULL);
     maskLayer.path = path;
     CGPathRelease(path);
@@ -334,6 +337,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
     self.swipeableView.backgroundColor = [UIColor whiteColor];
     //self.swipeableView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
+    self.swipeableView.backgroundColor = [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1];
     self.swipeableView.dataSource       = self;
     self.swipeableView.delegate         = self;
     [self.view addSubview:self.swipeableView];
