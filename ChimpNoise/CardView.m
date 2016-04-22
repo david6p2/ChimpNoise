@@ -8,10 +8,18 @@
 
 #import "CardView.h"
 
+#define RATIO 0.7133
 
 @implementation CardView
 
 @synthesize delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    CGFloat width  = frame.size.height * RATIO;
+    CGFloat height = frame.size.height;
+    self = [super initWithFrame:CGRectMake(0, 0, width, height)];
+    return self;
+}
 
 -(void) cardSetup{
     
