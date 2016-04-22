@@ -306,8 +306,8 @@ monitoringDidFailForRegion:(CLRegion *)region
 
     }
     else{
-        self.titleLabel.title = top.cardTitle;
-        self.titleLabel.prompt = top.cardPrompt;
+        self.titleLabel.title = top.cardPrompt;
+        self.titleLabel.prompt = top.cardTitle;
         [self hidePulse];
     }
     
