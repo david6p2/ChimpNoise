@@ -335,7 +335,6 @@ monitoringDidFailForRegion:(CLRegion *)region
     CGFloat width  = self.view.frame.size.width;
     self.swipeableView = [[ZLSwipeableView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     self.swipeableView.allowedDirection = ZLSwipeableViewDirectionHorizontal;
-    self.swipeableView.backgroundColor = [UIColor whiteColor];
     //self.swipeableView.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
     self.swipeableView.backgroundColor = [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1];
     self.swipeableView.dataSource       = self;

@@ -49,13 +49,15 @@
 }
 
 -(void) updateNextActionLabel{
-    [self updateActionLabelAlpha:1];
+    [self updateActionLabelAlpha:0.7];
     self.actionLabel.text = @"Next";
+    self.actionLabel.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
 }
 
 -(void) updateDeleteActionLabel{
-    [self updateActionLabelAlpha:1];
+    [self updateActionLabelAlpha:0.7];
     self.actionLabel.text = @"Delete";
+    self.actionLabel.backgroundColor = [UIColor colorWithRed:0 green:0.082 blue:0.141 alpha:1];
 }
 
 -(void) hideActionLabel{
