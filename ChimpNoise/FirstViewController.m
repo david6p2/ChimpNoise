@@ -38,6 +38,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    //
+    
     //Init CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -94,6 +96,7 @@
     [self initSwipeableView];
     [self updateNumberOfBeacons];
     [self initPulse];
+    [self detectBluetooth];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -421,6 +424,49 @@ monitoringDidFailForRegion:(CLRegion *)region
 #pragma mark - AYCardViewDelegate Protocol
 -(void)topCardViewUpdate{
     [self updateNavBar];
+}
+
+#pragma mark - CoreBluetooth
+- (void)detectBluetooth
+{
+    if(!self.bluetoothManager)
+    {
+        // Put on main queue so we can call UIAlertView from delegate callbacks.
+        self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+    }
+    [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    NSString *stateString = nil;
+    switch(central.state)
+    {
+        case CBCentralManagerStateResetting: stateString = @"system service was momentarily lost, update imminent."; break;
+        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
+        case CBCentralManagerStateUnauthorized: stateString = @"The app is not authorized to use Bluetooth Low Energy."; break;
+        case CBCentralManagerStatePoweredOff: stateString = @"currently powered off."; break;
+        case CBCentralManagerStatePoweredOn: stateString = @"currently powered on and available to use."; break;
+        default: stateString = @"State unknown, update imminent."; break;
+    }
+    if(central.state == CBCentralManagerStateUnauthorized &&
+       central.state == CBCentralManagerStatePoweredOff &&
+       central.state == CBCentralManagerStateUnsupported){
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle: @"bluetooth"
+                                              message:stateString
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action){
+                                       NSLog(@"OK action");
+                                   }];
+        
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 @end

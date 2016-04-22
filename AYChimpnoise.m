@@ -168,7 +168,7 @@ static AYChimpnoise *sharedInstance = nil;
         return NO;
     }
     NSNumber *timesDeleted = [deletedBeacon objectForKey:@"timesDeleted"];
-    if ([timesDeleted intValue] < 3) {
+    if ([timesDeleted intValue] < 1) {
         return NO;
     }
     else{

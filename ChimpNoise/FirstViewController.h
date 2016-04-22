@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import "ZLSwipeableView.h"
 #import "AYChimpnoise.h"
 #import "CardView.h"
@@ -26,6 +27,7 @@
 @property(nonatomic, assign) int AdIndex;
 @property (nonatomic) AYChimpnoise *chimpnoise;
 @property (nonatomic, strong) ZLSwipeableView *swipeableView;
+@property (nonatomic, strong) CBCentralManager *bluetoothManager;
 
 @end
 
