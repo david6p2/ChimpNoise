@@ -80,15 +80,12 @@
 #pragma mark - timer
 -(void) addTimer{
     if (self.timeLabel == nil) {
-        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 30,
-                                                                   self.frame.size.height * 8/10 + 33,
-                                                                   self.frame.size.width,
-                                                                   self.frame.size.height * 1.6/10)];
-        self.timeLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width * 5/8, self.frame.size.height - 25, self.frame.size.width * 3/8, 25)];
+//        self.timeLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
         self.timeLabel.text = @"Loading";
         self.timeLabel.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
         self.timeLabel.textColor = [UIColor whiteColor];
-        self.timeLabel.numberOfLines = 2;
+        self.timeLabel.numberOfLines = 1;
         self.timeLabel.adjustsFontSizeToFitWidth = YES;
         self.timeLabel.minimumScaleFactor = 10.0f/12.0f;
         self.timeLabel.clipsToBounds = YES;
@@ -133,7 +130,7 @@
         
         // Format the elapsed time and set it to the label
         NSString *timeString = [dateFormatter stringFromDate:timerDate];
-        self.timeLabel.text = [NSString stringWithFormat:@"Ends in\n %@", timeString];
+        self.timeLabel.text = [NSString stringWithFormat:@"%@", timeString];
     }
 }
 

@@ -39,7 +39,7 @@
     
     //Action Label
     self.actionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/ 10)];
-    [self.actionLabel setFont:[self.actionLabel.font fontWithSize:40]];
+    [self.actionLabel setFont:[self.actionLabel.font fontWithSize:30]];
     self.actionLabel.text = @"Delete";
     self.actionLabel.textColor = [UIColor whiteColor];
     self.actionLabel.alpha = 0;
