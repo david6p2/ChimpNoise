@@ -15,6 +15,8 @@
     
     UIImageView * imageView = [[UIImageView alloc] init];
     imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 10/10);
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
     [imageView sd_setImageWithURL:[NSURL URLWithString: beacon.imageURL]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self addSubview:imageView];

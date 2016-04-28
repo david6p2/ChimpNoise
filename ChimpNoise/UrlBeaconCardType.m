@@ -26,6 +26,8 @@
 
     imageView.layer.mask = maskLayer;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    
     [imageView sd_setImageWithURL:[NSURL URLWithString: beacon.urlImage]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self addSubview:imageView];
