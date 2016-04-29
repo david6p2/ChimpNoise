@@ -75,29 +75,16 @@ static AYChimpnoise *sharedInstance = nil;
 #pragma mark - Display Logic Methods
 -(AYBeacon *) beaconToDisplayOnScreen{
     NSMutableArray *beaconsArray = [NSMutableArray arrayWithArray:[self beaconsArray]];
-    while ([beaconsArray count] >0){
+    while ([beaconsArray count] > 0){
         NSUInteger randomIndex = arc4random() % [beaconsArray count];
         AYBeacon *beacon = beaconsArray[randomIndex];
-        if (beacon.onScreen == NO && [self isMuted:beacon] == NO){
-            if (beacon.fetchFromServer == NO) {
-                return beacon;
-            }
-            else{
-                if (beacon.firstTimeOnScreen == YES) {
-                    [beacon startCountdown];
-                    return beacon;
-                }
-                else{
-                    if (beacon.fetchFromServer == YES && [beacon expired] == YES) {
-                        [self deleteBeacon:beacon];
-                    }
-                    else{
-                        return beacon;
-                    }
-                }
-            }
-            [beaconsArray removeObjectAtIndex:randomIndex];
+        
+        if(beacon.onScreen == YES || [self isMuted:beacon] == YES){
+            continue;
         }
+        
+        return beacon;
+        
     }
     return nil;
 }
