@@ -49,7 +49,6 @@
     self.cardTitle = self.beacon.title;
     self.cardPrompt = self.beacon.prompt;
     [self body];
-    [self bringSubviewToFront:self.actionLabel];
 }
 
 -(void) body{

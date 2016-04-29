@@ -173,21 +173,17 @@ monitoringDidFailForRegion:(CLRegion *)region
 }
 
 -(void)swipeableView:(ZLSwipeableView *)swipeableView didCancelSwipe:(UIView *)view{
-    CardView *cardView = (CardView *)view;
-    [cardView hideActionLabel];
 }
 
 - (void)swipeableView:(ZLSwipeableView *)swipeableView
           swipingView:(UIView *)view
            atLocation:(CGPoint)location
           translation:(CGPoint)translation {
-    CardView *cardView = (CardView *)view;
     if (10 <= translation.x) {
-        CardView *cardView = (CardView *)view;
-        [cardView updateNextActionLabel];
+        //TODO NEXT
     }
     else if (translation.x <= -10){
-        [cardView updateDeleteActionLabel];
+        //TODO DELETE
     }
 }
 

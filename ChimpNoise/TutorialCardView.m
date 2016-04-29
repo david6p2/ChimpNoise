@@ -36,7 +36,6 @@
         
         [self cardSetup];
         [self addImage: key];
-        [self bringSubviewToFront:self.actionLabel];
     }
     return self;
 }
@@ -51,7 +50,6 @@
         self.delegate = delegate;
         [self cardSetup];
         [self addImage: key];
-        [self bringSubviewToFront:self.actionLabel];
     }
     return self;
 }
