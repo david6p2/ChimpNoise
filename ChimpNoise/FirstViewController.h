@@ -7,19 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "ZLSwipeableView.h"
 #import "AYChimpnoise.h"
 #import "CardView.h"
 #import "BeaconCardView.h"
 #import "TutorialCardView.h"
+#import "BeaconListener.h"
 
 
 @interface FirstViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate, AYCardViewDelegate>
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) CLLocationManager *locationManagerBackground;
+@property (nonatomic, strong) BeaconListener* beaconListener;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIView *pulseView;

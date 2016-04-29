@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0E580251CD3FF5C00A3C97A /* BeaconListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580241CD3FF5C00A3C97A /* BeaconListener.m */; };
 		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
 		BA0E04811BF2F2420087E586 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0E04801BF2F2420087E586 /* Default.png */; };
 		BA1BE6161C3B1A140050FA6A /* ImageBeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */; };
@@ -36,6 +37,8 @@
 /* Begin PBXFileReference section */
 		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
 		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
+		A0E580231CD3FF5C00A3C97A /* BeaconListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconListener.h; sourceTree = "<group>"; };
+		A0E580241CD3FF5C00A3C97A /* BeaconListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconListener.m; sourceTree = "<group>"; };
 		BA0E04801BF2F2420087E586 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA1BE6141C3B1A140050FA6A /* ImageBeaconCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBeaconCardType.h; sourceTree = "<group>"; };
 		BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBeaconCardType.m; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 				BAF9A4E71BE07BE30058E1DA /* Model */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
 				BABC493C1BD2F8FD00DC26FC /* Supporting Files */,
+				A0E580231CD3FF5C00A3C97A /* BeaconListener.h */,
+				A0E580241CD3FF5C00A3C97A /* BeaconListener.m */,
 			);
 			path = ChimpNoise;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */,
 				BAF9A4EA1BE082E70058E1DA /* AYBeacon.m in Sources */,
 				BABC49441BD2F8FD00DC26FC /* FirstViewController.m in Sources */,
+				A0E580251CD3FF5C00A3C97A /* BeaconListener.m in Sources */,
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
 				BA1BE6161C3B1A140050FA6A /* ImageBeaconCardType.m in Sources */,
 				BA1BE6201C3B1D8D0050FA6A /* UrlBeaconCardType.m in Sources */,

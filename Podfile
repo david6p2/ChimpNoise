@@ -8,5 +8,5 @@ target 'ChimpNoise' do
   pod 'SDWebImage',      '~> 3.7.3'
   pod 'RMMapper',        '~> 1.1.5'
   pod 'AFNetworking',    '~> 2.5'
+  pod 'EstimoteSDK',     '~> 4.1.0'
 end
-

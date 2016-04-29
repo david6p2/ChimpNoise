@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BeaconListener.h"
 #import "FirstViewController.h"
 
 @interface AppDelegate ()

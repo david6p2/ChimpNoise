@@ -8,143 +8,44 @@
 
 #import "FirstViewController.h"
 
+
 #define SWIPEABLE_RATIO 0.86
-
-#define BEACON_UUID_1 @"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D"
-#define BEACON_UUID_2 @"4D3B99C4-3857-D6C3-987A-BA2DA9C4AA19"
-#define BEACON_UUID_3 @"67DED150-E522-17B6-CB70-843903F8644B"
-#define BEACON_UUID_4 @"E5D4CCCB-57B9-45B9-89FE-BFACAE97D069"
-#define BEACON_UUID_5 @"E20B8390-998A-444C-84E6-6CFC31636EA6"
-#define BEACON_UUID_6 @"1B7F70DA-1B5D-4C16-A855-712DADDC3C1D"
-#define BEACON_UUID_7 @"06DA99F3-9814-4FA2-9647-F4819683EA4A"
-#define BEACON_UUID_8 @"51B34DEE-62DA-40E2-887E-E2A2F776FAF1"
-#define BEACON_UUID_9 @"C45817A9-92F0-45AF-9BBC-A57DF26D2957"
-#define BEACON_UUID_10 @"5F3899CE-6C15-4781-BFBE-D22BCAA196F6"
-#define BEACON_UUID_11 @"6AABB393-8824-41D2-9841-A2F7DD3718B4"
-#define BEACON_UUID_12 @"52FBD19A-BF3E-4CB5-A971-6C61AB277A34"
-#define BEACON_UUID_13 @"55043A73-BB7B-42E4-ABD0-974F64CC00F6"
-#define BEACON_UUID_14 @"6DDC0761-8F33-4FB5-9DB1-C71BD41DA717"
-#define BEACON_UUID_15 @"E67BF08D-783F-4254-8791-A2DBA7825B7A"
-#define BEACON_UUID_16 @"F9FA3232-5AC2-4113-BD1A-C9A689A09C69"
-#define BEACON_UUID_17 @"4B701FB0-0AD9-41EF-B004-30596A54DBE0"
-#define BEACON_UUID_18 @"798E32BA-475E-4D97-8E22-B345D8F4120F"
-#define BEACON_UUID_19 @"B9260E0D-AF71-47C4-8B32-A441D9510D14"
-#define BEACON_UUID_20 @"64BCC55E-6E86-4498-9CD8-B701F71EC119"
-
-@interface FirstViewController ()
-
-@end
 
 @implementation FirstViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    //Init BeaconListener
+    self.beaconListener = [BeaconListener sharedInstance];
+    [self.beaconListener requestAlwaysAuthorization];
+    [self.beaconListener startMonitoring];
+    [self.beaconListener startRanging];
+}
 
-    //Init CLLocationManager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    [self.locationManager requestAlwaysAuthorization];
-    
-    [self initRegionWithUUID:BEACON_UUID_1 identifier:@"chimpnoise.one"];
-    [self initRegionWithUUID:BEACON_UUID_2 identifier:@"chimpnoise.two"];
-    [self initRegionWithUUID:BEACON_UUID_3 identifier:@"chimpnoise.three"];
-    [self initRegionWithUUID:BEACON_UUID_4 identifier:@"chimpnoise.four"];
-    [self initRegionWithUUID:BEACON_UUID_5 identifier:@"chimpnoise.five"];
-    [self initRegionWithUUID:BEACON_UUID_6 identifier:@"chimpnoise.six"];
-    [self initRegionWithUUID:BEACON_UUID_7 identifier:@"chimpnoise.seven"];
-    [self initRegionWithUUID:BEACON_UUID_8 identifier:@"chimpnoise.eight"];
-    [self initRegionWithUUID:BEACON_UUID_9 identifier:@"chimpnoise.nine"];
-    [self initRegionWithUUID:BEACON_UUID_10 identifier:@"chimpnoise.ten"];
-    [self initRegionWithUUID:BEACON_UUID_11 identifier:@"chimpnoise.eleven"];
-    [self initRegionWithUUID:BEACON_UUID_12 identifier:@"chimpnoise.twelve"];
-    [self initRegionWithUUID:BEACON_UUID_13 identifier:@"chimpnoise.thirteen"];
-    [self initRegionWithUUID:BEACON_UUID_14 identifier:@"chimpnoise.fourteen"];
-    [self initRegionWithUUID:BEACON_UUID_15 identifier:@"chimpnoise.fifteen"];
-    [self initRegionWithUUID:BEACON_UUID_16 identifier:@"chimpnoise.sixteen"];
-    [self initRegionWithUUID:BEACON_UUID_17 identifier:@"chimpnoise.seventeen"];
-    [self initRegionWithUUID:BEACON_UUID_18 identifier:@"chimpnoise.eightteen"];
-    [self initRegionWithUUID:BEACON_UUID_19 identifier:@"chimpnoise.nineteen"];
-    [self initRegionWithUUID:BEACON_UUID_20 identifier:@"chimpnoise.twenty"];
-    
-    //Init CLLocationManager2 for Backgorund Range
-    self.locationManagerBackground = [[CLLocationManager alloc] init];
-    self.locationManagerBackground.delegate = self;
-    self.locationManagerBackground.desiredAccuracy = kCLLocationAccuracyKilometer;
-    [self.locationManagerBackground startUpdatingLocation];
-    
-    //Init Model
-    self.chimpnoise = [AYChimpnoise sharedInstance];
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForegroundNotification)
-                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appWillEnterForegroundNotification)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    //Init Model
+    self.chimpnoise = [AYChimpnoise sharedInstance];
+    
     [self initSwipeableView];
     [self updateNumberOfBeacons];
     [self initPulse];
-    [self detectBluetooth];
 }
 
 - (void)viewDidLayoutSubviews {
     [self updateNavBar];
 }
 
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager
-      didDetermineState:(CLRegionState)state
-              forRegion:(CLRegion *)region {
-
-    if (state == CLRegionStateInside) {
-        [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
-    }
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-         didEnterRegion:(CLRegion *)region {
-    
-    NSLog(@"didEnterRegion");
-    
-    if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-        [self.locationManager startRangingBeaconsInRegion:beaconRegion];
-    }
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-          didExitRegion:(CLRegion *)region {
-    
-    NSLog(@"didExitRegion");
-    if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
-    }
-}
-
-
-- (void)locationManager:(CLLocationManager *)manager
-        didRangeBeacons:(NSArray *)beacons
-               inRegion:(CLBeaconRegion *)region {
-
-    NSLog(@"didRangeBeacons %ld", [beacons count]);
-    NSLog(@"AYChimpnoise.beacons %ld", [self.chimpnoise beaconsCount]);
-    //NSLog(@"%@", self.chimpnoise.deletedBeacons);
-    
-    for (CLBeacon *beacon in beacons) {
-        [self.chimpnoise findOrCreateBeaconWithUUID:[beacon.proximityUUID UUIDString]
-                                              minor:beacon.minor
-                                              major:beacon.major];
-    }
-    [self updateNumberOfBeacons];
-    [self.swipeableView loadViewsIfNeeded];
-}
-
--(void)    locationManager:(CLLocationManager *)manager
-monitoringDidFailForRegion:(CLRegion *)region
-                 withError:(NSError *)error{
-    NSLog(@"monitorDidFailForRegion");
-    NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
-}
     
 #pragma mark - ZLSwipeableViewDelegate
 
@@ -344,16 +245,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     [self.pulseView.layer addAnimation:animation forKey:@"scale"];
 }
 
--(void) initRegionWithUUID:(NSString *)uuidString identifier:(NSString *) identifier{
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
-    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:identifier];
-    region.notifyOnEntry = YES;
-    region.notifyOnExit = YES;
-    region.notifyEntryStateOnDisplay = YES;
-    
-    [self.locationManager startRangingBeaconsInRegion:region];
-    [self.locationManager startMonitoringForRegion:region];
-}
+
 
 #pragma mark - Card Swipes
 -(void) deleteCard:(BeaconCardView *) view{
@@ -380,49 +272,6 @@ monitoringDidFailForRegion:(CLRegion *)region
 #pragma mark - AYCardViewDelegate Protocol
 -(void)topCardViewUpdate{
     [self updateNavBar];
-}
-
-#pragma mark - CoreBluetooth
-- (void)detectBluetooth
-{
-    if(!self.bluetoothManager)
-    {
-        // Put on main queue so we can call UIAlertView from delegate callbacks.
-        self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-    }
-    [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
-}
-
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
-{
-    NSString *stateString = nil;
-    switch(central.state)
-    {
-        case CBCentralManagerStateResetting: stateString = @"system service was momentarily lost, update imminent."; break;
-        case CBCentralManagerStateUnsupported: stateString = @"The platform doesn't support Bluetooth Low Energy."; break;
-        case CBCentralManagerStateUnauthorized: stateString = @"The app is not authorized to use Bluetooth Low Energy."; break;
-        case CBCentralManagerStatePoweredOff: stateString = @"currently powered off."; break;
-        case CBCentralManagerStatePoweredOn: stateString = @"currently powered on and available to use."; break;
-        default: stateString = @"State unknown, update imminent."; break;
-    }
-    if(central.state == CBCentralManagerStateUnauthorized &&
-       central.state == CBCentralManagerStatePoweredOff &&
-       central.state == CBCentralManagerStateUnsupported){
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle: @"bluetooth"
-                                              message:stateString
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *okAction = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action){
-                                       NSLog(@"OK action");
-                                   }];
-        
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
 }
 
 @end
