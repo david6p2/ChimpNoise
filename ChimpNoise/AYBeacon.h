@@ -42,9 +42,6 @@
 @property BOOL firstTimeOnScreen;
 @property BOOL fetchFromServer;
 @property BOOL localNotification;
-@property (nonatomic, strong) NSDate * startDate;
-@property NSTimeInterval duration;
-@property (nonatomic, strong) NSDate * endDate;
 
 //PROTOCOL - AYBeaconDelegate
 @property (nonatomic, assign) id delegate;
@@ -54,8 +51,6 @@
 -(void) hide;
 -(NSString *) key;
 
--(void) startCountdown;
--(BOOL) expired;
 -(void) fetch;
 -(void) showNotification;
 @end

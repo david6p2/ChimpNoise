@@ -383,7 +383,6 @@ monitoringDidFailForRegion:(CLRegion *)region
 
     BOOL eliminado = [self.chimpnoise deleteBeacon:view.beacon];
     if (eliminado) {
-        [view stopTimer];
         [self updateNumberOfBeacons];
     }
     else{
@@ -392,7 +391,6 @@ monitoringDidFailForRegion:(CLRegion *)region
 }
 
 -(void) skipCard:(BeaconCardView *) view {
-    [view stopTimer];
 }
 
 #pragma mark - Notify User to Mute Beacon

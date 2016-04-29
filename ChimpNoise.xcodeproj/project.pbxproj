@@ -192,7 +192,6 @@
 				BAF299411BEBED0200348B20 /* Controller */,
 				BAF299401BEBECFA00348B20 /* View */,
 				BAF9A4E71BE07BE30058E1DA /* Model */,
-				BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
 				BABC493C1BD2F8FD00DC26FC /* Supporting Files */,
 			);
@@ -235,6 +234,7 @@
 				BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */,
 				BAF9A4E81BE082E70058E1DA /* AYBeacon.h */,
 				BAF9A4E91BE082E70058E1DA /* AYBeacon.m */,
+				BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */,
 			);
 			name = Model;
 			sourceTree = "<group>";

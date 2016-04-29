@@ -16,7 +16,6 @@
 @interface BeaconCardView : CardView <AYBeaconDelegate>
 
 @property (strong, nonatomic) AYBeacon *beacon;
-@property (strong, nonatomic) NSTimer *stopWatchTimer;
 @property (strong, nonatomic) BeaconCardType *beaconCardType;
 
 - (void)stopTimer;
