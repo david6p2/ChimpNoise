@@ -15,7 +15,6 @@
 @interface AYChimpnoise : NSObject <RMMapping>
 
 @property (nonatomic, strong) NSMutableDictionary *beacons;
-@property (nonatomic, strong) NSMutableDictionary *deletedBeacons;
 
 + (AYChimpnoise *) sharedInstance;
 
@@ -30,9 +29,4 @@
 
 -(void) hideAllBeacons;
 
--(void) restartDeletedBeaconCount: (AYBeacon *)beacon;
--(BOOL) isMuted:(AYBeacon *)beacon;
-
--(void) saveModel;
--(void) resetModel;
 @end

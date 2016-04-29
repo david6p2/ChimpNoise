@@ -75,10 +75,7 @@
 }
 
 #pragma mark - AYBeaconDelegate
--(void)beaconUpdate{
-    
-    [[AYChimpnoise sharedInstance] saveModel];
-    
+-(void)beaconUpdate{    
     if ([[UIApplication sharedApplication] applicationState]==UIApplicationStateBackground) {
         if (self.beacon.localNotification == NO) {
             UILocalNotification *notification = [UILocalNotification new];

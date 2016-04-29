@@ -19,7 +19,6 @@ static AYChimpnoise *sharedInstance = nil;
         if (sharedInstance == nil) {
             sharedInstance = [[AYChimpnoise alloc] init];
             sharedInstance.beacons = [[NSMutableDictionary alloc] init];
-            sharedInstance.deletedBeacons = [[NSMutableDictionary alloc] init];
         }
         return(sharedInstance);
     }
@@ -33,39 +32,27 @@ static AYChimpnoise *sharedInstance = nil;
         beacon = [[AYBeacon alloc] initWithUUID:uuid minor:minor major:major];
         [self addBeacon:beacon];
     }
-    [self verifyDeletedBeacon: beacon];
     return beacon;
 }
 
 -(void) addBeacon:(AYBeacon *)beacon{
     [self.beacons setObject:beacon
                      forKey:[NSString stringWithFormat:@"%@:%@:%@", beacon.uuid, beacon.major, beacon.minor]];
-    [self saveModel];
 }
 
 -(BOOL) deleteBeacon:(AYBeacon *) beacon{
     if([self.beacons objectForKey:beacon.key]){
         [self.beacons removeObjectForKey: beacon.key];
-        [self addToDeletedBeacons:beacon];
-        [self saveModel];
         return YES;
     }
     else{
-        [self saveModel];
         return NO;
     }
 }
 
 #pragma mark - Beacons Array Methods
 -(NSUInteger) beaconsCount{
-    NSUInteger count = 0;
-    NSArray *beacons = [self.beacons allValues];
-    for (AYBeacon *beacon in beacons) {
-        if ([self isMuted:beacon] == NO) {
-            count = count + 1;
-        }
-    }
-    return count;
+    return [[self.beacons allValues] count];
 }
 
 -(NSArray *) beaconsArray{
@@ -79,7 +66,7 @@ static AYChimpnoise *sharedInstance = nil;
         NSUInteger randomIndex = arc4random() % [beaconsArray count];
         AYBeacon *beacon = beaconsArray[randomIndex];
         
-        if(beacon.onScreen == YES || [self isMuted:beacon] == YES){
+        if(beacon.onScreen == YES){
             continue;
         }
         
@@ -94,74 +81,4 @@ static AYChimpnoise *sharedInstance = nil;
         beacon.onScreen = NO;
     }
 }
-
-#pragma mark - Persistance
--(void) saveModel{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults rm_setCustomObject:self forKey:@"chimpnoise"];
-}
-
--(void) resetModel{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults rm_setCustomObject:nil forKey:@"chimpnoise"];
-}
-
-#pragma mark - deletedBeacons
--(void) addToDeletedBeacons:(AYBeacon *)beacon{
-    NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
-    if (deletedBeacon == nil) {
-        deletedBeacon = [[NSMutableDictionary alloc] init];
-        [deletedBeacon setObject:[NSNumber numberWithInt:1] forKey:@"timesDeleted"];
-        NSDate *createdAt = [NSDate date];
-        [deletedBeacon setObject:createdAt forKey:@"createdAt"];
-        [deletedBeacon setObject:createdAt forKey:@"updatedAt"];
-        [self.deletedBeacons setObject:deletedBeacon forKey:beacon.key];
-    }
-    else{
-        NSNumber *timesDeleted = [deletedBeacon objectForKey:@"timesDeleted"];
-        NSNumber *newTimesDeleted = [NSNumber numberWithInt:[timesDeleted intValue] + 1];
-        [deletedBeacon setObject:newTimesDeleted forKey:@"timesDeleted"];
-        NSDate *updatedAt = [NSDate date];
-        [deletedBeacon setObject:updatedAt forKey:@"updatedAt"];
-    }
-}
-
--(void) restartDeletedBeaconCount: (AYBeacon *)beacon{
-    NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
-    if (deletedBeacon != nil){
-        NSNumber *newTimesDeleted = [NSNumber numberWithInt:0];
-        [deletedBeacon setObject:newTimesDeleted forKey:@"timesDeleted"];
-        NSDate *updatedAt = [NSDate date];
-        [deletedBeacon setObject:updatedAt forKey:@"updatedAt"];
-    }
-}
-
--(void) verifyDeletedBeacon:(AYBeacon *)beacon{
-    if ([self isMuted:beacon] == YES) {
-        NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
-        NSDate *lastUpdate = [deletedBeacon objectForKey:@"updatedAt"];
-        //Mute Beacon 4 Hours
-        NSTimeInterval fourHours = -14400;
-        NSLog(@"AyChimpnoise.verifyDeletedBeacon.lastUpdate: %f", [lastUpdate timeIntervalSinceNow]);
-        if ([lastUpdate timeIntervalSinceNow] < fourHours) {
-            [self restartDeletedBeaconCount:beacon];
-        }
-    }
-}
-
--(BOOL) isMuted:(AYBeacon *)beacon{
-    NSMutableDictionary *deletedBeacon = [self.deletedBeacons objectForKey:beacon.key];
-    if (deletedBeacon == nil) {
-        return NO;
-    }
-    NSNumber *timesDeleted = [deletedBeacon objectForKey:@"timesDeleted"];
-    if ([timesDeleted intValue] < 1) {
-        return NO;
-    }
-    else{
-        return YES;
-    }
-}
-
-
 @end
