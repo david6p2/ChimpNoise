@@ -21,6 +21,8 @@
     [self.beaconListener requestAlwaysAuthorization];
     [self.beaconListener startMonitoring];
     [self.beaconListener startRanging];
+    
+    self.cardDeck = [CardDeck sharedInstance];    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

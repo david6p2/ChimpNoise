@@ -29,6 +29,7 @@ static BeaconListener *sharedInstance = nil;
         self.beaconManager = [ESTBeaconManager new];
         self.beaconManager.delegate = self;
         self.beaconManager.returnAllRangedBeaconsAtOnce = YES;
+        self.beacons = [[NSArray alloc] init];
     }
     return self;
 }
@@ -138,6 +139,10 @@ static BeaconListener *sharedInstance = nil;
     [self.beaconManager stopRangingBeaconsInAllRegions];
 }
 
+-(NSArray *) beaconsInRange{
+    return self.beacons;
+}
+
 
 //Private
 -(CLBeaconRegion *) regionWithUUID:(NSString *)uuidString identifier:(NSString *) identifier{
@@ -151,7 +156,8 @@ static BeaconListener *sharedInstance = nil;
 
 //ESTBeaconManagerDelegate
 -(void)beaconManager:(id)manager didRangeBeacons:(NSArray<CLBeacon *> *)beacons inRegion:(CLBeaconRegion *)region{
-    NSLog(@"%@", beacons);
+    self.beacons = beacons;
+    NSLog(@"didRangeBeacon: %lu", [beacons count]);
 }
 
 -(void)beaconManager:(id)manager didEnterRegion:(CLBeaconRegion *)region{

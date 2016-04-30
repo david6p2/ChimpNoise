@@ -33,6 +33,7 @@
 @interface BeaconListener : NSObject <ESTBeaconManagerDelegate>
 @property (nonatomic) ESTBeaconManager *beaconManager;
 @property (nonatomic) CLBeaconRegion *beaconRegion;
+@property (nonatomic, strong) NSArray *beacons;
 
 + (BeaconListener *) sharedInstance;
 
@@ -41,5 +42,7 @@
 -(void) startMonitoring;
 -(void) startRanging;
 -(void) stopRanging;
+
+-(NSArray *) beaconsInRange;
     
 @end

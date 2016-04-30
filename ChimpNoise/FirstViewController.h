@@ -14,11 +14,12 @@
 #import "BeaconCardView.h"
 #import "TutorialCardView.h"
 #import "BeaconListener.h"
-
+#import "CardDeck.h"
 
 @interface FirstViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate, AYCardViewDelegate>
 
 @property (nonatomic, strong) BeaconListener* beaconListener;
+@property (nonatomic, strong) CardDeck* cardDeck;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIView *pulseView;
