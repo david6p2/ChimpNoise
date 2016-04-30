@@ -22,7 +22,7 @@
     [self.beaconListener startMonitoring];
     [self.beaconListener startRanging];
     
-    self.cardDeck = [CardDeck sharedInstance];    
+    self.cardDeck = [CardDeck sharedInstance];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -40,6 +40,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appWillEnterForegroundNotification)
                                                  name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enterRegion)
+                                                 name:@"enterRegion"
                                                object:nil];
     //Init Model
     self.chimpnoise = [AYChimpnoise sharedInstance];
@@ -265,6 +269,13 @@
 #pragma mark - AYCardViewDelegate Protocol
 -(void)topCardViewUpdate{
     [self updateNavBar];
+}
+
+#pragma mark - Notifications
+-(void) enterRegion{
+    UILocalNotification *notification = [UILocalNotification new];
+    notification.alertBody = @"Chimp Chimp!";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 @end

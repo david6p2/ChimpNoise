@@ -46,23 +46,13 @@ static CardDeck *sharedInstance = nil;
         [self next];
         return [self cardToShowOnScreen];
     }
-    
     return card;
-    
-//    for (Card *card in self.cards) {
-//        if(card.onScreen){
-//            continue;
-//        }
-//        return card;
-//    }
-//    return nil;
 }
 
 -(NSArray *) cardsInRange{
     if([self.cards count] == 0){
         return nil;
     }
-    
     NSLog(@"cardsInRange: %li", [self.cards count]);
     return self.cards;
 }
@@ -77,11 +67,9 @@ static CardDeck *sharedInstance = nil;
 
 -(void) getCardsFromServerForBeacon:(CLBeacon *)beacon{
     NSString *key = [self keyForBeacon:beacon];
-    
     if ([self.beaconsFetchedFromServer containsObject:key]) {
         return;
     }
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:[NSString stringWithFormat:@"http://chimpnoise.com/api/noise/beacon/%@", key]
       parameters:nil
@@ -97,7 +85,6 @@ static CardDeck *sharedInstance = nil;
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"cardDeck.getCardsFromServerForBeacon.Error: %@", error);
          }];
-
 }
 
 -(NSString *)keyForBeacon:(CLBeacon *)beacon{

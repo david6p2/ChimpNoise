@@ -162,6 +162,7 @@ static BeaconListener *sharedInstance = nil;
 
 -(void)beaconManager:(id)manager didEnterRegion:(CLBeaconRegion *)region{
     NSLog(@"Enter Region");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"enterRegion" object:nil];
 }
 
 -(void)beaconManager:(id)manager didExitRegion:(CLBeaconRegion *)region{
@@ -180,7 +181,5 @@ static BeaconListener *sharedInstance = nil;
     NSLog(@"monitorDidFailForRegion");
     NSLog(@"with error: %ld ||| %@ ||| %@", error.code, error.domain, error.localizedDescription);
 }
-
-
 
 @end
