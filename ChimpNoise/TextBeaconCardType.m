@@ -10,7 +10,7 @@
 
 @implementation TextBeaconCardType
 
--(instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *)beacon{
+-(instancetype)initWithFrame:(CGRect)frame beacon:(Card *)beacon{
     self = [super initWithFrame:frame];
     
     NSMutableString *html = [NSMutableString stringWithString: @"<html><head><title></title></head><body style=\"background:transparent;\">"];

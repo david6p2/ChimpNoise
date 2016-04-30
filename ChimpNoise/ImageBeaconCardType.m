@@ -10,7 +10,7 @@
 
 @implementation ImageBeaconCardType
 
--(instancetype) initWithFrame:(CGRect)frame beacon:(AYBeacon *)beacon{
+-(instancetype) initWithFrame:(CGRect)frame beacon:(Card *)beacon{
     self = [super initWithFrame:frame];
     
     UIImageView * imageView = [[UIImageView alloc] init];

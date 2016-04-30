@@ -19,7 +19,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(id)delegate{
+- (instancetype)initWithFrame:(CGRect)frame beacon:(Card *) beacon delegate:(id)delegate{
     self = [super initWithFrame:frame];
     if (self) {
         self.delegate = delegate;
@@ -30,7 +30,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon delegate:(id)delegate{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(Card *) beacon delegate:(id)delegate{
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.delegate = delegate;
@@ -41,11 +41,11 @@
     return self;
 }
 
-- (void)setupWithBeacon:(AYBeacon *) beacon{
+- (void)setupWithBeacon:(Card *) beacon{
     [self cardSetup];
     
     self.beacon = beacon;
-    beacon.delegate = self; //AYBeaconDelegate Protocol
+    
     self.cardTitle = self.beacon.title;
     self.cardPrompt = self.beacon.prompt;
     [self body];
@@ -71,27 +71,6 @@
         self.beaconCardType = [[TextBeaconCardType alloc] initWithFrame:frame beacon:self.beacon];
     }
     [self addSubview: self.beaconCardType];
-}
-
-#pragma mark - AYBeaconDelegate
--(void)beaconUpdate{    
-    if ([[UIApplication sharedApplication] applicationState]==UIApplicationStateBackground) {
-        if (self.beacon.localNotification == NO) {
-            UILocalNotification *notification = [UILocalNotification new];
-            notification.alertTitle = @"Chimpnoise";
-            notification.alertBody = self.beacon.prompt;
-            notification.alertAction = @"See Noise";
-            notification.soundName = UILocalNotificationDefaultSoundName;
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-            [self.beacon showNotification];
-        }
-    }
-    else{
-        [self body];
-        self.cardTitle = self.beacon.prompt;
-        self.cardPrompt = self.beacon.title;
-        [self.delegate topCardViewUpdate];
-    }
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

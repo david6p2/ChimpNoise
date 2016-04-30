@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AYBeacon.h"
+#import "Card.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BeaconCardType : UIView
 
--(instancetype) initWithFrame:(CGRect)frame beacon:(AYBeacon *)beacon;
+-(instancetype) initWithFrame:(CGRect)frame beacon:(Card *)beacon;
 
 @end

@@ -27,13 +27,10 @@ static CardDeck *sharedInstance = nil;
         self.beaconListener = [BeaconListener sharedInstance];
         self.cards = [[NSMutableArray alloc] init];
         self.beaconsFetchedFromServer = [[NSMutableArray alloc] init];
-        NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 10.0
+        self.index = 0;
+        NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
                                                       target: self
                                                     selector:@selector(fetchBeaconsInRange)
-                                                    userInfo: nil repeats:YES];
-        NSTimer *m = [NSTimer scheduledTimerWithTimeInterval: 10.0
-                                                      target: self
-                                                    selector:@selector(cardsInRange)
                                                     userInfo: nil repeats:YES];
     }
     return self;
@@ -41,13 +38,24 @@ static CardDeck *sharedInstance = nil;
 
 //public
 -(Card *) cardToShowOnScreen{
-    for (Card *card in self.cards) {
-        if(card.onScreen){
-            continue;
-        }
-        return card;
+    if ([self.cards count] == 0) {
+        return nil;
     }
-    return nil;
+    Card *card = self.cards[self.index];
+    if (card.onScreen || [card.type isEqualToString:@"text"]) {
+        [self next];
+        return [self cardToShowOnScreen];
+    }
+    
+    return card;
+    
+//    for (Card *card in self.cards) {
+//        if(card.onScreen){
+//            continue;
+//        }
+//        return card;
+//    }
+//    return nil;
 }
 
 -(NSArray *) cardsInRange{
@@ -55,7 +63,7 @@ static CardDeck *sharedInstance = nil;
         return nil;
     }
     
-    NSLog(@"%@", [self.cards[0] description]);
+    NSLog(@"cardsInRange: %li", [self.cards count]);
     return self.cards;
 }
 
@@ -94,6 +102,14 @@ static CardDeck *sharedInstance = nil;
 
 -(NSString *)keyForBeacon:(CLBeacon *)beacon{
     return [NSString stringWithFormat:@"%@:%@:%@", [beacon.proximityUUID UUIDString], beacon.major, beacon.minor];
+}
+
+-(NSInteger) next{
+    self.index++;
+    if ([self.cards count] <= self.index) {
+        self.index = 0;
+    }
+    return self.index;
 }
 
 

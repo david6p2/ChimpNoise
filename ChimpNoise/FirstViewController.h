@@ -15,6 +15,7 @@
 #import "TutorialCardView.h"
 #import "BeaconListener.h"
 #import "CardDeck.h"
+#import "Card.h"
 
 @interface FirstViewController : UIViewController <ZLSwipeableViewDataSource, ZLSwipeableViewDelegate, CLLocationManagerDelegate, AYCardViewDelegate>
 

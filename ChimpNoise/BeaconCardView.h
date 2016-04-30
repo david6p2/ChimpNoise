@@ -12,14 +12,15 @@
 #import "AYBeacon.h"
 #import "BeaconCardType.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Card.h"
 
 @interface BeaconCardView : CardView <AYBeaconDelegate>
 
-@property (strong, nonatomic) AYBeacon *beacon;
+@property (strong, nonatomic) Card *beacon;
 @property (strong, nonatomic) BeaconCardType *beaconCardType;
 
 - (void)stopTimer;
-- (instancetype)initWithFrame:(CGRect)frame beacon:(AYBeacon *) beacon delegate:(id) delegate;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(AYBeacon *) beacon delegate:(id) delegate;
+- (instancetype)initWithFrame:(CGRect)frame beacon:(Card *) beacon delegate:(id) delegate;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder beacon:(Card *) beacon delegate:(id) delegate;
 
 @end

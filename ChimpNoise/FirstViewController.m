@@ -27,6 +27,11 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
+                                                  target: self
+                                                selector:@selector(updateNumberOfBeacons)
+                                                userInfo: nil repeats:YES];
 }
 
 - (void)viewDidLoad {
@@ -51,17 +56,14 @@
     
 #pragma mark - ZLSwipeableViewDelegate
 
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-         didSwipeView:(UIView *)view
-          inDirection:(ZLSwipeableViewDirection)direction {
+- (void)swipeableView:(ZLSwipeableView *)swipeableView didSwipeView:(UIView *)view inDirection:(ZLSwipeableViewDirection)direction {
 
     if ([view class] == [BeaconCardView class]) {
         BeaconCardView *cardView = (BeaconCardView *) view;
         [cardView.beacon hide];
         
         if (direction == ZLSwipeableViewDirectionLeft) {
-            [self deleteCard: cardView];
-            [self updateNavBar];
+            [self skipCard: cardView];
         }
         
         if (direction == ZLSwipeableViewDirectionRight) {
@@ -78,10 +80,7 @@
 -(void)swipeableView:(ZLSwipeableView *)swipeableView didCancelSwipe:(UIView *)view{
 }
 
-- (void)swipeableView:(ZLSwipeableView *)swipeableView
-          swipingView:(UIView *)view
-           atLocation:(CGPoint)location
-          translation:(CGPoint)translation {
+- (void)swipeableView:(ZLSwipeableView *)swipeableView swipingView:(UIView *)view atLocation:(CGPoint)location translation:(CGPoint)translation {
     if (10 <= translation.x) {
         //TODO NEXT
     }
@@ -139,14 +138,16 @@
 
 #pragma mark - ChooseBeaconToDisplay
 -(UIView *) beaconCardViewToDisplay:(ZLSwipeableView *)swipeableView frame:(CGRect)frame{
-    AYBeacon * beaconToShow = [self.chimpnoise beaconToDisplayOnScreen];
-    if (beaconToShow == nil) {
+    Card * cardToShow = [self.cardDeck cardToShowOnScreen];
+    if (cardToShow == nil) {
         [self updateNumberOfBeacons];
         [self.swipeableView loadViewsIfNeeded];
     }
     else{
-        [beaconToShow display];
-        BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame beacon: beaconToShow delegate:self];
+        [cardToShow show];
+        BeaconCardView * cardView = [[BeaconCardView alloc] initWithFrame: frame
+                                                                   beacon: cardToShow
+                                                                 delegate:self];
         return cardView;
     }
     return nil;
@@ -166,16 +167,17 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults boolForKey:@"swipeRightTutorial"] == NO || [defaults boolForKey:@"swipeLeftTutorial"] == NO) {
         self.swipeableView.numberOfActiveViews = 1;
+        [self.swipeableView loadViewsIfNeeded];
+        return;
     }
-    else{
-        NSUInteger numberOfBeacons = [self.chimpnoise beaconsCount];
-        if (numberOfBeacons >= 2) {
-            self.swipeableView.numberOfActiveViews = 2;
-        }
-        else{
-            self.swipeableView.numberOfActiveViews = numberOfBeacons;
-        }
+    NSUInteger numberOfBeacons = [[self.cardDeck cardsInRange] count];
+    if (numberOfBeacons >= 3) {
+        self.swipeableView.numberOfActiveViews = 3;
+        [self.swipeableView loadViewsIfNeeded];
+        return;
     }
+    self.swipeableView.numberOfActiveViews = numberOfBeacons;
+    [self.swipeableView loadViewsIfNeeded];
 }
 
 -(void) updateNavBar{
@@ -250,17 +252,6 @@
 
 
 #pragma mark - Card Swipes
--(void) deleteCard:(BeaconCardView *) view{
-
-    BOOL eliminado = [self.chimpnoise deleteBeacon:view.beacon];
-    if (eliminado) {
-        [self updateNumberOfBeacons];
-    }
-    else{
-        //Beacon Not Found
-    }
-}
-
 -(void) skipCard:(BeaconCardView *) view {
 }
 

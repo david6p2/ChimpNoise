@@ -16,8 +16,10 @@
 @property (nonatomic, strong) BeaconListener* beaconListener;
 @property (nonatomic, strong) NSMutableArray* cards;
 @property (nonatomic, strong) NSMutableArray* beaconsFetchedFromServer;
+@property NSInteger index;
 
 + (CardDeck *) sharedInstance;
 - (NSArray *) cardsInRange;
+- (Card *) cardToShowOnScreen;
     
 @end
