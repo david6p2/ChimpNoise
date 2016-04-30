@@ -29,7 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
-  - EstimoteSDK
+  - EstimoteSDK (~> 4.1.0)
   - RMMapper (~> 1.1.5)
   - SDWebImage (~> 3.7.3)
   - ZLSwipeableView (= 0.0.8)
