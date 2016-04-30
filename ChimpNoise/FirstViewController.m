@@ -97,25 +97,20 @@
 - (UIView *)nextViewForSwipeableView:(ZLSwipeableView *)swipeableView {
     NSLog(@"nextViewForSwipeableView");
     
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     CGFloat height = swipeableView.frame.size.height * SWIPEABLE_RATIO;
     CGFloat width  = height * [CardView cardRatio];
     CGRect frame = CGRectMake(0, 0, width, height);
-    CGPathRef path = CGPathCreateWithRect(frame, NULL);
-    maskLayer.path = path;
-    CGPathRelease(path);
-
+    
     // 1. Display Tutorial.
     UIView *tutorial = [self displayTutorial:swipeableView frame:frame];
     if (tutorial){
-        tutorial.layer.mask = maskLayer;
         return tutorial;
     }
     [self emptyView];
+    
     // 2. If no tutorial to display then display beacon.
     UIView *beaconCardView = [self beaconCardViewToDisplay:swipeableView frame:frame];
     if (beaconCardView) {
-        beaconCardView.layer.mask = maskLayer;
         return beaconCardView;
     }
     

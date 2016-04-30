@@ -22,15 +22,16 @@
 -(void) cardSetup{
     
     // Shadow
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.33;
-    self.layer.shadowOffset = CGSizeMake(0, 1.5);
-    self.layer.shadowRadius = 4.0;
+    self.layer.shadowOffset = CGSizeMake(0, 0);
+    self.layer.shadowRadius = 2;
+    self.layer.shadowColor = [UIColor grayColor].CGColor;
+    self.layer.shadowOpacity = 1;
+
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     // Corner Radius
-    self.layer.cornerRadius = 0;
+    self.layer.cornerRadius = 3;
     
     // Card Setup
     self.backgroundColor = [UIColor whiteColor];
