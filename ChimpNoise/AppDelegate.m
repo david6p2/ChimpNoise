@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "BeaconListener.h"
 #import "FirstViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -22,6 +25,7 @@
     [[UIApplication sharedApplication]registerUserNotificationSettings:
      [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
                                        categories:nil]];
+    [Fabric with:@[[Crashlytics class]]];
     return YES;
 }
 

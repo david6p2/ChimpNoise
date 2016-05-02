@@ -267,6 +267,7 @@
 				BABC49371BD2F8FD00DC26FC /* Resources */,
 				CBBFE08C89A83AC5C1069806 /* Embed Pods Frameworks */,
 				900FCF787F5EFF7CD468CFFB /* Copy Pods Resources */,
+				A0E860B11CD79A500008D3DF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -359,6 +360,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A0E860B11CD79A500008D3DF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 4fea3c8ada9bb093e4f420a53f214aadbf740372 feaf70dbeda3aec71df7410239c277b27b11a283183d15c7bde91016bd1f63de";
 		};
 		CBBFE08C89A83AC5C1069806 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

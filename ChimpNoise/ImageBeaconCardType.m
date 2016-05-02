@@ -18,7 +18,6 @@
     [imageView sd_setImageWithURL:[NSURL URLWithString: beacon.imageURL]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self addSubview:imageView];
-
     return self;
 }
 @end

@@ -9,4 +9,6 @@ target 'ChimpNoise' do
   pod 'RMMapper',        '~> 1.1.5'
   pod 'AFNetworking',    '~> 2.5'
   pod 'EstimoteSDK',     '~> 4.1.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

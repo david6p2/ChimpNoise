@@ -9,11 +9,11 @@
 #import "CardDeck.h"
 
 @implementation CardDeck
+
 static CardDeck *sharedInstance = nil;
 
 #pragma mark - singleton
 + (CardDeck *) sharedInstance{
-    
     @synchronized(self) {
         if (sharedInstance == nil) {
             sharedInstance = [[CardDeck alloc] init];
@@ -38,15 +38,16 @@ static CardDeck *sharedInstance = nil;
 
 //public
 -(Card *) cardToShowOnScreen{
-    if ([self.cards count] == 0) {
-        return nil;
+    NSMutableArray *cardsArray = [NSMutableArray arrayWithArray: self.cards];
+    while ([cardsArray count] > 0){
+        NSUInteger randomIndex = arc4random() % [cardsArray count];
+        Card *card = cardsArray[randomIndex];
+        if(card.onScreen || [card.type isEqualToString:@"text"]){
+            continue;
+        }
+        return card;
     }
-    Card *card = self.cards[self.index];
-    if (card.onScreen || [card.type isEqualToString:@"text"]) {
-        [self next];
-        return [self cardToShowOnScreen];
-    }
-    return card;
+    return nil;
 }
 
 -(NSArray *) cardsInRange{
@@ -70,6 +71,7 @@ static CardDeck *sharedInstance = nil;
     if ([self.beaconsFetchedFromServer containsObject:key]) {
         return;
     }
+    [self.beaconsFetchedFromServer addObject:key];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:[NSString stringWithFormat:@"http://chimpnoise.com/api/noise/beacon/%@", key]
       parameters:nil
@@ -80,24 +82,15 @@ static CardDeck *sharedInstance = nil;
                                                      serverResponse:cardObject];
                  [self.cards addObject:newCard];
              }
-             [self.beaconsFetchedFromServer addObject:key];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"cardDeck.getCardsFromServerForBeacon.Error: %@", error);
+             [self.beaconsFetchedFromServer removeObject:key];
          }];
 }
 
 -(NSString *)keyForBeacon:(CLBeacon *)beacon{
     return [NSString stringWithFormat:@"%@:%@:%@", [beacon.proximityUUID UUIDString], beacon.major, beacon.minor];
 }
-
--(NSInteger) next{
-    self.index++;
-    if ([self.cards count] <= self.index) {
-        self.index = 0;
-    }
-    return self.index;
-}
-
 
 @end
