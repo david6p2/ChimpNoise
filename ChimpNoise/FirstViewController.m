@@ -38,16 +38,9 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(appWillEnterForegroundNotification)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(enterRegion)
                                                  name:@"enterRegion"
                                                object:nil];
-    //Init Model
-    self.chimpnoise = [AYChimpnoise sharedInstance];
-    
     [self initSwipeableView];
     [self updateNumberOfBeacons];
     [self initPulse];
@@ -150,14 +143,6 @@
         return cardView;
     }
     return nil;
-}
-
-#pragma mark - UIApplicationWillEnterForegroundNotification Notification
--(void) appWillEnterForegroundNotification{
-    [self updateNumberOfBeacons];
-    [self.chimpnoise hideAllBeacons];
-    [self.swipeableView discardAllViews];
-    [self.swipeableView loadViewsIfNeeded];
 }
 
 #pragma mark - helpers
