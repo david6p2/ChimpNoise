@@ -14,11 +14,36 @@
 
 @implementation CardsViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //Init BeaconListener
+    self.beaconListener = [BeaconListener sharedInstance];
+    [self.beaconListener requestAlwaysAuthorization];
+    [self.beaconListener startMonitoring];
+    [self.beaconListener startRanging];
+    
+    self.cardDeck = [CardDeck sharedInstance];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
+                                                  target: self
+                                                selector:@selector(updateNumberOfBeacons)
+                                                userInfo: nil repeats:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.subjectsArray = @[@"0", @"1", @"2", @"3", @"4", @"5", @"6"];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enterRegion)
+                                                 name:@"enterRegion"
+                                               object:nil];
+
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
     self.pageViewController.view.backgroundColor = [UIColor whiteColor];
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);

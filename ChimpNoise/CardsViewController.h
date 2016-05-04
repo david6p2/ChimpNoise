@@ -10,11 +10,15 @@
 #import "CardPageViewController.h"
 #import "ImageCardViewController.h"
 #import "UrlCardViewController.h"
+#import "BeaconListener.h"
+#import "CardDeck.h"
+#import "Card.h"
 
 @interface CardsViewController : UIPageViewController <UIPageViewControllerDataSource>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray *subjectsArray;
-
+@property (nonatomic, strong) BeaconListener* beaconListener;
+@property (nonatomic, strong) CardDeck* cardDeck;
 
 @end

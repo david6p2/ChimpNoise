@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1564" y="391"/>
         </scene>
-        <!--View Controller-->
+        <!--Url Card View Controller-->
         <scene sceneID="Uht-WD-YGO">
             <objects>
-                <viewController storyboardIdentifier="urlCardViewController" id="QgX-Ki-Lxd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="urlCardViewController" id="QgX-Ki-Lxd" customClass="UrlCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0G0-G1-z5Q"/>
                         <viewControllerLayoutGuide type="bottom" id="b4D-eU-V9N"/>
