@@ -21,5 +21,6 @@
 @property (strong, nonatomic) NSArray *subjectsArray;
 @property (nonatomic, strong) BeaconListener* beaconListener;
 @property (nonatomic, strong) CardDeck* cardDeck;
+@property BOOL guarda;
 
 @end

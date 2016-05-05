@@ -23,13 +23,14 @@
     [self.beaconListener startRanging];
     // Init Card Deck
     self.cardDeck = [CardDeck sharedInstance];
+    self.guarda = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
                                                   target: self
-                                                selector:@selector(updateNumberOfBeacons)
+                                                selector:@selector(refreshPageView)
                                                 userInfo: nil repeats:YES];
 }
 
@@ -43,11 +44,8 @@
     self.pageViewController.view.backgroundColor = [UIColor whiteColor];
     CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);
     self.pageViewController.view.frame = frame;
-    EmptyCardViewController *emptyInitialView = [self.storyboard instantiateViewControllerWithIdentifier:@"emptyCardViewController"];
-    [self.pageViewController setViewControllers:@[emptyInitialView]
-                                      direction:UIPageViewControllerNavigationDirectionForward
-                                       animated:NO
-                                     completion:nil];
+    self.pageViewController.dataSource = self;
+    [self refreshPageView];
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
@@ -57,9 +55,23 @@
     [super didReceiveMemoryWarning];
 }
 
-// Notifications
--(void) updateNumberOfBeacons{
+#pragma mark - Notifications
+-(void) refreshPageView{
     NSLog(@"cardDeck.cardsInRange.count: %li", [[self.cardDeck cardsInRange] count]);
+    NSMutableArray *cards = [NSMutableArray new];
+    if ([[self.cardDeck cardsInRange] count] == 0 || self.guarda == YES) {
+        EmptyCardViewController *emptyInitialView = [self.storyboard instantiateViewControllerWithIdentifier:@"emptyCardViewController"];
+        [cards addObject:emptyInitialView];
+        self.guarda = NO;
+    }
+    else{
+        [cards addObject:[self.storyboard instantiateViewControllerWithIdentifier:@"imageCardViewController"]];
+        self.guarda = YES;
+    }
+    [self.pageViewController setViewControllers:cards
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:YES
+                                     completion:nil];
 }
 
 -(void) enterRegion{
@@ -67,4 +79,16 @@
     notification.alertBody = @"Noise!";
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
+
+#pragma mark - UIPageViewControllerDataSource
+-(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
+    NSLog(@"CardsViewController.presentacionCount");
+    return [[self.cardDeck cardsInRange] count];
+}
+
+-(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
+    NSLog(@"CardsViewController.presentacionIndex");
+    return 0;
+}
+
 @end
