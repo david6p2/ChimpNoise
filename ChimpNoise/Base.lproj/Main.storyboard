@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -38,49 +39,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVE-8q-X1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1126" y="391"/>
-        </scene>
-        <!--Card Page View Controller-->
-        <scene sceneID="7Sl-zw-NHE">
-            <objects>
-                <viewController storyboardIdentifier="cardViewController" id="gyS-Ry-BN7" customClass="CardPageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wug-E8-IDq"/>
-                        <viewControllerLayoutGuide type="bottom" id="B3c-Ka-TPR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dJ6-Im-6C3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffR-pE-RTN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgX-yV-0qa">
-                                        <rect key="frame" x="139" y="126" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ffR-pE-RTN" firstAttribute="leading" secondItem="dJ6-Im-6C3" secondAttribute="leading" id="4IX-1T-i8C"/>
-                            <constraint firstAttribute="trailing" secondItem="ffR-pE-RTN" secondAttribute="trailing" id="TZq-uS-o4p"/>
-                            <constraint firstItem="ffR-pE-RTN" firstAttribute="bottom" secondItem="B3c-Ka-TPR" secondAttribute="top" id="Vym-IJ-jhh"/>
-                            <constraint firstItem="ffR-pE-RTN" firstAttribute="top" secondItem="dJ6-Im-6C3" secondAttribute="top" id="vuq-pN-0YK"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="cardView" destination="ffR-pE-RTN" id="G1Y-Lj-VWC"/>
-                        <outlet property="subjectLabel" destination="vgX-yV-0qa" id="AEL-TR-KNX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7mf-bm-sL2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1564" y="391"/>
         </scene>
         <!--Url Card View Controller-->
         <scene sceneID="Uht-WD-YGO">
@@ -130,7 +88,9 @@
                             <constraint firstAttribute="trailing" secondItem="CZp-mw-dwD" secondAttribute="trailing" id="4Ve-a2-25U"/>
                             <constraint firstItem="b2e-hi-OHi" firstAttribute="trailing" secondItem="M0r-5b-6aZ" secondAttribute="trailing" id="6nI-2e-z3k"/>
                             <constraint firstItem="b2e-hi-OHi" firstAttribute="top" secondItem="CZp-mw-dwD" secondAttribute="bottom" constant="28" id="7SE-8f-ST6"/>
+                            <constraint firstItem="M0r-5b-6aZ" firstAttribute="leading" secondItem="EOO-MY-BRd" secondAttribute="leadingMargin" constant="30" id="CuT-wq-5fJ"/>
                             <constraint firstItem="M0r-5b-6aZ" firstAttribute="leading" secondItem="8h5-GZ-Nur" secondAttribute="leading" id="Gnd-g7-Ef4"/>
+                            <constraint firstItem="M0r-5b-6aZ" firstAttribute="trailing" secondItem="EOO-MY-BRd" secondAttribute="trailingMargin" constant="30" id="Jg4-H3-TAf"/>
                             <constraint firstItem="b2e-hi-OHi" firstAttribute="leading" secondItem="M0r-5b-6aZ" secondAttribute="leading" id="Mts-kV-Zdl"/>
                             <constraint firstItem="b4D-eU-V9N" firstAttribute="top" secondItem="8h5-GZ-Nur" secondAttribute="bottom" constant="53" id="gMi-yB-sVi"/>
                             <constraint firstItem="CZp-mw-dwD" firstAttribute="centerX" secondItem="b2e-hi-OHi" secondAttribute="centerX" id="gbx-Pk-mIa"/>
@@ -143,7 +103,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82f-jT-JTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111" y="1048"/>
+            <point key="canvasLocation" x="1641" y="1048"/>
+        </scene>
+        <!--Empty Card View Controller-->
+        <scene sceneID="Zwf-Pm-lvk">
+            <objects>
+                <viewController storyboardIdentifier="emptyCardViewController" id="PwQ-OG-VsT" customClass="EmptyCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SUX-HU-S2l"/>
+                        <viewControllerLayoutGuide type="bottom" id="ibn-On-lcZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FOe-fk-7PS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="searching" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lY3-DA-2h4">
+                                <rect key="frame" x="20" y="100" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Do you have the bluetooth on?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-HD-x14">
+                                <rect key="frame" x="20" y="129" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.24010416666666667" green="0.24010416666666667" blue="0.24010416666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="trailing" secondItem="FOe-fk-7PS" secondAttribute="trailingMargin" id="3F6-h8-atf"/>
+                            <constraint firstItem="lY3-DA-2h4" firstAttribute="top" secondItem="SUX-HU-S2l" secondAttribute="bottom" constant="80" id="49m-Bd-k4d"/>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leadingMargin" id="Cx8-vt-aVH"/>
+                            <constraint firstItem="lY3-DA-2h4" firstAttribute="trailing" secondItem="FOe-fk-7PS" secondAttribute="trailingMargin" id="I8a-cp-TmP"/>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="lY3-DA-2h4" secondAttribute="bottom" constant="8" id="SSo-hF-rbo"/>
+                            <constraint firstItem="lY3-DA-2h4" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leadingMargin" id="xlM-BO-gXV"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pvF-vH-zyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1641" y="-247"/>
         </scene>
         <!--Image Card View Controller-->
         <scene sceneID="AfN-sE-ZoO">
@@ -176,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ve-yM-urT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111" y="391"/>
+            <point key="canvasLocation" x="1641" y="391"/>
         </scene>
         <!--Cards View Controller-->
         <scene sceneID="Asa-o0-rGb">

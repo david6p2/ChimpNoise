@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41A1F4859F58BA16E9E7A730 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7735FAC13415AC6899BE5788 /* libPods-ChimpNoise.a */; };
+		A0150D361CD165B4009786D3 /* CardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D351CD165B4009786D3 /* CardsViewController.m */; };
+		A0150D391CD17721009786D3 /* CardPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D381CD17721009786D3 /* CardPageViewController.m */; };
+		A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */; };
+		A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */; };
+		A0E580221CD26F4800A3C97A /* UrlCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580211CD26F4800A3C97A /* UrlCardViewController.m */; };
 		A0E580251CD3FF5C00A3C97A /* BeaconListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580241CD3FF5C00A3C97A /* BeaconListener.m */; };
 		A0E583BE1CD43C8600ECF64F /* CardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E583BD1CD43C8600ECF64F /* CardDeck.m */; };
 		A0E583C11CD4F26600ECF64F /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E583C01CD4F26600ECF64F /* Card.m */; };
-		A0150D361CD165B4009786D3 /* CardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D351CD165B4009786D3 /* CardsViewController.m */; };
-		A0150D391CD17721009786D3 /* CardPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D381CD17721009786D3 /* CardPageViewController.m */; };
-		A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */; };
-		A0E580221CD26F4800A3C97A /* UrlCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580211CD26F4800A3C97A /* UrlCardViewController.m */; };
-		AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */; };
 		BA0E04811BF2F2420087E586 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0E04801BF2F2420087E586 /* Default.png */; };
 		BA1BE6161C3B1A140050FA6A /* ImageBeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */; };
 		BA1BE6191C3B1CA00050FA6A /* BeaconCardType.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1BE6181C3B1CA00050FA6A /* BeaconCardType.m */; };
@@ -41,22 +42,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
-		739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
+		7735FAC13415AC6899BE5788 /* libPods-ChimpNoise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChimpNoise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0150D341CD165B4009786D3 /* CardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsViewController.h; sourceTree = "<group>"; };
+		A0150D351CD165B4009786D3 /* CardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsViewController.m; sourceTree = "<group>"; };
+		A0150D371CD17721009786D3 /* CardPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardPageViewController.h; sourceTree = "<group>"; };
+		A0150D381CD17721009786D3 /* CardPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardPageViewController.m; sourceTree = "<group>"; };
+		A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyCardViewController.h; sourceTree = "<group>"; };
+		A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyCardViewController.m; sourceTree = "<group>"; };
+		A0E5801D1CD252D200A3C97A /* ImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCardViewController.h; sourceTree = "<group>"; };
+		A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCardViewController.m; sourceTree = "<group>"; };
+		A0E580201CD26F4800A3C97A /* UrlCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCardViewController.h; sourceTree = "<group>"; };
+		A0E580211CD26F4800A3C97A /* UrlCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCardViewController.m; sourceTree = "<group>"; };
 		A0E580231CD3FF5C00A3C97A /* BeaconListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconListener.h; sourceTree = "<group>"; };
 		A0E580241CD3FF5C00A3C97A /* BeaconListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconListener.m; sourceTree = "<group>"; };
 		A0E583BC1CD43C8600ECF64F /* CardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDeck.h; sourceTree = "<group>"; };
 		A0E583BD1CD43C8600ECF64F /* CardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDeck.m; sourceTree = "<group>"; };
 		A0E583BF1CD4F26600ECF64F /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		A0E583C01CD4F26600ECF64F /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
-		A0150D341CD165B4009786D3 /* CardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsViewController.h; sourceTree = "<group>"; };
-		A0150D351CD165B4009786D3 /* CardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsViewController.m; sourceTree = "<group>"; };
-		A0150D371CD17721009786D3 /* CardPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardPageViewController.h; sourceTree = "<group>"; };
-		A0150D381CD17721009786D3 /* CardPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardPageViewController.m; sourceTree = "<group>"; };
-		A0E5801D1CD252D200A3C97A /* ImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCardViewController.h; sourceTree = "<group>"; };
-		A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCardViewController.m; sourceTree = "<group>"; };
-		A0E580201CD26F4800A3C97A /* UrlCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCardViewController.h; sourceTree = "<group>"; };
-		A0E580211CD26F4800A3C97A /* UrlCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCardViewController.m; sourceTree = "<group>"; };
+		A61C7B7FDB5F303037B2C2F3 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
 		BA0E04801BF2F2420087E586 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BA1BE6141C3B1A140050FA6A /* ImageBeaconCardType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBeaconCardType.h; sourceTree = "<group>"; };
 		BA1BE6151C3B1A140050FA6A /* ImageBeaconCardType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBeaconCardType.m; sourceTree = "<group>"; };
@@ -94,7 +97,7 @@
 		BAF9A4E51BE07BCC0058E1DA /* AYChimpnoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYChimpnoise.m; path = ../AYChimpnoise.m; sourceTree = "<group>"; };
 		BAF9A4E81BE082E70058E1DA /* AYBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYBeacon.h; sourceTree = "<group>"; };
 		BAF9A4E91BE082E70058E1DA /* AYBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYBeacon.m; sourceTree = "<group>"; };
-		DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChimpNoise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56139898D66D535DFB94540 /* Pods-ChimpNoise.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,19 +106,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				BABC49571BD2F90A00DC26FC /* CoreLocation.framework in Frameworks */,
-				AC583621209D3362E2CA5FA0 /* libPods-ChimpNoise.a in Frameworks */,
+				41A1F4859F58BA16E9E7A730 /* libPods-ChimpNoise.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		31E7A95867AD1AFB7B8A7BD7 /* Frameworks */ = {
+		2D40F39FC3323981BE816A6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DE102E5F489E57BD7F8743BA /* libPods-ChimpNoise.a */,
+				7735FAC13415AC6899BE5788 /* libPods-ChimpNoise.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C5C54276DD0FD187BCA9238 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E56139898D66D535DFB94540 /* Pods-ChimpNoise.debug.xcconfig */,
+				A61C7B7FDB5F303037B2C2F3 /* Pods-ChimpNoise.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		A0150D331CD1657C009786D3 /* PageView */ = {
@@ -129,17 +141,10 @@
 				A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */,
 				A0E580201CD26F4800A3C97A /* UrlCardViewController.h */,
 				A0E580211CD26F4800A3C97A /* UrlCardViewController.m */,
+				A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */,
+				A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */,
 			);
 			name = PageView;
-			sourceTree = "<group>";
-		};
-		A0B9E8A9437EC690F963F7CF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */,
-				65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		BA0E047F1BF2F17C0087E586 /* img */ = {
@@ -206,8 +211,8 @@
 				BABC49561BD2F90A00DC26FC /* CoreLocation.framework */,
 				BABC493B1BD2F8FD00DC26FC /* ChimpNoise */,
 				BABC493A1BD2F8FD00DC26FC /* Products */,
-				A0B9E8A9437EC690F963F7CF /* Pods */,
-				31E7A95867AD1AFB7B8A7BD7 /* Frameworks */,
+				8C5C54276DD0FD187BCA9238 /* Pods */,
+				2D40F39FC3323981BE816A6D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -289,13 +294,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BABC49531BD2F8FD00DC26FC /* Build configuration list for PBXNativeTarget "ChimpNoise" */;
 			buildPhases = (
-				54195C117C2F2E8814C91F45 /* Check Pods Manifest.lock */,
+				DF04648F52E7FA0DF55BB1C7 /* 📦 Check Pods Manifest.lock */,
 				BABC49351BD2F8FD00DC26FC /* Sources */,
 				BABC49361BD2F8FD00DC26FC /* Frameworks */,
 				BABC49371BD2F8FD00DC26FC /* Resources */,
-				CBBFE08C89A83AC5C1069806 /* Embed Pods Frameworks */,
-				900FCF787F5EFF7CD468CFFB /* Copy Pods Resources */,
 				A0E860B11CD79A500008D3DF /* ShellScript */,
+				534137914C837454EFB9895C /* 📦 Embed Pods Frameworks */,
+				7CDB69AC3851CA54927A82D4 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -359,29 +364,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		54195C117C2F2E8814C91F45 /* Check Pods Manifest.lock */ = {
+		534137914C837454EFB9895C /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		900FCF787F5EFF7CD468CFFB /* Copy Pods Resources */ = {
+		7CDB69AC3851CA54927A82D4 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,19 +407,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 4fea3c8ada9bb093e4f420a53f214aadbf740372 feaf70dbeda3aec71df7410239c277b27b11a283183d15c7bde91016bd1f63de";
 		};
-		CBBFE08C89A83AC5C1069806 /* Embed Pods Frameworks */ = {
+		DF04648F52E7FA0DF55BB1C7 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -426,6 +431,7 @@
 			files = (
 				A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */,
 				BA1BE6191C3B1CA00050FA6A /* BeaconCardType.m in Sources */,
+				A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */,
 				BAF9A4E61BE07BCC0058E1DA /* AYChimpnoise.m in Sources */,
 				A0E583BE1CD43C8600ECF64F /* CardDeck.m in Sources */,
 				BABC49471BD2F8FD00DC26FC /* SecondViewController.m in Sources */,
@@ -551,7 +557,7 @@
 		};
 		BABC49541BD2F8FD00DC26FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 739B4993ACF5C629FD1ED4B3 /* Pods-ChimpNoise.debug.xcconfig */;
+			baseConfigurationReference = E56139898D66D535DFB94540 /* Pods-ChimpNoise.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -570,7 +576,7 @@
 		};
 		BABC49551BD2F8FD00DC26FC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65C7C4B9558095D749DB4C33 /* Pods-ChimpNoise.release.xcconfig */;
+			baseConfigurationReference = A61C7B7FDB5F303037B2C2F3 /* Pods-ChimpNoise.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -10,6 +10,7 @@
 #import "CardPageViewController.h"
 #import "ImageCardViewController.h"
 #import "UrlCardViewController.h"
+#import "EmptyCardViewController.h"
 #import "BeaconListener.h"
 #import "CardDeck.h"
 #import "Card.h"
