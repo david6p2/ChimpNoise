@@ -32,6 +32,10 @@ static CardDeck *sharedInstance = nil;
                                                       target: self
                                                     selector:@selector(fetchBeaconsInRange)
                                                     userInfo: nil repeats:YES];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(exitRegion:)
+                                                     name:@"exitRegion"
+                                                   object:nil];
     }
     return self;
 }
@@ -79,6 +83,7 @@ static CardDeck *sharedInstance = nil;
              NSArray *noises = responseObject[@"noises"];
              for (NSDictionary *cardObject in noises) {
                  Card *newCard = [[Card alloc] initWithBusinessName:responseObject[@"business_name"]
+                                                             beacon: beacon
                                                      serverResponse:cardObject];
                  [self.cards addObject:newCard];
              }
@@ -91,6 +96,20 @@ static CardDeck *sharedInstance = nil;
 
 -(NSString *)keyForBeacon:(CLBeacon *)beacon{
     return [NSString stringWithFormat:@"%@:%@:%@", [beacon.proximityUUID UUIDString], beacon.major, beacon.minor];
+}
+
+#pragma mark - Notifications
+-(void) exitRegion:(NSNotification *)notification{
+    NSLog(@"exitRegion");
+    NSString *uuid = [[notification userInfo] objectForKey:@"uuid"];
+    NSMutableArray *newCardsArray = [NSMutableArray new];
+    for (Card *card in self.cards) {
+        if ([[card.beacon.proximityUUID UUIDString] isEqualToString:uuid]) {
+            continue;
+        }
+        [newCardsArray addObject:card];
+    }
+    self.cards = newCardsArray;
 }
 
 @end

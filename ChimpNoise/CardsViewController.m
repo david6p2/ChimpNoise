@@ -40,6 +40,10 @@
                                              selector:@selector(enterRegion)
                                                  name:@"enterRegion"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(exitRegion:)
+                                                 name:@"exitRegion"
+                                               object:nil];
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
     self.pageViewController.view.backgroundColor = [UIColor whiteColor];
     CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);
@@ -82,6 +86,11 @@
     notification.alertBody = @"Noise!";
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
+
+-(void) exitRegion:(NSNotification *)notification{
+    self.index = 0;
+}
+
 
 #pragma mark - UIPageViewControllerDataSource
 

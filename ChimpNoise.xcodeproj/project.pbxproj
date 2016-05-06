@@ -132,9 +132,10 @@
 		BABC493B1BD2F8FD00DC26FC /* ChimpNoise */ = {
 			isa = PBXGroup;
 			children = (
-				BAF299401BEBECFA00348B20 /* View */,
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
+				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
+				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
 				A0E580231CD3FF5C00A3C97A /* BeaconListener.h */,
 				A0E580241CD3FF5C00A3C97A /* BeaconListener.m */,
 				A0E583BC1CD43C8600ECF64F /* CardDeck.h */,
@@ -165,15 +166,6 @@
 				BABC493D1BD2F8FD00DC26FC /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BAF299401BEBECFA00348B20 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
-				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

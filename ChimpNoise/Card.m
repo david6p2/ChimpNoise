@@ -16,8 +16,11 @@
     return self;
 }
 
--(instancetype) initWithBusinessName:(NSString *)businessName serverResponse:(NSDictionary *) responseObject{
+-(instancetype) initWithBusinessName:(NSString *)businessName
+                              beacon:(CLBeacon *)beacon
+                      serverResponse:(NSDictionary *) responseObject{
     Card *new = [self init];
+    self.beacon         = beacon;
     self.businessName   = businessName;
     self.title          = businessName;
     self.key            = responseObject[@"beacon_code"];

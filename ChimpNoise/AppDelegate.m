@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "BeaconListener.h"
-#import "FirstViewController.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 

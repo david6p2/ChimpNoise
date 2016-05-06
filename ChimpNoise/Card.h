@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <EstimoteSDK/EstimoteSDK.h>
+
 
 @interface Card : NSObject
 
+@property (nonatomic, strong) CLBeacon *beacon;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *prompt;
@@ -23,7 +26,9 @@
 @property (nonatomic, strong) NSString *urlImage;
 @property BOOL onScreen;
 
--(instancetype) initWithBusinessName:(NSString *)businessName serverResponse:(NSDictionary *) responseObject;
+-(instancetype) initWithBusinessName:(NSString *)businessName
+                              beacon:(CLBeacon *)beacon
+                      serverResponse:(NSDictionary *) responseObject;
 
 -(void) show;
 -(void) hide;

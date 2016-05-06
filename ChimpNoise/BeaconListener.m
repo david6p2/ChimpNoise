@@ -167,6 +167,9 @@ static BeaconListener *sharedInstance = nil;
 
 -(void)beaconManager:(id)manager didExitRegion:(CLBeaconRegion *)region{
     NSLog(@"Exit Region");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"exitRegion"
+                                                        object:nil
+                                                      userInfo:@{@"uuid" : [region.proximityUUID UUIDString]}];
 }
 
 -(void)beaconManager:(id)manager didDetermineState:(CLRegionState)state forRegion:(CLBeaconRegion *)region{
