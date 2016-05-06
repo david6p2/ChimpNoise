@@ -23,7 +23,7 @@
     [self.beaconListener startRanging];
     // Init Card Deck
     self.cardDeck = [CardDeck sharedInstance];
-    self.guarda = YES;
+    self.index = 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -58,19 +58,22 @@
 #pragma mark - Notifications
 -(void) refreshPageView{
     NSLog(@"cardDeck.cardsInRange.count: %li", [[self.cardDeck cardsInRange] count]);
+    if ([[self.pageViewController viewControllers] count] != 0) {
+        self.index = ((CardPageViewController *)[self.pageViewController viewControllers][0]).index;
+        NSLog(@"cardOnTopIndex: %li", self.index);
+    }
     NSMutableArray *cards = [NSMutableArray new];
-    if ([[self.cardDeck cardsInRange] count] == 0 || self.guarda == YES) {
+    if ([[self.cardDeck cardsInRange] count] == 0) {
         EmptyCardViewController *emptyInitialView = [self.storyboard instantiateViewControllerWithIdentifier:@"emptyCardViewController"];
+        emptyInitialView.index = 0;
         [cards addObject:emptyInitialView];
-        self.guarda = NO;
     }
     else{
-        [cards addObject:[self.storyboard instantiateViewControllerWithIdentifier:@"imageCardViewController"]];
-        self.guarda = YES;
+        [cards addObject:[self cardOnIndex:self.index]];
     }
     [self.pageViewController setViewControllers:cards
                                       direction:UIPageViewControllerNavigationDirectionForward
-                                       animated:YES
+                                       animated:NO
                                      completion:nil];
 }
 
@@ -81,6 +84,7 @@
 }
 
 #pragma mark - UIPageViewControllerDataSource
+
 -(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
     NSLog(@"CardsViewController.presentacionCount");
     return [[self.cardDeck cardsInRange] count];
@@ -88,7 +92,43 @@
 
 -(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
     NSLog(@"CardsViewController.presentacionIndex");
-    return 0;
+    return self.index;
+}
+
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+     viewControllerBeforeViewController:(UIViewController *)viewController{
+    NSLog(@"before");
+    NSUInteger index = ((CardPageViewController *)viewController).index;
+    if (index == 0) {
+        return nil;
+    }
+    index--;
+    return [self cardOnIndex:index];
+}
+
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+      viewControllerAfterViewController:(UIViewController *)viewController{
+    NSLog(@"after");
+    NSUInteger index = ((CardPageViewController *)viewController).index;
+    index++;
+    if (index == [[self.cardDeck cardsInRange] count]) {
+        return nil;
+    }
+    return [self cardOnIndex:index];
+}
+
+#pragma mark - CardOnIndex
+-(UIViewController *) cardOnIndex:(NSInteger) index{
+    Card *card = [self.cardDeck cardsInRange][index];
+    if ([card.type isEqualToString:@"image"]) {
+        ImageCardViewController *imageCard = [self.storyboard instantiateViewControllerWithIdentifier:@"imageCardViewController"];
+        imageCard.card = card;
+        imageCard.index = index;
+        [imageCard viewDidLoad];
+        return imageCard;
+    }
+    return nil;
 }
 
 @end

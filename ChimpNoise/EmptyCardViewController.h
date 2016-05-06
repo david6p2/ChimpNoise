@@ -12,4 +12,5 @@
 
 @property (strong, nonatomic) UIView *pulseView;
 @property (strong, nonatomic) UIImageView *backgroundPulseView;
+@property (nonatomic, assign) NSInteger index;
 @end

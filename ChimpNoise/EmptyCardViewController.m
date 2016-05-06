@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initPulse];
+    [self.view setClipsToBounds:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +30,10 @@
     self.pulseView = [[UIView alloc] initWithFrame: pulseFrame];
     self.pulseView.backgroundColor = [UIColor colorWithRed:0.125 green:0.722 blue:0.902 alpha:1];
     self.pulseView.layer.cornerRadius = 50;
+    self.pulseView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.pulseView.layer.shadowRadius = 2;
+    self.pulseView.layer.shadowColor = [UIColor grayColor].CGColor;
+    self.pulseView.layer.shadowOpacity = 1;
     CGRect backgroundPulseFrame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height/2 - 50, 100, 100);
     self.backgroundPulseView = [[UIImageView alloc] initWithFrame: backgroundPulseFrame];
     self.backgroundPulseView.image = [UIImage imageNamed:@"pulseBackground.png"];
