@@ -17,6 +17,9 @@
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     NSLog(@"%@", self.card.imageURL);
     [self.view setClipsToBounds:YES];
+    [self.imageView setClipsToBounds:YES];
+    
+    self.titleLabel.text = self.card.businessName;
 }
 
 - (void)didReceiveMemoryWarning {

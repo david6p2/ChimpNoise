@@ -94,15 +94,15 @@
 
 #pragma mark - UIPageViewControllerDataSource
 
--(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
-    NSLog(@"CardsViewController.presentacionCount");
-    return [[self.cardDeck cardsInRange] count];
-}
-
--(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
-    NSLog(@"CardsViewController.presentacionIndex");
-    return self.index;
-}
+//-(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
+//    NSLog(@"CardsViewController.presentacionCount");
+//    return [[self.cardDeck cardsInRange] count];
+//}
+//
+//-(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
+//    NSLog(@"CardsViewController.presentacionIndex");
+//    return self.index;
+//}
 
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
@@ -136,6 +136,13 @@
         imageCard.index = index;
         [imageCard viewDidLoad];
         return imageCard;
+    }
+    if ([card.type isEqualToString:@"url"]) {
+        ImageCardViewController *urlCard = [self.storyboard instantiateViewControllerWithIdentifier:@"urlCardViewController"];
+        urlCard.card = card;
+        urlCard.index = index;
+        [urlCard viewDidLoad];
+        return urlCard;
     }
     return nil;
 }

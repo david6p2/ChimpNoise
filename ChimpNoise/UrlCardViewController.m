@@ -7,16 +7,21 @@
 //
 
 #import "UrlCardViewController.h"
-
-@interface UrlCardViewController ()
-
-@end
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UrlCardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setClipsToBounds:YES];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.urlImage]
+                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    [self.imageView setClipsToBounds:YES];
+    self.titleLabel.text = self.card.businessName;
+    self.urlTitle.text = self.card.urlTitle;
+    self.urlDescription.text = self.card.urlDescription;
+    [self.urlDescription setNumberOfLines:0];
+    [self.urlDescription sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +29,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.card.url]];
 }
-*/
 
 @end
