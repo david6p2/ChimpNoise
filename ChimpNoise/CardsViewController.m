@@ -144,6 +144,14 @@
         [urlCard viewDidLoad];
         return urlCard;
     }
+    if ([card.type isEqualToString:@"text"]) {
+        ImageCardViewController *urlCard = [self.storyboard instantiateViewControllerWithIdentifier:@"textCardViewViewController"];
+        urlCard.card = card;
+        urlCard.index = index;
+        [urlCard viewDidLoad];
+        return urlCard;
+    }
+
     return nil;
 }
 

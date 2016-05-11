@@ -22,6 +22,11 @@
     self.urlDescription.text = self.card.urlDescription;
     [self.urlDescription setNumberOfLines:0];
     [self.urlDescription sizeToFit];
+    
+    self.urlView.layer.cornerRadius = 15.0;
+    self.urlView.layer.borderWidth = 0.5;
+    self.urlView.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.urlView setClipsToBounds:YES];
 }
 
 - (void)didReceiveMemoryWarning {

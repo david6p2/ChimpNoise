@@ -20,6 +20,10 @@
     [self.imageView setClipsToBounds:YES];
     
     self.titleLabel.text = self.card.businessName;
+    
+    self.imageView.layer.cornerRadius = 15.0;
+    self.imageView.layer.borderWidth = 0.5;
+    self.imageView.layer.borderColor = [UIColor blackColor].CGColor;
 }
 
 - (void)didReceiveMemoryWarning {

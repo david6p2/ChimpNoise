@@ -96,11 +96,56 @@
                         <outlet property="titleLabel" destination="IE3-ke-c83" id="3w1-9n-s1h"/>
                         <outlet property="urlDescription" destination="PaD-zj-C5U" id="1CU-wk-nv6"/>
                         <outlet property="urlTitle" destination="z5M-yH-Cwn" id="0Rl-SM-RJP"/>
+                        <outlet property="urlView" destination="ET2-Bc-q0d" id="FXV-Qo-BnF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82f-jT-JTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1641" y="1048"/>
+        </scene>
+        <!--Text Card View View Controller-->
+        <scene sceneID="Vgp-3G-wmv">
+            <objects>
+                <viewController storyboardIdentifier="textCardViewViewController" id="ZbU-E5-IxG" customClass="TextCardViewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FWL-qT-jGu"/>
+                        <viewControllerLayoutGuide type="bottom" id="l1j-sK-tGQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wkI-la-NOe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6PG-5B-GeD">
+                                <rect key="frame" x="20" y="54" width="280" height="494"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4b-kU-LmB">
+                                <rect key="frame" x="20" y="25" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.032584403339999998" green="0.040909693509999998" blue="0.1582932692" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6PG-5B-GeD" firstAttribute="leading" secondItem="wkI-la-NOe" secondAttribute="leading" constant="20" id="Lzc-P1-EfD"/>
+                            <constraint firstItem="o4b-kU-LmB" firstAttribute="top" secondItem="wkI-la-NOe" secondAttribute="top" constant="25" id="UPD-7M-zTK"/>
+                            <constraint firstItem="l1j-sK-tGQ" firstAttribute="top" secondItem="6PG-5B-GeD" secondAttribute="bottom" constant="20" id="YZy-Tu-KUB"/>
+                            <constraint firstAttribute="trailing" secondItem="o4b-kU-LmB" secondAttribute="trailing" constant="20" id="vdg-m1-yhi"/>
+                            <constraint firstAttribute="trailing" secondItem="6PG-5B-GeD" secondAttribute="trailing" constant="20" id="xDL-0S-IMb"/>
+                            <constraint firstItem="6PG-5B-GeD" firstAttribute="top" secondItem="o4b-kU-LmB" secondAttribute="bottom" constant="10" id="xwl-c8-35h"/>
+                            <constraint firstItem="o4b-kU-LmB" firstAttribute="leading" secondItem="wkI-la-NOe" secondAttribute="leading" constant="20" id="zaP-2a-yUc"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="o4b-kU-LmB" id="IzD-0U-6gU"/>
+                        <outlet property="webView" destination="6PG-5B-GeD" id="EtP-ya-WCn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TBQ-G1-EUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1641" y="1694"/>
         </scene>
         <!--Empty Card View Controller-->
         <scene sceneID="Zwf-Pm-lvk">
@@ -199,7 +244,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="iGm-W9-Nex"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="iGm-W9-Nex"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fR8-eg-ugO" userLabel="First Responder" sceneMemberID="firstResponder"/>
