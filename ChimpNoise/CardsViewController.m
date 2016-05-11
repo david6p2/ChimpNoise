@@ -16,26 +16,24 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //Init BeaconListener
-    self.beaconListener = [BeaconListener sharedInstance];
-    [self.beaconListener requestAlwaysAuthorization];
-    [self.beaconListener startMonitoring];
-    [self.beaconListener startRanging];
-    // Init Card Deck
-    self.cardDeck = [CardDeck sharedInstance];
-    self.index = 0;
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
-                                                  target: self
-                                                selector:@selector(refreshPageView)
-                                                userInfo: nil repeats:YES];
+    [self emptyPageView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Init CardViewController
+    self.pageViewController = nil;
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
+    self.pageViewController.view.backgroundColor = [UIColor whiteColor];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);
+    self.pageViewController.view.frame = frame;
+    self.pageViewController.dataSource = self;
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
+    
+    //Init Notifcations
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(enterRegion)
                                                  name:@"enterRegion"
@@ -44,47 +42,66 @@
                                              selector:@selector(exitRegion:)
                                                  name:@"exitRegion"
                                                object:nil];
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
-    self.pageViewController.view.backgroundColor = [UIColor whiteColor];
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);
-    self.pageViewController.view.frame = frame;
-    self.pageViewController.dataSource = self;
-    [self refreshPageView];
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
+                                                  target: self
+                                                selector:@selector(refreshPageView)
+                                                userInfo: nil repeats:YES];
+    
+    //Init BeaconListener
+    self.beaconListener = [BeaconListener sharedInstance];
+    [self.beaconListener requestAlwaysAuthorization];
+    [self.beaconListener startMonitoring];
+    [self.beaconListener startRanging];
+    
+    // Init Card Deck
+    self.cardDeck = [CardDeck sharedInstance];
+    self.index = 0;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Notifications
+#pragma mark - Page Refresh
 -(void) refreshPageView{
     NSLog(@"cardDeck.cardsInRange.count: %li", [[self.cardDeck cardsInRange] count]);
     if ([[self.pageViewController viewControllers] count] != 0) {
         self.index = ((CardPageViewController *)[self.pageViewController viewControllers][0]).index;
         NSLog(@"cardOnTopIndex: %li", self.index);
     }
-    NSMutableArray *cards = [NSMutableArray new];
+    
     if ([[self.cardDeck cardsInRange] count] == 0) {
-        EmptyCardViewController *emptyInitialView = [self.storyboard instantiateViewControllerWithIdentifier:@"emptyCardViewController"];
-        emptyInitialView.index = 0;
-        [cards addObject:emptyInitialView];
+        [self emptyPageView];
+        return;
     }
-    else{
-        [cards addObject:[self cardOnIndex:self.index]];
-    }
+    
+    [self nonEmptyPageView];
+    return;
+}
+
+-(void) emptyPageView{
+    NSMutableArray *cards = [NSMutableArray new];
+    EmptyCardViewController *emptyInitialView = [self.storyboard instantiateViewControllerWithIdentifier:@"emptyCardViewController"];
+    emptyInitialView.index = 0;
+    [cards addObject:emptyInitialView];
     [self.pageViewController setViewControllers:cards
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
 }
 
+-(void)nonEmptyPageView{
+    NSMutableArray *cards = [NSMutableArray new];
+    [cards addObject:[self cardOnIndex:self.index]];
+    [self.pageViewController setViewControllers:cards
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
+}
+
+#pragma mark - Notifications
 -(void) enterRegion{
-    UILocalNotification *notification = [UILocalNotification new];
-    notification.alertBody = @"Noise!";
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    //TODO
 }
 
 -(void) exitRegion:(NSNotification *)notification{
