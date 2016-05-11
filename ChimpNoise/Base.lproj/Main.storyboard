@@ -231,7 +231,7 @@
             </objects>
             <point key="canvasLocation" x="1641" y="391"/>
         </scene>
-        <!--Cards View Controller-->
+        <!--Sonar-->
         <scene sceneID="Asa-o0-rGb">
             <objects>
                 <viewController storyboardIdentifier="CardsViewController" id="aD6-ks-TxE" customClass="CardsViewController" sceneMemberID="viewController">
@@ -244,14 +244,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="iGm-W9-Nex"/>
+                    <tabBarItem key="tabBarItem" title="Sonar" image="Sonar" id="iGm-W9-Nex"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fR8-eg-ugO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="391"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorite-->
         <scene sceneID="eUQ-yU-ShA">
             <objects>
                 <viewController id="RFB-Do-uIe" sceneMemberID="viewController">
@@ -262,14 +262,60 @@
                     <view key="view" contentMode="scaleToFill" id="0CD-H3-tmN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calmao Tigre! coming soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qv-UL-fJT">
+                                <rect key="frame" x="20" y="128" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1Qv-UL-fJT" secondAttribute="trailing" constant="20" id="3JV-Az-sLD"/>
+                            <constraint firstItem="1Qv-UL-fJT" firstAttribute="top" secondItem="E2u-yM-Hby" secondAttribute="bottom" constant="108" id="9Li-MC-DjA"/>
+                            <constraint firstItem="1Qv-UL-fJT" firstAttribute="leading" secondItem="0CD-H3-tmN" secondAttribute="leading" constant="20" id="M9T-t5-Ho2"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="Cxp-xq-rvT"/>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="heart" id="Cxp-xq-rvT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVb-Re-sjs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="1068"/>
+        </scene>
+        <!--Me-->
+        <scene sceneID="uf2-sJ-ZWM">
+            <objects>
+                <viewController id="Y6u-kF-gjS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6FX-K2-YgM"/>
+                        <viewControllerLayoutGuide type="bottom" id="F4E-V8-dq5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xcq-Ni-GEW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tranquilo Tigre, coming soon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSc-vG-oDI">
+                                <rect key="frame" x="20" y="128" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wSc-vG-oDI" secondAttribute="trailing" constant="20" id="S1Y-uH-KFO"/>
+                            <constraint firstItem="wSc-vG-oDI" firstAttribute="top" secondItem="6FX-K2-YgM" secondAttribute="bottom" constant="108" id="pCK-La-nOv"/>
+                            <constraint firstItem="wSc-vG-oDI" firstAttribute="leading" secondItem="xcq-Ni-GEW" secondAttribute="leading" constant="20" id="pR4-vh-xvD"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Me" image="me" id="O6c-KK-kUN"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aG2-ER-DLJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="1755"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uWL-Gt-Xdb">
@@ -284,14 +330,18 @@
                     <connections>
                         <segue destination="aD6-ks-TxE" kind="relationship" relationship="viewControllers" id="24l-QD-QeW"/>
                         <segue destination="RFB-Do-uIe" kind="relationship" relationship="viewControllers" id="vxG-Bj-A9l"/>
+                        <segue destination="Y6u-kF-gjS" kind="relationship" relationship="viewControllers" id="SKW-O6-VoG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMv-k2-dLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="715"/>
+            <point key="canvasLocation" x="-76" y="1227"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Sonar" width="24" height="24"/>
+        <image name="heart" width="25" height="21"/>
+        <image name="me" width="29" height="24"/>
         <image name="placeholder.png" width="428" height="600"/>
     </resources>
 </document>

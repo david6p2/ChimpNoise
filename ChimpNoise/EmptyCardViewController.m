@@ -42,7 +42,7 @@
     [self.view addSubview:self.backgroundPulseView];
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animation.duration = 0.8;
+    animation.duration = 0.5;
     animation.repeatCount = HUGE_VAL;
     animation.autoreverses = YES;
     animation.removedOnCompletion = false;
