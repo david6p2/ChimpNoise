@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self initPulse];
     [self.view setClipsToBounds:YES];
 }
@@ -51,6 +52,4 @@
     
     [self.pulseView.layer addAnimation:animation forKey:@"scale"];
 }
-
-
 @end

@@ -15,5 +15,4 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;
--(void)setImageUrl:(NSString *)url;
 @end

@@ -13,6 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.view setClipsToBounds:YES];
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.urlImage]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
@@ -37,5 +38,4 @@
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.card.url]];
 }
-
 @end
