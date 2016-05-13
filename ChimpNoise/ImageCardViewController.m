@@ -13,10 +13,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.imageURL]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    NSLog(@"%@", self.card.imageURL);
     [self.view setClipsToBounds:YES];
     [self.imageView setClipsToBounds:YES];
     

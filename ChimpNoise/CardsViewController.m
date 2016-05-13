@@ -42,7 +42,7 @@
                                              selector:@selector(exitRegion:)
                                                  name:@"exitRegion"
                                                object:nil];
-    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 4
                                                   target: self
                                                 selector:@selector(refreshPageView)
                                                 userInfo: nil repeats:YES];
@@ -56,6 +56,12 @@
     // Init Card Deck
     self.cardDeck = [CardDeck sharedInstance];
     self.index = 0;
+    
+    //Init Long Press Gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
+    longPress.minimumPressDuration = 0.5f;
+    longPress.allowableMovement = 100.0f;
+    [self.view addGestureRecognizer:longPress];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,6 +176,31 @@
     }
 
     return nil;
+}
+
+#pragma mark - Long Press Gesture
+-(void)longPressDetected:(UILongPressGestureRecognizer *)longPress
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to favorites"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * action) {}];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:addToFavorites];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 @end

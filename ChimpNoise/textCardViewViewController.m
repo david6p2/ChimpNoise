@@ -23,6 +23,7 @@
     
     //continue building the string
     [html appendString:self.card.message];
+    [html appendString:@"<style type=\"text/css\">*{-webkit-touch-callout:none;-webkit-user-select: none;}</style>"];
     [html appendString:@"</body></html>"];
     
     //instantiate the web view
@@ -33,14 +34,17 @@
     //pass the string to the webview
     [self.webView loadHTMLString:[html description] baseURL:nil];
     
+    //Card Border and cornerRadius
     self.webView.layer.cornerRadius = 15.0;
     self.webView.layer.borderWidth = 0.5;
     self.webView.layer.borderColor = [UIColor blackColor].CGColor;
     [self.webView setClipsToBounds:YES];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 @end
