@@ -40,11 +40,57 @@
     self.webView.layer.borderColor = [UIColor blackColor].CGColor;
     [self.webView setClipsToBounds:YES];
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
+    
+    //Init Long Press Gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
+    longPress.minimumPressDuration = 0.5f;
+    longPress.allowableMovement = 100.0f;
+    [self.view addGestureRecognizer:longPress];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Long Press Gesture
+-(void)longPressDetected:(UILongPressGestureRecognizer *)longPress
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:self.card.businessName
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    if (self.card.isFavorite == NO) {
+        UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to favorites"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * action){
+                                                                   [self.card saveToFavorites];
+                                                               }];
+        [alert addAction:addToFavorites];
+    }
+    if (self.card.isFavorite == YES) {
+        UIAlertAction* removeFromFavorites = [UIAlertAction actionWithTitle:@"Remove from favorites"
+                                                                      style:UIAlertActionStyleDestructive
+                                                                    handler:^(UIAlertAction * action) {
+                                                                        [self.card removeFromFavorites];
+                                                                    }];
+        [alert addAction:removeFromFavorites];
+    }
+    
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 @end

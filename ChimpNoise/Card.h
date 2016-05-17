@@ -13,6 +13,7 @@
 @interface Card : NSObject
 
 @property (nonatomic, strong) CLBeacon *beacon;
+@property (nonatomic, strong) NSString *cardId;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *prompt;
@@ -24,7 +25,9 @@
 @property (nonatomic, strong) NSString *urlTitle;
 @property (nonatomic, strong) NSString *urlDescription;
 @property (nonatomic, strong) NSString *urlImage;
+@property (nonatomic, strong) NSDictionary *dictionaryObject;
 @property BOOL onScreen;
+@property BOOL isFavorite;
 
 -(instancetype) initWithBusinessName:(NSString *)businessName
                               beacon:(CLBeacon *)beacon
@@ -32,4 +35,6 @@
 
 -(void) show;
 -(void) hide;
+-(void) saveToFavorites;
+-(void) removeFromFavorites;
 @end

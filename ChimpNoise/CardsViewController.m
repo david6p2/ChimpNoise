@@ -25,7 +25,7 @@
     //Init CardViewController
     self.pageViewController = nil;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
-    self.pageViewController.view.backgroundColor = [UIColor whiteColor];
+    self.pageViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0.129 blue:0.278 alpha:1];
     CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);
     self.pageViewController.view.frame = frame;
     self.pageViewController.dataSource = self;
@@ -56,12 +56,6 @@
     // Init Card Deck
     self.cardDeck = [CardDeck sharedInstance];
     self.index = 0;
-    
-    //Init Long Press Gesture
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
-    longPress.minimumPressDuration = 0.5f;
-    longPress.allowableMovement = 100.0f;
-    [self.view addGestureRecognizer:longPress];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,7 +74,7 @@
         [self emptyPageView];
         return;
     }
-    
+    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", (unsigned long)[[self.cardDeck cardsInRange] count]];
     [self nonEmptyPageView];
     return;
 }
@@ -116,18 +110,6 @@
 
 
 #pragma mark - UIPageViewControllerDataSource
-
-//-(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
-//    NSLog(@"CardsViewController.presentacionCount");
-//    return [[self.cardDeck cardsInRange] count];
-//}
-//
-//-(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController{
-//    NSLog(@"CardsViewController.presentacionIndex");
-//    return self.index;
-//}
-
-
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController
      viewControllerBeforeViewController:(UIViewController *)viewController{
     NSLog(@"before");
@@ -177,30 +159,4 @@
 
     return nil;
 }
-
-#pragma mark - Long Press Gesture
--(void)longPressDetected:(UILongPressGestureRecognizer *)longPress
-{
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
-                                                                   message:nil
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to favorites"
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * action) {}];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * action) {}];
-    
-    [alert addAction:addToFavorites];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
-
 @end

@@ -12,6 +12,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.onScreen = NO;
+        self.isFavorite = NO;
     }
     return self;
 }
@@ -20,7 +21,9 @@
                               beacon:(CLBeacon *)beacon
                       serverResponse:(NSDictionary *) responseObject{
     Card *new = [self init];
+    self.dictionaryObject = responseObject;
     self.beacon         = beacon;
+    self.cardId         = responseObject[@"_id"];
     self.businessName   = businessName;
     self.title          = businessName;
     self.key            = responseObject[@"beacon_code"];
@@ -38,11 +41,59 @@
     return new;
 }
 
+//Public
 -(void) show{
     self.onScreen = YES;
 }
 
 -(void) hide{
     self.onScreen = NO;
+}
+
+-(NSDictionary *) toDictionary{
+    return self.dictionaryObject;
+}
+
+#pragma save Card
+-(void) saveToFavorites{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favorites = [defaults arrayForKey:@"favorites"];
+    NSMutableArray *newFavorites = [NSMutableArray new];
+    if (favorites != nil ){
+        newFavorites = [[NSMutableArray alloc] initWithArray:favorites];
+    }
+    if (![self cardIsFavorite:newFavorites]) {
+        [newFavorites addObject:[self toDictionary]];
+    }
+    [defaults setObject:newFavorites forKey:@"favorites"];
+    self.isFavorite = true;
+}
+
+-(void) removeFromFavorites{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favorites = [defaults arrayForKey:@"favorites"];
+    if (favorites == nil) {
+        return;
+    }
+    NSMutableArray *newFavorites = [[NSMutableArray alloc] initWithArray:favorites];
+    for (NSDictionary* cardDictionary in newFavorites) {
+        if ([cardDictionary[@"_id"] isEqualToString:self.cardId]) {
+            [newFavorites removeObject:cardDictionary];
+            [defaults setObject:newFavorites forKey:@"favorites"];
+            self.isFavorite = false;
+            return;
+        }
+    }
+    
+}
+
+//Private
+-(BOOL) cardIsFavorite:(NSArray *)favorites{
+    for (NSDictionary* cardDictionary in favorites) {
+        if ([self.cardId isEqualToString:cardDictionary[@"_id"]]) {
+            return true;
+        }
+    }
+    return false;
 }
 @end

@@ -10,6 +10,7 @@
 		41A1F4859F58BA16E9E7A730 /* libPods-ChimpNoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7735FAC13415AC6899BE5788 /* libPods-ChimpNoise.a */; };
 		A0150D361CD165B4009786D3 /* CardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D351CD165B4009786D3 /* CardsViewController.m */; };
 		A0150D391CD17721009786D3 /* CardPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D381CD17721009786D3 /* CardPageViewController.m */; };
+		A022328A1CEAD066003161AC /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02232891CEAD066003161AC /* FavoritesViewController.m */; };
 		A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */; };
 		A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */; };
 		A0E580221CD26F4800A3C97A /* UrlCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580211CD26F4800A3C97A /* UrlCardViewController.m */; };
@@ -37,6 +38,8 @@
 		A0150D351CD165B4009786D3 /* CardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsViewController.m; sourceTree = "<group>"; };
 		A0150D371CD17721009786D3 /* CardPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardPageViewController.h; sourceTree = "<group>"; };
 		A0150D381CD17721009786D3 /* CardPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardPageViewController.m; sourceTree = "<group>"; };
+		A02232881CEAD066003161AC /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
+		A02232891CEAD066003161AC /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyCardViewController.h; sourceTree = "<group>"; };
 		A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyCardViewController.m; sourceTree = "<group>"; };
 		A0E5801D1CD252D200A3C97A /* ImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCardViewController.h; sourceTree = "<group>"; };
@@ -100,6 +103,40 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A022328B1CEAD0B2003161AC /* Sonar */ = {
+			isa = PBXGroup;
+			children = (
+				A0E580231CD3FF5C00A3C97A /* BeaconListener.h */,
+				A0E580241CD3FF5C00A3C97A /* BeaconListener.m */,
+				A0E583BC1CD43C8600ECF64F /* CardDeck.h */,
+				A0E583BD1CD43C8600ECF64F /* CardDeck.m */,
+				A0E583BF1CD4F26600ECF64F /* Card.h */,
+				A0E583C01CD4F26600ECF64F /* Card.m */,
+				A0150D341CD165B4009786D3 /* CardsViewController.h */,
+				A0150D351CD165B4009786D3 /* CardsViewController.m */,
+				A0150D371CD17721009786D3 /* CardPageViewController.h */,
+				A0150D381CD17721009786D3 /* CardPageViewController.m */,
+				A0E5801D1CD252D200A3C97A /* ImageCardViewController.h */,
+				A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */,
+				A0E580201CD26F4800A3C97A /* UrlCardViewController.h */,
+				A0E580211CD26F4800A3C97A /* UrlCardViewController.m */,
+				A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */,
+				A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */,
+				A0EF5F351CE1414B0015F612 /* TextCardViewViewController.h */,
+				A0EF5F361CE1414B0015F612 /* TextCardViewViewController.m */,
+			);
+			name = Sonar;
+			sourceTree = "<group>";
+		};
+		A022328C1CEAD0DE003161AC /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				A02232881CEAD066003161AC /* FavoritesViewController.h */,
+				A02232891CEAD066003161AC /* FavoritesViewController.m */,
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
 		BA0E047F1BF2F17C0087E586 /* img */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,27 +175,11 @@
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
 				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
-				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
-				A0E580231CD3FF5C00A3C97A /* BeaconListener.h */,
-				A0E580241CD3FF5C00A3C97A /* BeaconListener.m */,
-				A0E583BC1CD43C8600ECF64F /* CardDeck.h */,
-				A0E583BD1CD43C8600ECF64F /* CardDeck.m */,
-				A0E583BF1CD4F26600ECF64F /* Card.h */,
-				A0E583C01CD4F26600ECF64F /* Card.m */,
-				A0150D341CD165B4009786D3 /* CardsViewController.h */,
-				A0150D351CD165B4009786D3 /* CardsViewController.m */,
-				A0150D371CD17721009786D3 /* CardPageViewController.h */,
-				A0150D381CD17721009786D3 /* CardPageViewController.m */,
-				A0E5801D1CD252D200A3C97A /* ImageCardViewController.h */,
-				A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */,
-				A0E580201CD26F4800A3C97A /* UrlCardViewController.h */,
-				A0E580211CD26F4800A3C97A /* UrlCardViewController.m */,
-				A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */,
-				A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */,
-				A0EF5F351CE1414B0015F612 /* TextCardViewViewController.h */,
-				A0EF5F361CE1414B0015F612 /* TextCardViewViewController.m */,
+				A022328C1CEAD0DE003161AC /* Favorites */,
+				A022328B1CEAD0B2003161AC /* Sonar */,
 				BA0E047F1BF2F17C0087E586 /* img */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
+				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
 				BABC494B1BD2F8FD00DC26FC /* Assets.xcassets */,
 				BABC493C1BD2F8FD00DC26FC /* Supporting Files */,
 			);
@@ -317,6 +338,7 @@
 			files = (
 				A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */,
 				A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */,
+				A022328A1CEAD066003161AC /* FavoritesViewController.m in Sources */,
 				A0E583BE1CD43C8600ECF64F /* CardDeck.m in Sources */,
 				A0150D391CD17721009786D3 /* CardPageViewController.m in Sources */,
 				BABC49411BD2F8FD00DC26FC /* AppDelegate.m in Sources */,

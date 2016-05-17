@@ -41,19 +41,6 @@ static CardDeck *sharedInstance = nil;
 }
 
 //public
--(Card *) cardToShowOnScreen{
-    NSMutableArray *cardsArray = [NSMutableArray arrayWithArray: self.cards];
-    while ([cardsArray count] > 0){
-        NSUInteger randomIndex = arc4random() % [cardsArray count];
-        Card *card = cardsArray[randomIndex];
-        if(card.onScreen || [card.type isEqualToString:@"text"]){
-            continue;
-        }
-        return card;
-    }
-    return nil;
-}
-
 -(NSArray *) cardsInRange{
     if([self.cards count] == 0){
         return nil;
@@ -111,5 +98,4 @@ static CardDeck *sharedInstance = nil;
     }
     self.cards = newCardsArray;
 }
-
 @end

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aF2-JZ-C76">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aF2-JZ-C76">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -79,7 +78,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0039215686269999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.12941176470588234" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="IE3-ke-c83" firstAttribute="top" secondItem="EOO-MY-BRd" secondAttribute="top" constant="28" id="DQX-g4-nRR"/>
                             <constraint firstItem="b4D-eU-V9N" firstAttribute="top" secondItem="ET2-Bc-q0d" secondAttribute="bottom" constant="20" id="FB0-pE-ikd"/>
@@ -126,7 +125,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0039215686269999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.12941176470588234" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6PG-5B-GeD" firstAttribute="leading" secondItem="wkI-la-NOe" secondAttribute="leading" constant="20" id="Lzc-P1-EfD"/>
                             <constraint firstItem="o4b-kU-LmB" firstAttribute="top" secondItem="wkI-la-NOe" secondAttribute="top" constant="25" id="UPD-7M-zTK"/>
@@ -159,13 +158,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="searching" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lY3-DA-2h4">
-                                <rect key="frame" x="20" y="100" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Do you have the bluetooth on?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-HD-x14">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="scanning for Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-HD-x14">
                                 <rect key="frame" x="20" y="129" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.24010416666666667" green="0.24010416666666667" blue="0.24010416666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -174,12 +167,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x5V-HD-x14" firstAttribute="trailing" secondItem="FOe-fk-7PS" secondAttribute="trailingMargin" id="3F6-h8-atf"/>
-                            <constraint firstItem="lY3-DA-2h4" firstAttribute="top" secondItem="SUX-HU-S2l" secondAttribute="bottom" constant="80" id="49m-Bd-k4d"/>
-                            <constraint firstItem="x5V-HD-x14" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leadingMargin" id="Cx8-vt-aVH"/>
-                            <constraint firstItem="lY3-DA-2h4" firstAttribute="trailing" secondItem="FOe-fk-7PS" secondAttribute="trailingMargin" id="I8a-cp-TmP"/>
-                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="lY3-DA-2h4" secondAttribute="bottom" constant="8" id="SSo-hF-rbo"/>
-                            <constraint firstItem="lY3-DA-2h4" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leadingMargin" id="xlM-BO-gXV"/>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="SUX-HU-S2l" secondAttribute="bottom" constant="109" id="APX-Gr-8Ba"/>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leading" constant="20" id="V1o-8p-ekl"/>
+                            <constraint firstAttribute="trailing" secondItem="x5V-HD-x14" secondAttribute="trailing" constant="20" id="vOR-5Z-xdl"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -210,7 +200,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0039215686274509803" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.12941176470588234" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NDX-Wt-vr3" secondAttribute="trailing" constant="20" id="02Y-lj-VLh"/>
                             <constraint firstItem="NDX-Wt-vr3" firstAttribute="leading" secondItem="jgO-Ga-6e4" secondAttribute="leading" constant="20" id="OVd-tn-C0b"/>
@@ -242,7 +232,7 @@
                     <view key="view" contentMode="scaleToFill" id="NH1-Sp-8oV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.12941176470588234" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sonar" image="Sonar" id="iGm-W9-Nex"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -251,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="644" y="391"/>
         </scene>
-        <!--Favorite-->
+        <!--Love-->
         <scene sceneID="eUQ-yU-ShA">
             <objects>
-                <viewController id="RFB-Do-uIe" sceneMemberID="viewController">
+                <viewController id="RFB-Do-uIe" customClass="FavoritesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E2u-yM-Hby"/>
                         <viewControllerLayoutGuide type="bottom" id="uRc-TQ-lzT"/>
@@ -277,7 +267,7 @@
                             <constraint firstItem="1Qv-UL-fJT" firstAttribute="leading" secondItem="0CD-H3-tmN" secondAttribute="leading" constant="20" id="M9T-t5-Ho2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="heart" id="Cxp-xq-rvT"/>
+                    <tabBarItem key="tabBarItem" title="Love" image="heart" id="Cxp-xq-rvT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVb-Re-sjs" userLabel="First Responder" sceneMemberID="firstResponder"/>

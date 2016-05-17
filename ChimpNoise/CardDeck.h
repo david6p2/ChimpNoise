@@ -20,6 +20,5 @@
 
 + (CardDeck *) sharedInstance;
 - (NSArray *) cardsInRange;
-- (Card *) cardToShowOnScreen;
     
 @end
