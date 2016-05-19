@@ -88,6 +88,9 @@
 #pragma mark - CardOnIndex
 -(UIViewController *) cardOnIndex:(NSInteger) index{
     Card *card = self.favoriteCards[index];
+    if (index < 0 || [self.favoriteCards count] <= index) {
+        return nil;
+    }
     if ([card.type isEqualToString:@"image"]) {
         ImageCardViewController *imageCard = [self.storyboard instantiateViewControllerWithIdentifier:@"imageCardViewController"];
         imageCard.card = card;
@@ -109,7 +112,6 @@
         [urlCard viewDidLoad];
         return urlCard;
     }
-    
     return nil;
 }
 
@@ -142,6 +144,12 @@
 }
 
 -(void)nonEmptyPageView{
+    if (self.index < 0) {
+        self.index = 0;
+    }
+    if ([self.favoriteCards count] <= self.index) {
+        self.index = [self.favoriteCards count] - 1;
+    }
     NSMutableArray *cards = [NSMutableArray new];
     [cards addObject:[self cardOnIndex:self.index]];
     [self.pageViewController setViewControllers:cards
