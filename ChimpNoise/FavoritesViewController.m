@@ -22,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Init Favorites Deck
+    self.favoritesDeck = [FavoritesDeck sharedInstance];
+    
     //Init CardViewController
     self.pageViewController = nil;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
@@ -40,9 +43,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favorites = [defaults arrayForKey:@"favorites"];
-    [self initFavoriteCards:(NSArray *)favorites];
+    [self initFavoriteCards];
     NSLog(@"favorites %@", self.favoriteCards);
     [self refreshPageView];
 }
@@ -52,14 +53,8 @@
 }
 
 //private
--(void) initFavoriteCards:(NSArray *)favorites{
-    NSMutableArray *array = [NSMutableArray new];
-    for (NSDictionary *cardDictionary in favorites) {
-        [array addObject:[[Card alloc] initWithBusinessName:cardDictionary[@"business_name"]
-                                                     beacon:nil
-                                             serverResponse:cardDictionary]];
-    }
-    self.favoriteCards = array;
+-(void) initFavoriteCards{
+        self.favoriteCards = [self.favoritesDeck favorites];
 }
 
 #pragma mark - UIPageViewControllerDataSource

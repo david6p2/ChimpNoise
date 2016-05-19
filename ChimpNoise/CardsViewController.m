@@ -57,6 +57,16 @@
     // Init Card Deck
     self.cardDeck = [CardDeck sharedInstance];
     self.index = 0;
+    
+    //Init Favorites Deck
+    self.favoritesDeck = [FavoritesDeck sharedInstance];
+    if([self.favoritesDeck count] == 0){
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:nil];
+    }
+    else{
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%lu", (unsigned long)[self.favoritesDeck count]]];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

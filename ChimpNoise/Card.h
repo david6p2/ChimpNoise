@@ -37,4 +37,5 @@
 -(void) hide;
 -(void) saveToFavorites;
 -(void) removeFromFavorites;
+-(NSDictionary *) toDictionary;
 @end

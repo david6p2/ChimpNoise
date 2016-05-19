@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Card.h"
+#import "FavoritesDeck.h"
 
 @interface UrlCardViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *urlView;
@@ -17,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *urlDescription;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;
+@property (strong, nonatomic) FavoritesDeck *favoritesDeck;
 @end

@@ -59,48 +59,4 @@
     [cardDictionary setObject:@"true" forKey:@"isFavorite"];
     return cardDictionary;
 }
-
-#pragma save Card
--(void) saveToFavorites{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favorites = [defaults arrayForKey:@"favorites"];
-    NSMutableArray *newFavorites = [NSMutableArray new];
-    if (favorites != nil ){
-        newFavorites = [[NSMutableArray alloc] initWithArray:favorites];
-    }
-    if (![self cardIsFavorite:newFavorites]) {
-        [newFavorites addObject:[self toDictionary]];
-    }
-    [defaults setObject:newFavorites forKey:@"favorites"];
-    self.isFavorite = true;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"favoritesNotification" object:nil];
-}
-
--(void) removeFromFavorites{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favorites = [defaults arrayForKey:@"favorites"];
-    if (favorites == nil) {
-        return;
-    }
-    NSMutableArray *newFavorites = [[NSMutableArray alloc] initWithArray:favorites];
-    for (NSDictionary* cardDictionary in newFavorites) {
-        if ([cardDictionary[@"_id"] isEqualToString:self.cardId]) {
-            [newFavorites removeObject:cardDictionary];
-            [defaults setObject:newFavorites forKey:@"favorites"];
-            self.isFavorite = false;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"favoritesNotification" object:nil];
-            return;
-        }
-    }
-}
-
-//Private
--(BOOL) cardIsFavorite:(NSArray *)favorites{
-    for (NSDictionary* cardDictionary in favorites) {
-        if ([self.cardId isEqualToString:cardDictionary[@"_id"]]) {
-            return true;
-        }
-    }
-    return false;
-}
 @end

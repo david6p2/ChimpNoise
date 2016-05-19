@@ -13,6 +13,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //init Favorite Deck
+    self.favoritesDeck = [FavoritesDeck sharedInstance];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.view setClipsToBounds:YES];
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.urlImage]
@@ -52,22 +56,21 @@
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:self.card.businessName
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    if (self.card.isFavorite == NO) {
-        UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to favorites"
-                                                                 style:UIAlertActionStyleDefault
-                                                               handler:^(UIAlertAction * action){
-                                                                   [self.card saveToFavorites];
-                                                               }];
-        [alert addAction:addToFavorites];
-    }
-    if (self.card.isFavorite == YES) {
+    if ([self.favoritesDeck contains:self.card]) {
         UIAlertAction* removeFromFavorites = [UIAlertAction actionWithTitle:@"Remove from favorites"
                                                                       style:UIAlertActionStyleDestructive
                                                                     handler:^(UIAlertAction * action) {
-                                                                        [self.card removeFromFavorites];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"removeCardToFavorites" object:self.card];
                                                                     }];
         [alert addAction:removeFromFavorites];
+    }
+    else {
+        UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to favorites"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * action){
+                                                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"addCardToFavorites" object:self.card];
+                                                               }];
+        [alert addAction:addToFavorites];
     }
     
     

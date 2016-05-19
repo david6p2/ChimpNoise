@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Card.h"
+#import "FavoritesDeck.h"
 
 @interface TextCardViewViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;
+@property (strong, nonatomic) FavoritesDeck *favoritesDeck;
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CardPageViewController.h"
+#import "FavoritesDeck.h"
 #import "Card.h"
 
 @interface ImageCardViewController : UIViewController
@@ -15,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;
+
+@property (strong, nonatomic) FavoritesDeck *favoritesDeck;
 @end
