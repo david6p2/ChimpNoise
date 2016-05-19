@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FavoritesViewController : UIViewController
-
+@interface FavoritesViewController : UIViewController <UIPageViewControllerDataSource>
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+@property (strong, nonatomic) NSArray *favoriteCards;
+@property NSInteger index;
 @end

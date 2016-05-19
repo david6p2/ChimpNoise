@@ -17,6 +17,7 @@
 		A0E580251CD3FF5C00A3C97A /* BeaconListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580241CD3FF5C00A3C97A /* BeaconListener.m */; };
 		A0E583BE1CD43C8600ECF64F /* CardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E583BD1CD43C8600ECF64F /* CardDeck.m */; };
 		A0E583C11CD4F26600ECF64F /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E583C01CD4F26600ECF64F /* Card.m */; };
+		A0E80A161CEE113900627684 /* EmptyFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E80A151CEE113900627684 /* EmptyFavoritesViewController.m */; };
 		A0EF5F371CE1414B0015F612 /* TextCardViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EF5F361CE1414B0015F612 /* TextCardViewViewController.m */; };
 		BA0E04811BF2F2420087E586 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0E04801BF2F2420087E586 /* Default.png */; };
 		BA306DB61C12791E000B2949 /* swipeRightTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = BA306DB41C12791E000B2949 /* swipeRightTutorial.png */; };
@@ -52,6 +53,8 @@
 		A0E583BD1CD43C8600ECF64F /* CardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDeck.m; sourceTree = "<group>"; };
 		A0E583BF1CD4F26600ECF64F /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		A0E583C01CD4F26600ECF64F /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		A0E80A141CEE113900627684 /* EmptyFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyFavoritesViewController.h; sourceTree = "<group>"; };
+		A0E80A151CEE113900627684 /* EmptyFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyFavoritesViewController.m; sourceTree = "<group>"; };
 		A0EF5F351CE1414B0015F612 /* TextCardViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCardViewViewController.h; sourceTree = "<group>"; };
 		A0EF5F361CE1414B0015F612 /* TextCardViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCardViewViewController.m; sourceTree = "<group>"; };
 		A61C7B7FDB5F303037B2C2F3 /* Pods-ChimpNoise.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChimpNoise.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChimpNoise/Pods-ChimpNoise.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 			children = (
 				A02232881CEAD066003161AC /* FavoritesViewController.h */,
 				A02232891CEAD066003161AC /* FavoritesViewController.m */,
+				A0E80A141CEE113900627684 /* EmptyFavoritesViewController.h */,
+				A0E80A151CEE113900627684 /* EmptyFavoritesViewController.m */,
 			);
 			name = Favorites;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				BABC493E1BD2F8FD00DC26FC /* main.m in Sources */,
 				A0E583C11CD4F26600ECF64F /* Card.m in Sources */,
 				A0E580221CD26F4800A3C97A /* UrlCardViewController.m in Sources */,
+				A0E80A161CEE113900627684 /* EmptyFavoritesViewController.m in Sources */,
 				A0150D361CD165B4009786D3 /* CardsViewController.m in Sources */,
 				A0EF5F371CE1414B0015F612 /* TextCardViewViewController.m in Sources */,
 			);

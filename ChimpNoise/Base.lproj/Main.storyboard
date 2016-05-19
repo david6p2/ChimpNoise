@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -14,7 +15,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVE-8q-X1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="391"/>
+            <point key="canvasLocation" x="1112" y="391"/>
         </scene>
         <!--Url Card View Controller-->
         <scene sceneID="Uht-WD-YGO">
@@ -100,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82f-jT-JTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641" y="1048"/>
+            <point key="canvasLocation" x="2389" y="1073"/>
         </scene>
         <!--Text Card View View Controller-->
         <scene sceneID="Vgp-3G-wmv">
@@ -144,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBQ-G1-EUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641" y="1694"/>
+            <point key="canvasLocation" x="2389" y="1719"/>
         </scene>
         <!--Empty Card View Controller-->
         <scene sceneID="Zwf-Pm-lvk">
@@ -158,17 +159,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="scanning for Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-HD-x14">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="scanning for Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-HD-x14">
                                 <rect key="frame" x="20" y="129" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.24010416666666667" green="0.24010416666666667" blue="0.24010416666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.12941176469999999" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="SUX-HU-S2l" secondAttribute="bottom" constant="109" id="APX-Gr-8Ba"/>
                             <constraint firstItem="x5V-HD-x14" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leading" constant="20" id="V1o-8p-ekl"/>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="FOe-fk-7PS" secondAttribute="topMargin" constant="129" id="nxy-uW-Soo"/>
                             <constraint firstAttribute="trailing" secondItem="x5V-HD-x14" secondAttribute="trailing" constant="20" id="vOR-5Z-xdl"/>
                         </constraints>
                     </view>
@@ -176,7 +177,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvF-vH-zyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641" y="-247"/>
+            <point key="canvasLocation" x="1589" y="391"/>
+        </scene>
+        <!--Empty Favorites View Controller-->
+        <scene sceneID="HWW-Jk-ywO">
+            <objects>
+                <viewController storyboardIdentifier="emptyFavoritesViewController" id="OYF-Fp-yO8" customClass="EmptyFavoritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LMc-lW-bjM"/>
+                        <viewControllerLayoutGuide type="bottom" id="NYm-fX-rK8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2O1-X6-lWj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Loved Cards yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npV-IX-1Re">
+                                <rect key="frame" x="20" y="129" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Go to Sonar Tab and 'long press' a card " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOQ-h0-9uu">
+                                <rect key="frame" x="20" y="148" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.12941176470588234" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="npV-IX-1Re" firstAttribute="leading" secondItem="2O1-X6-lWj" secondAttribute="leading" constant="20" id="9mj-hJ-2mk"/>
+                            <constraint firstItem="AOQ-h0-9uu" firstAttribute="top" secondItem="LMc-lW-bjM" secondAttribute="bottom" constant="128" id="Fjf-KR-i55"/>
+                            <constraint firstItem="AOQ-h0-9uu" firstAttribute="leading" secondItem="2O1-X6-lWj" secondAttribute="leadingMargin" id="Nr0-yj-pCa"/>
+                            <constraint firstItem="npV-IX-1Re" firstAttribute="top" secondItem="LMc-lW-bjM" secondAttribute="bottom" constant="109" id="Qhc-Ym-dwi"/>
+                            <constraint firstAttribute="trailing" secondItem="npV-IX-1Re" secondAttribute="trailing" constant="20" id="Sva-DN-KM3"/>
+                            <constraint firstItem="AOQ-h0-9uu" firstAttribute="trailing" secondItem="2O1-X6-lWj" secondAttribute="trailingMargin" id="TvN-J5-drv"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aHf-Nr-Ecw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589" y="1068"/>
         </scene>
         <!--Image Card View Controller-->
         <scene sceneID="AfN-sE-ZoO">
@@ -219,7 +261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ve-yM-urT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641" y="391"/>
+            <point key="canvasLocation" x="2389" y="416"/>
         </scene>
         <!--Sonar-->
         <scene sceneID="Asa-o0-rGb">
@@ -252,20 +294,7 @@
                     <view key="view" contentMode="scaleToFill" id="0CD-H3-tmN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calmao Tigre! coming soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qv-UL-fJT">
-                                <rect key="frame" x="20" y="128" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="1Qv-UL-fJT" secondAttribute="trailing" constant="20" id="3JV-Az-sLD"/>
-                            <constraint firstItem="1Qv-UL-fJT" firstAttribute="top" secondItem="E2u-yM-Hby" secondAttribute="bottom" constant="108" id="9Li-MC-DjA"/>
-                            <constraint firstItem="1Qv-UL-fJT" firstAttribute="leading" secondItem="0CD-H3-tmN" secondAttribute="leading" constant="20" id="M9T-t5-Ho2"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Love" image="heart" id="Cxp-xq-rvT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -286,7 +315,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tranquilo Tigre, coming soon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSc-vG-oDI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSc-vG-oDI">
                                 <rect key="frame" x="20" y="128" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

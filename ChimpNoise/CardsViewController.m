@@ -46,6 +46,7 @@
                                                   target: self
                                                 selector:@selector(refreshPageView)
                                                 userInfo: nil repeats:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"favoritesNotification" object:nil];
     
     //Init BeaconListener
     self.beaconListener = [BeaconListener sharedInstance];
