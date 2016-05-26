@@ -49,6 +49,12 @@ static CardDeck *sharedInstance = nil;
     return self.cards;
 }
 
+-(void) hideAll{
+    for (Card *card in self.cards) {
+        [card hide];
+    }
+}
+
 //private
 -(void) fetchBeaconsInRange{
     NSArray *beacons = [self.beaconListener beaconsInRange];

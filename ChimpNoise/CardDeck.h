@@ -20,5 +20,5 @@
 
 + (CardDeck *) sharedInstance;
 - (NSArray *) cardsInRange;
-    
+-(void) hideAll;
 @end
