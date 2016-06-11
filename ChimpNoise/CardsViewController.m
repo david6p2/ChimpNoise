@@ -17,6 +17,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self emptyPageView];
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)viewDidLoad {
@@ -113,6 +115,9 @@
 #pragma mark - Notifications
 -(void) enterRegion{
     //TODO
+
+    NSInteger badgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = badgeNumber;
 }
 
 -(void) exitRegion:(NSNotification *)notification{

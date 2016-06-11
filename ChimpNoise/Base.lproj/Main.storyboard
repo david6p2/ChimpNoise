@@ -160,7 +160,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="scanning for Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-HD-x14">
-                                <rect key="frame" x="20" y="129" width="280" height="21"/>
+                                <rect key="frame" x="20" y="115" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -169,7 +169,7 @@
                         <color key="backgroundColor" red="0.0" green="0.12941176469999999" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="x5V-HD-x14" firstAttribute="leading" secondItem="FOe-fk-7PS" secondAttribute="leading" constant="20" id="V1o-8p-ekl"/>
-                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="FOe-fk-7PS" secondAttribute="topMargin" constant="129" id="nxy-uW-Soo"/>
+                            <constraint firstItem="x5V-HD-x14" firstAttribute="top" secondItem="FOe-fk-7PS" secondAttribute="topMargin" constant="115" id="nxy-uW-Soo"/>
                             <constraint firstAttribute="trailing" secondItem="x5V-HD-x14" secondAttribute="trailing" constant="20" id="vOR-5Z-xdl"/>
                         </constraints>
                     </view>
@@ -192,13 +192,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Loved Cards yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npV-IX-1Re">
-                                <rect key="frame" x="20" y="129" width="280" height="21"/>
+                                <rect key="frame" x="20" y="115" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Go to Sonar Tab and 'long press' a card " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOQ-h0-9uu">
-                                <rect key="frame" x="20" y="148" width="280" height="21"/>
+                                <rect key="frame" x="20" y="132" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -207,9 +207,9 @@
                         <color key="backgroundColor" red="0.0" green="0.12941176470588234" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="npV-IX-1Re" firstAttribute="leading" secondItem="2O1-X6-lWj" secondAttribute="leading" constant="20" id="9mj-hJ-2mk"/>
-                            <constraint firstItem="AOQ-h0-9uu" firstAttribute="top" secondItem="LMc-lW-bjM" secondAttribute="bottom" constant="128" id="Fjf-KR-i55"/>
+                            <constraint firstItem="AOQ-h0-9uu" firstAttribute="top" secondItem="LMc-lW-bjM" secondAttribute="bottom" constant="110" id="Fjf-KR-i55"/>
                             <constraint firstItem="AOQ-h0-9uu" firstAttribute="leading" secondItem="2O1-X6-lWj" secondAttribute="leadingMargin" id="Nr0-yj-pCa"/>
-                            <constraint firstItem="npV-IX-1Re" firstAttribute="top" secondItem="LMc-lW-bjM" secondAttribute="bottom" constant="109" id="Qhc-Ym-dwi"/>
+                            <constraint firstItem="npV-IX-1Re" firstAttribute="top" secondItem="LMc-lW-bjM" secondAttribute="bottom" constant="95" id="Qhc-Ym-dwi"/>
                             <constraint firstAttribute="trailing" secondItem="npV-IX-1Re" secondAttribute="trailing" constant="20" id="Sva-DN-KM3"/>
                             <constraint firstItem="AOQ-h0-9uu" firstAttribute="trailing" secondItem="2O1-X6-lWj" secondAttribute="trailingMargin" id="TvN-J5-drv"/>
                         </constraints>
@@ -283,7 +283,7 @@
             </objects>
             <point key="canvasLocation" x="644" y="391"/>
         </scene>
-        <!--Love-->
+        <!--My Decks-->
         <scene sceneID="eUQ-yU-ShA">
             <objects>
                 <viewController id="RFB-Do-uIe" customClass="FavoritesViewController" sceneMemberID="viewController">
@@ -296,7 +296,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Love" image="heart" id="Cxp-xq-rvT"/>
+                    <tabBarItem key="tabBarItem" title="My Decks" image="heart" id="Cxp-xq-rvT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVb-Re-sjs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -358,9 +358,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Sonar" width="24" height="24"/>
-        <image name="heart" width="25" height="21"/>
-        <image name="me" width="29" height="24"/>
+        <image name="Sonar" width="30" height="30"/>
+        <image name="heart" width="30" height="30"/>
+        <image name="me" width="30" height="30"/>
         <image name="placeholder.png" width="428" height="600"/>
     </resources>
 </document>

@@ -29,6 +29,11 @@
     pageControl.backgroundColor = [UIColor whiteColor];
     
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0 green:0.004 blue:0.263 alpha:1]];
+    
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
+                                                                                         |UIRemoteNotificationTypeSound
+                                                                                         |UIRemoteNotificationTypeAlert) categories:nil];
+    [application registerUserNotificationSettings:settings];
     return YES;
 }
 
