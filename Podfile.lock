@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Crashlytics (3.7.0):
+  - Crashlytics (3.7.1):
     - Fabric (~> 1.6.3)
   - EstimoteSDK (4.1.0)
   - Fabric (1.6.7)
@@ -41,13 +41,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
   EstimoteSDK: d4ae7f9b7fafd26101d002fec786b6f674537357
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   RMMapper: 21122d753c736d975f6c61e674afce8db73579af
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   ZLSwipeableView: df385760ff4838935cdbcb62878ac5acd7355949
 
-PODFILE CHECKSUM: 79caac11afb295113f0d7c68e138c656987fc02f
-
-COCOAPODS: 1.0.0.rc.2
+COCOAPODS: 0.39.0
