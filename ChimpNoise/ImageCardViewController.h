@@ -12,7 +12,9 @@
 #import "Card.h"
 
 @interface ImageCardViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *favoriteHeartImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;

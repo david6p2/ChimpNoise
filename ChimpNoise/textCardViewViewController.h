@@ -11,7 +11,9 @@
 #import "FavoritesDeck.h"
 
 @interface TextCardViewViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *favoriteHeartImageView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;

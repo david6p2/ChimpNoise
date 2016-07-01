@@ -38,6 +38,15 @@
     longPress.minimumPressDuration = 0.5f;
     longPress.allowableMovement = 100.0f;
     [self.view addGestureRecognizer:longPress];
+    
+    //Init Favorite Heart Image View
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
+    singleTap.numberOfTapsRequired = 1;
+    [self.favoriteHeartImageView setUserInteractionEnabled:YES];
+    [self.favoriteHeartImageView addGestureRecognizer:singleTap];
+    if ([self.favoritesDeck contains:self.card]) {
+        self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_remove.png"];
+    }
 
 }
 
@@ -53,22 +62,38 @@
 #pragma mark - Long Press Gesture
 -(void)longPressDetected:(UILongPressGestureRecognizer *)longPress
 {
+    [self showOptionsMenu];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+-(void)tapDetected{
+    [self showOptionsMenu];
+}
+
+-(void) showOptionsMenu{
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:self.card.businessName
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
+    
     if ([self.favoritesDeck contains:self.card]) {
-        UIAlertAction* removeFromFavorites = [UIAlertAction actionWithTitle:@"Remove from favorites"
+        UIAlertAction* removeFromFavorites = [UIAlertAction actionWithTitle:@"Remove from My Decks"
                                                                       style:UIAlertActionStyleDestructive
                                                                     handler:^(UIAlertAction * action) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"removeCardToFavorites" object:self.card];
+                                                                        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeCardToFavorites" object:self.card];
+                                                                        self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_add.png"];
                                                                     }];
         [alert addAction:removeFromFavorites];
     }
-    else {
-        UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to favorites"
+    else{
+        UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to My Decks"
                                                                  style:UIAlertActionStyleDefault
                                                                handler:^(UIAlertAction * action){
                                                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"addCardToFavorites" object:self.card];
+                                                                   self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_remove.png"];
                                                                }];
         [alert addAction:addToFavorites];
     }
@@ -77,12 +102,10 @@
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                             style:UIAlertActionStyleCancel
                                                           handler:^(UIAlertAction * action) {}];
+    
+    
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
+    
 }
 @end

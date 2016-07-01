@@ -12,6 +12,7 @@
 
 @interface UrlCardViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *urlView;
+@property (weak, nonatomic) IBOutlet UIImageView *favoriteHeartImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *urlTitle;
