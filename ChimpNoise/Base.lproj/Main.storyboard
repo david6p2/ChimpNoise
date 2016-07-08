@@ -246,7 +246,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TC5-nG-6QP" userLabel="containerView">
                                 <rect key="frame" x="20" y="20" width="280" height="528"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="rF1-fZ-UeL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="rF1-fZ-UeL">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="554"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite_heart_add.png" translatesAutoresizingMaskIntoConstraints="NO" id="zgN-wK-XRb">
