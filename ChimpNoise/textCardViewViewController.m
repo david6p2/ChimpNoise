@@ -21,7 +21,7 @@
     self.favoritesDeck = [FavoritesDeck sharedInstance];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    self.titleLabel.text = self.card.businessName;
+    self.titleLabel.text = self.card.beaconName;
     
     NSMutableString *html = [NSMutableString stringWithString: @"<html><head><title></title></head><body style=\"background:transparent;\">"];
     

@@ -25,7 +25,7 @@
     NSLog(@"width: %f - Height: %f", self.containerView.frame.size.width, self.containerView.frame.size.height);
     [self.containerView setClipsToBounds:YES];
     
-    self.titleLabel.text = self.card.businessName;
+    self.titleLabel.text = self.card.beaconName;
     
     //init Border
     self.containerView.layer.cornerRadius = 15.0;

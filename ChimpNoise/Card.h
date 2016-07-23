@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *businessName;
+@property (nonatomic, strong) NSString *beaconName;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSString *urlTitle;
 @property (nonatomic, strong) NSString *urlDescription;

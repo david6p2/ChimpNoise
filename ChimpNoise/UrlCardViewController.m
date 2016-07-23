@@ -22,7 +22,7 @@
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.urlImage]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self.imageView setClipsToBounds:YES];
-    self.titleLabel.text = self.card.businessName;
+    self.titleLabel.text = self.card.beaconName;
     self.urlTitle.text = self.card.urlTitle;
     self.urlDescription.text = self.card.urlDescription;
     [self.urlDescription setNumberOfLines:0];

@@ -29,6 +29,7 @@
     self.cardId           = responseObject[@"_id"];
     self.businessName     = businessName;
     self.title            = businessName;
+    self.beaconName       = responseObject[@"name"];
     self.key              = responseObject[@"beacon_code"];
     self.prompt           = responseObject[@"subject"];
     self.type             = responseObject[@"type"];

@@ -27,7 +27,7 @@
     //Init CardViewController
     self.pageViewController = nil;
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"pageViewController"];
-    self.pageViewController.view.backgroundColor = [UIColor colorWithRed:0 green:0.129 blue:0.278 alpha:1];
+    self.pageViewController.view.backgroundColor = [UIColor whiteColor];
     CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 49);
     self.pageViewController.view.frame = frame;
     self.pageViewController.dataSource = self;
@@ -77,10 +77,8 @@
 
 #pragma mark - Page Refresh
 -(void) refreshPageView{
-    NSLog(@"cardDeck.cardsInRange.count: %li", [[self.cardDeck cardsInRange] count]);
     if ([[self.pageViewController viewControllers] count] != 0) {
         self.index = ((CardPageViewController *)[self.pageViewController viewControllers][0]).index;
-        NSLog(@"cardOnTopIndex: %li", self.index);
     }
     
     if ([[self.cardDeck cardsInRange] count] == 0) {
@@ -115,7 +113,6 @@
 #pragma mark - Notifications
 -(void) enterRegion{
     //TODO
-
     NSInteger badgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
     [UIApplication sharedApplication].applicationIconBadgeNumber = badgeNumber;
 }

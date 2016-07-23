@@ -26,6 +26,79 @@ static CardDeck *sharedInstance = nil;
     if (self = [super init]) {
         self.beaconListener = [BeaconListener sharedInstance];
         self.cards = [[NSMutableArray alloc] init];
+        
+        //FOR TEST PURPOSE, REMOVE AFTER TEST
+        //FOR TEST PURPOSE, REMOVE AFTER TEST
+        //FOR TEST PURPOSE, REMOVE AFTER TEST
+        NSDictionary *object = @{@"_id":@"57265275291c43ee471d074a",
+                                 @"subject":@"Otra prueba",
+                                 @"purpose":@"promo",
+                                 @"activity_time_type":@"minute",
+                                 @"activity_time_qty": @5,
+                                 @"activity_time_date":@"2016-05-01T23:59:27.789Z",
+                                 @"type":@"image",
+                                 @"active": @YES,
+                                 @"user_id":@"5655efe2b8cd3ec22e9dcd52",
+                                 @"name":@"Azul Claro 2",
+                                 @"beacon_code":@"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D:123:341",
+                                 @"message":@"Change this text",
+                                 @"date_create":@"2016-05-01T19:01:09.074Z",
+                                 @"image":@"https://chimpnoise.s3.amazonaws.com/img/2ad5dd24d01e56b7bc2fb53d55423915.png",
+                                 @"imageType":@"upload",
+                                 @"imageUpload":@"https://chimpnoise.s3.amazonaws.com/img/2ad5dd24d01e56b7bc2fb53d55423915.png"};
+        
+        Card *newCard = [[Card alloc] initWithBusinessName: @"Virtual Card"
+                                                    beacon: nil
+                                            serverResponse: object];
+        [self.cards addObject:newCard];
+        NSDictionary *object2 = @{@"_id":@"57265275291c43ee471d074a",
+                                 @"subject":@"Otra prueba",
+                                 @"purpose":@"promo",
+                                 @"activity_time_type":@"minute",
+                                 @"activity_time_qty": @5,
+                                 @"activity_time_date":@"2016-05-01T23:59:27.789Z",
+                                 @"type":@"text",
+                                 @"active": @YES,
+                                 @"user_id":@"5655efe2b8cd3ec22e9dcd52",
+                                 @"name":@"Azul Claro 2",
+                                 @"beacon_code":@"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D:123:341",
+                                 @"message":@"Change this text",
+                                 @"date_create":@"2016-05-01T19:01:09.074Z",
+                                 @"image":@"https://chimpnoise.s3.amazonaws.com/img/2ad5dd24d01e56b7bc2fb53d55423915.png",
+                                 @"imageType":@"upload",
+                                 @"imageUpload":@"https://chimpnoise.s3.amazonaws.com/img/2ad5dd24d01e56b7bc2fb53d55423915.png"};
+        
+        Card *newCard2 = [[Card alloc] initWithBusinessName: @"Virtual Card"
+                                                    beacon: nil
+                                            serverResponse: object2];
+        [self.cards addObject:newCard2];
+
+        NSDictionary *object3 = @{@"_id":@"57265275291c43ee471d074a",
+                                 @"subject":@"Otra prueba",
+                                 @"purpose":@"promo",
+                                 @"activity_time_type":@"minute",
+                                 @"activity_time_qty": @5,
+                                 @"activity_time_date":@"2016-05-01T23:59:27.789Z",
+                                 @"type":@"url",
+                                 @"active": @YES,
+                                 @"user_id":@"5655efe2b8cd3ec22e9dcd52",
+                                 @"name":@"Azul Claro 2",
+                                 @"beacon_code":@"0D24BE5C-FE93-707E-041E-CEFBCACA4D2D:123:341",
+                                 @"message":@"Change this text",
+                                 @"date_create":@"2016-05-01T19:01:09.074Z",
+                                 @"image":@"https://chimpnoise.s3.amazonaws.com/img/2ad5dd24d01e56b7bc2fb53d55423915.png",
+                                 @"imageType":@"upload",
+                                 @"imageUpload":@"https://chimpnoise.s3.amazonaws.com/img/2ad5dd24d01e56b7bc2fb53d55423915.png"};
+        
+        Card *newCard3 = [[Card alloc] initWithBusinessName: @"Virtual Card"
+                                                    beacon: nil
+                                            serverResponse: object3];
+        [self.cards addObject:newCard3];
+
+        //FOR TEST PURPOSE, REMOVE AFTER TEST
+        //FOR TEST PURPOSE, REMOVE AFTER TEST
+        //FOR TEST PURPOSE, REMOVE AFTER TEST
+        
         self.beaconsFetchedFromServer = [[NSMutableArray alloc] init];
         self.index = 0;
         NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 2

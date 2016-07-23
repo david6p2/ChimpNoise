@@ -28,12 +28,13 @@
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
     
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0 green:0.004 blue:0.263 alpha:1]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.03 green:0.71 blue:0.89 alpha:1.0]];
     
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
                                                                                          |UIRemoteNotificationTypeSound
                                                                                          |UIRemoteNotificationTypeAlert) categories:nil];
     [application registerUserNotificationSettings:settings];
+    [application setStatusBarHidden:YES];
     return YES;
 }
 
