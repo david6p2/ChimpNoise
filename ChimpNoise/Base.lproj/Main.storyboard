@@ -276,15 +276,24 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TC5-nG-6QP" userLabel="containerView">
                                 <rect key="frame" x="20" y="60" width="280" height="488"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WW-0g-Cs8">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="488"/>
+                                        <color key="backgroundColor" red="1" green="0.44229508870000001" blue="0.60190332069999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="rF1-fZ-UeL">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="488"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="rF1-fZ-UeL" firstAttribute="leading" secondItem="TC5-nG-6QP" secondAttribute="leading" id="115-Re-gNp"/>
                                     <constraint firstItem="rF1-fZ-UeL" firstAttribute="top" secondItem="TC5-nG-6QP" secondAttribute="top" id="5H1-fC-KNa"/>
+                                    <constraint firstAttribute="trailing" secondItem="3WW-0g-Cs8" secondAttribute="trailing" id="EWX-LD-bqX"/>
+                                    <constraint firstAttribute="bottom" secondItem="3WW-0g-Cs8" secondAttribute="bottom" id="GyN-MH-8v5"/>
                                     <constraint firstAttribute="trailing" secondItem="rF1-fZ-UeL" secondAttribute="trailing" id="Ijs-MF-rUz"/>
+                                    <constraint firstItem="3WW-0g-Cs8" firstAttribute="leading" secondItem="TC5-nG-6QP" secondAttribute="leading" id="shL-wl-L6O"/>
+                                    <constraint firstItem="3WW-0g-Cs8" firstAttribute="top" secondItem="TC5-nG-6QP" secondAttribute="top" id="wx3-Kr-w2b"/>
                                     <constraint firstAttribute="bottom" secondItem="rF1-fZ-UeL" secondAttribute="bottom" id="yfp-U9-5Oh"/>
                                 </constraints>
                             </view>
@@ -326,6 +335,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="backView" destination="3WW-0g-Cs8" id="2Rc-fw-mRf"/>
                         <outlet property="containerView" destination="TC5-nG-6QP" id="fIX-Rk-5d5"/>
                         <outlet property="favoriteHeartImageView" destination="zgN-wK-XRb" id="wvI-Z3-CH4"/>
                         <outlet property="imageView" destination="rF1-fZ-UeL" id="rO2-tb-F2l"/>

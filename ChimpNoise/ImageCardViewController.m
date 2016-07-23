@@ -9,6 +9,8 @@
 #import "ImageCardViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+bool a = NO;
+
 @implementation ImageCardViewController
 
 - (void)viewDidLoad {
@@ -17,7 +19,6 @@
     //init Favorite Deck
     self.favoritesDeck = [FavoritesDeck sharedInstance];
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.imageURL]
                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self.view setClipsToBounds:YES];
@@ -46,6 +47,15 @@
     [self.favoriteHeartImageView addGestureRecognizer:singleTap];
     if ([self.favoritesDeck contains:self.card]) {
         self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_remove.png"];
+    }
+    
+    if (self.card.showBackCard) {
+        [self.imageView setHidden:YES];
+        [self.backView setHidden:NO];
+    }
+    else{
+        [self.imageView setHidden:NO];
+        [self.backView setHidden:YES];
     }
 }
 
@@ -93,15 +103,40 @@
         [alert addAction:addToFavorites];
     }
     
+    UIAlertAction* flipAction = [UIAlertAction actionWithTitle:@"Flip Card"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self flip:self];
+                                                          }];
     
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * action) {}];
     
-    
-    [alert addAction:defaultAction];
+    [alert addAction:flipAction];
     [self presentViewController:alert animated:YES completion:nil];
 
+}
+
+#pragma mark - Flip
+- (IBAction)flip:(id)sender
+{
+    NSLog(@"flip!");
+    if (self.card.showBackCard == NO) {
+        [UIView transitionFromView:self.imageView toView:self.backView
+                          duration:1
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        completion:NULL];
+        [self.backView setHidden:NO];
+        [self.imageView setHidden:YES];
+        self.card.showBackCard = YES;
+    }
+    else {
+        [UIView transitionFromView:self.backView toView:self.imageView
+                          duration:1
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        completion:NULL];
+        [self.imageView setHidden:NO];
+        [self.backView setHidden:YES];
+        self.card.showBackCard = NO;
+    }
 }
 
 @end

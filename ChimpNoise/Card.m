@@ -12,6 +12,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.onScreen = NO;
+        self.showBackCard = NO;
         self.isFavorite = NO;
     }
     return self;

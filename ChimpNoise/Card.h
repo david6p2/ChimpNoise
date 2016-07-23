@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString *urlImage;
 @property (nonatomic, strong) NSDictionary *dictionaryObject;
 @property BOOL onScreen;
+@property BOOL showBackCard;
 @property BOOL isFavorite;
 
 -(instancetype) initWithBusinessName:(NSString *)businessName
