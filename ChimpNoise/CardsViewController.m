@@ -44,7 +44,7 @@
                                              selector:@selector(exitRegion:)
                                                  name:@"exitRegion"
                                                object:nil];
-    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 20
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 15
                                                   target: self
                                                 selector:@selector(refreshPageView)
                                                 userInfo: nil repeats:YES];

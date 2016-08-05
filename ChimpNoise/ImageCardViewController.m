@@ -19,15 +19,25 @@ bool a = NO;
     //init Favorite Deck
     self.favoritesDeck = [FavoritesDeck sharedInstance];
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.imageURL]
-                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    //Init Image card
+    self.titleLabel.text = self.card.beaconName;
+
     [self.view setClipsToBounds:YES];
-    [self.imageView setFrame:self.containerView.frame];
-    NSLog(@"width: %f - Height: %f", self.containerView.frame.size.width, self.containerView.frame.size.height);
     [self.containerView setClipsToBounds:YES];
     
-    self.titleLabel.text = self.card.beaconName;
-    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.card.imageURL]
+                      placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    [self.imageView setFrame:self.containerView.frame];
+
+    if (self.card.showBackCard) {
+        [self.frontView setHidden:YES];
+        [self.backView setHidden:NO];
+    }
+    else{
+        [self.frontView setHidden:NO];
+        [self.backView setHidden:YES];
+    }
+
     //init Border
     self.containerView.layer.cornerRadius = 15.0;
     self.containerView.layer.borderWidth = 0.5;
@@ -49,14 +59,13 @@ bool a = NO;
         self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_remove.png"];
     }
     
-    if (self.card.showBackCard) {
-        [self.imageView setHidden:YES];
-        [self.backView setHidden:NO];
-    }
-    else{
-        [self.imageView setHidden:NO];
-        [self.backView setHidden:YES];
-    }
+    //Init Page Curl TempUIview
+    self.tempUIView= [[UIView alloc]initWithFrame:self.containerView.bounds];
+    self.tempUIView.backgroundColor=[UIColor whiteColor];
+    NSTimer *t = [NSTimer scheduledTimerWithTimeInterval: 4
+                                                  target: self
+                                                selector:@selector(pageCurl)
+                                                userInfo: nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,41 +111,75 @@ bool a = NO;
                                                                }];
         [alert addAction:addToFavorites];
     }
-    
-    UIAlertAction* flipAction = [UIAlertAction actionWithTitle:@"Flip Card"
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              [self flip:self];
-                                                          }];
-    
-    
-    [alert addAction:flipAction];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {}];        
+    [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
 
 }
 
+
 #pragma mark - Flip
-- (IBAction)flip:(id)sender
-{
+- (IBAction)flipCard:(id)sender {
     NSLog(@"flip!");
     if (self.card.showBackCard == NO) {
-        [UIView transitionFromView:self.imageView toView:self.backView
-                          duration:1
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
-                        completion:NULL];
-        [self.backView setHidden:NO];
-        [self.imageView setHidden:YES];
+        //Show Back View
         self.card.showBackCard = YES;
+        [self.frontView setHidden:YES];
+        [self.backView setHidden:NO];
+        [UIView transitionFromView:self.frontView toView:self.backView
+                          duration:1
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:^(BOOL f){
+                            [self viewDidLoad];
+                        }];
     }
     else {
-        [UIView transitionFromView:self.backView toView:self.imageView
-                          duration:1
-                           options:UIViewAnimationOptionTransitionFlipFromLeft
-                        completion:NULL];
-        [self.imageView setHidden:NO];
-        [self.backView setHidden:YES];
+        //Show Front View
         self.card.showBackCard = NO;
+        [self.frontView setHidden:NO];
+        [self.backView setHidden:YES];
+        [UIView transitionFromView:self.backView toView:self.frontView
+                          duration:1
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:^(BOOL f){
+                            [self viewDidLoad];
+                        }];
     }
+}
+
+#pragma mark - page curl
+-(void) pageCurl{
+    [UIView animateWithDuration:2.0
+                     animations:^{
+                         //http://www.iostute.com/2015/04/how-to-implement-partial-and-full-page.html
+                         //Page Curl Animation
+                         CATransition *animationPageCurl = [CATransition animation];
+                         [animationPageCurl setDuration:2];
+                         [animationPageCurl setTimingFunction:[CAMediaTimingFunction functionWithName:@"default"]];
+                         animationPageCurl.fillMode = kCAFillModeForwards;
+                         [animationPageCurl setRemovedOnCompletion:NO];
+                         animationPageCurl.endProgress = 0.2;
+                         animationPageCurl.type = @"pageCurl";
+                         [[self.containerView layer] addAnimation:animationPageCurl
+                                                            forKey:@"pageFlipAnimation"];
+//                         [self.containerView addSubview:self.tempUIView];
+                         //Page uncurl Animation
+                         CATransition  * animationPageUnCurl = [CATransition animation];
+                         [animationPageUnCurl setTimingFunction:UIViewAnimationCurveEaseInOut];
+                         animationPageUnCurl.startProgress = 0.2;
+                         animationPageUnCurl.endProgress   = 0;
+                         [animationPageUnCurl setDuration:2];
+                         [animationPageUnCurl setTimingFunction:[CAMediaTimingFunction functionWithName:@"default"]];
+                         animationPageUnCurl.fillMode = kCAFillModeForwards;
+                         [animationPageUnCurl setRemovedOnCompletion:NO];
+                         animationPageUnCurl.type = @"pageCurl";
+                         [[self.containerView layer] addAnimation:animationPageUnCurl
+                                                            forKey:@"pageUnCurlAnimation"];
+//                         [self.tempUIView removeFromSuperview];
+                     }
+     ];
 }
 
 @end

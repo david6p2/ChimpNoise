@@ -13,8 +13,18 @@
 		A022328A1CEAD066003161AC /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02232891CEAD066003161AC /* FavoritesViewController.m */; };
 		A05A22401CEE5BEC0082F20D /* FavoritesDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = A05A223F1CEE5BEC0082F20D /* FavoritesDeck.m */; };
 		A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */; };
+		A09E7A881D53E2DF00C79334 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E7A871D53E2DF00C79334 /* SignUpViewController.m */; };
+		A09E7A8B1D53EF4100C79334 /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E7A8A1D53EF4100C79334 /* Authentication.m */; };
+		A09E7A8E1D543E4600C79334 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E7A8D1D543E4600C79334 /* TabBarViewController.m */; };
+		A0AB41311D4EBFDF00BCD995 /* chimp_large.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AB41301D4EBFDF00BCD995 /* chimp_large.png */; };
+		A0AB41331D4EC06900BCD995 /* btn_SignUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AB41321D4EC06900BCD995 /* btn_SignUp@2x.png */; };
+		A0AB41351D4EC06F00BCD995 /* btn_logIn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AB41341D4EC06F00BCD995 /* btn_logIn@2x.png */; };
+		A0AB41371D4ED60B00BCD995 /* icon_mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AB41361D4ED60B00BCD995 /* icon_mail@2x.png */; };
+		A0AB41391D4ED61A00BCD995 /* icon_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AB41381D4ED61A00BCD995 /* icon_user@2x.png */; };
+		A0AB413B1D4ED66D00BCD995 /* icon_pwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AB413A1D4ED66D00BCD995 /* icon_pwd@2x.png */; };
 		A0E066DF1D0C5C5900F8321F /* favorite_heart_add.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E066DD1D0C5C5900F8321F /* favorite_heart_add.png */; };
 		A0E066E01D0C5C5900F8321F /* favorite_heart_remove.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E066DE1D0C5C5900F8321F /* favorite_heart_remove.png */; };
+		A0E520981D4EB72600E5FDC9 /* buttonSignUp.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E520971D4EB72600E5FDC9 /* buttonSignUp.png */; };
 		A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */; };
 		A0E580221CD26F4800A3C97A /* UrlCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580211CD26F4800A3C97A /* UrlCardViewController.m */; };
 		A0E580251CD3FF5C00A3C97A /* BeaconListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E580241CD3FF5C00A3C97A /* BeaconListener.m */; };
@@ -48,8 +58,21 @@
 		A05A223F1CEE5BEC0082F20D /* FavoritesDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesDeck.m; sourceTree = "<group>"; };
 		A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyCardViewController.h; sourceTree = "<group>"; };
 		A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyCardViewController.m; sourceTree = "<group>"; };
+		A09E7A861D53E2DF00C79334 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		A09E7A871D53E2DF00C79334 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		A09E7A891D53EF4100C79334 /* Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authentication.h; sourceTree = "<group>"; };
+		A09E7A8A1D53EF4100C79334 /* Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authentication.m; sourceTree = "<group>"; };
+		A09E7A8C1D543E4600C79334 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		A09E7A8D1D543E4600C79334 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		A0AB41301D4EBFDF00BCD995 /* chimp_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chimp_large.png; path = ../../../../Downloads/chimp_large.png; sourceTree = "<group>"; };
+		A0AB41321D4EC06900BCD995 /* btn_SignUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_SignUp@2x.png"; path = "../../../../Downloads/btn_SignUp@2x.png"; sourceTree = "<group>"; };
+		A0AB41341D4EC06F00BCD995 /* btn_logIn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_logIn@2x.png"; path = "../../../../Downloads/btn_logIn@2x.png"; sourceTree = "<group>"; };
+		A0AB41361D4ED60B00BCD995 /* icon_mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_mail@2x.png"; path = "../../../../Downloads/icon_mail@2x.png"; sourceTree = "<group>"; };
+		A0AB41381D4ED61A00BCD995 /* icon_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_user@2x.png"; path = "../../../../Downloads/icon_user@2x.png"; sourceTree = "<group>"; };
+		A0AB413A1D4ED66D00BCD995 /* icon_pwd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_pwd@2x.png"; path = "../../../../Downloads/icon_pwd@2x.png"; sourceTree = "<group>"; };
 		A0E066DD1D0C5C5900F8321F /* favorite_heart_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_heart_add.png; sourceTree = "<group>"; };
 		A0E066DE1D0C5C5900F8321F /* favorite_heart_remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_heart_remove.png; sourceTree = "<group>"; };
+		A0E520971D4EB72600E5FDC9 /* buttonSignUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonSignUp.png; sourceTree = "<group>"; };
 		A0E5801D1CD252D200A3C97A /* ImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCardViewController.h; sourceTree = "<group>"; };
 		A0E5801E1CD252D200A3C97A /* ImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCardViewController.m; sourceTree = "<group>"; };
 		A0E580201CD26F4800A3C97A /* UrlCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCardViewController.h; sourceTree = "<group>"; };
@@ -151,9 +174,27 @@
 			name = Favorites;
 			sourceTree = "<group>";
 		};
+		A09E7A851D53E29C00C79334 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				A09E7A861D53E2DF00C79334 /* SignUpViewController.h */,
+				A09E7A871D53E2DF00C79334 /* SignUpViewController.m */,
+				A09E7A891D53EF4100C79334 /* Authentication.h */,
+				A09E7A8A1D53EF4100C79334 /* Authentication.m */,
+			);
+			name = Me;
+			sourceTree = "<group>";
+		};
 		BA0E047F1BF2F17C0087E586 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				A0AB413A1D4ED66D00BCD995 /* icon_pwd@2x.png */,
+				A0AB41381D4ED61A00BCD995 /* icon_user@2x.png */,
+				A0AB41361D4ED60B00BCD995 /* icon_mail@2x.png */,
+				A0AB41341D4EC06F00BCD995 /* btn_logIn@2x.png */,
+				A0AB41321D4EC06900BCD995 /* btn_SignUp@2x.png */,
+				A0AB41301D4EBFDF00BCD995 /* chimp_large.png */,
+				A0E520971D4EB72600E5FDC9 /* buttonSignUp.png */,
 				A0E066DD1D0C5C5900F8321F /* favorite_heart_add.png */,
 				A0E066DE1D0C5C5900F8321F /* favorite_heart_remove.png */,
 				BA0E04801BF2F2420087E586 /* Default.png */,
@@ -191,8 +232,11 @@
 				BABC493F1BD2F8FD00DC26FC /* AppDelegate.h */,
 				BABC49401BD2F8FD00DC26FC /* AppDelegate.m */,
 				BABC49481BD2F8FD00DC26FC /* Main.storyboard */,
-				A022328C1CEAD0DE003161AC /* Favorites */,
+				A09E7A8C1D543E4600C79334 /* TabBarViewController.h */,
+				A09E7A8D1D543E4600C79334 /* TabBarViewController.m */,
 				A022328B1CEAD0B2003161AC /* Sonar */,
+				A022328C1CEAD0DE003161AC /* Favorites */,
+				A09E7A851D53E29C00C79334 /* Me */,
 				BA0E047F1BF2F17C0087E586 /* img */,
 				BABC49501BD2F8FD00DC26FC /* Info.plist */,
 				BABC494D1BD2F8FD00DC26FC /* LaunchScreen.storyboard */,
@@ -274,16 +318,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				BABC494F1BD2F8FD00DC26FC /* LaunchScreen.storyboard in Resources */,
+				A0E520981D4EB72600E5FDC9 /* buttonSignUp.png in Resources */,
 				BA86F4CD1C12A88E0058CB9D /* placeholderBlue.png in Resources */,
 				A0E066DF1D0C5C5900F8321F /* favorite_heart_add.png in Resources */,
+				A0AB41391D4ED61A00BCD995 /* icon_user@2x.png in Resources */,
 				BA306DB71C12791E000B2949 /* swipeLeftTutorial.png in Resources */,
+				A0AB41331D4EC06900BCD995 /* btn_SignUp@2x.png in Resources */,
 				BA306DB61C12791E000B2949 /* swipeRightTutorial.png in Resources */,
 				BABC494C1BD2F8FD00DC26FC /* Assets.xcassets in Resources */,
+				A0AB41371D4ED60B00BCD995 /* icon_mail@2x.png in Resources */,
 				BA86F4CB1C12A8870058CB9D /* placeholder.png in Resources */,
+				A0AB413B1D4ED66D00BCD995 /* icon_pwd@2x.png in Resources */,
 				A0E066E01D0C5C5900F8321F /* favorite_heart_remove.png in Resources */,
 				BABC494A1BD2F8FD00DC26FC /* Main.storyboard in Resources */,
+				A0AB41351D4EC06F00BCD995 /* btn_logIn@2x.png in Resources */,
 				BA6FCA4B1C15F88E006FD9FF /* pulseBackground.png in Resources */,
 				BA0E04811BF2F2420087E586 /* Default.png in Resources */,
+				A0AB41311D4EBFDF00BCD995 /* chimp_large.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +423,7 @@
 			files = (
 				A0E5801F1CD252D200A3C97A /* ImageCardViewController.m in Sources */,
 				A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */,
+				A09E7A8E1D543E4600C79334 /* TabBarViewController.m in Sources */,
 				A022328A1CEAD066003161AC /* FavoritesViewController.m in Sources */,
 				A0E583BE1CD43C8600ECF64F /* CardDeck.m in Sources */,
 				A0150D391CD17721009786D3 /* CardPageViewController.m in Sources */,
@@ -381,6 +433,8 @@
 				A0E583C11CD4F26600ECF64F /* Card.m in Sources */,
 				A0E580221CD26F4800A3C97A /* UrlCardViewController.m in Sources */,
 				A05A22401CEE5BEC0082F20D /* FavoritesDeck.m in Sources */,
+				A09E7A8B1D53EF4100C79334 /* Authentication.m in Sources */,
+				A09E7A881D53E2DF00C79334 /* SignUpViewController.m in Sources */,
 				A0E80A161CEE113900627684 /* EmptyFavoritesViewController.m in Sources */,
 				A0150D361CD165B4009786D3 /* CardsViewController.m in Sources */,
 				A0EF5F371CE1414B0015F612 /* TextCardViewViewController.m in Sources */,
