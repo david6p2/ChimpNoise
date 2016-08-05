@@ -12,6 +12,7 @@
 		A0150D391CD17721009786D3 /* CardPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0150D381CD17721009786D3 /* CardPageViewController.m */; };
 		A022328A1CEAD066003161AC /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02232891CEAD066003161AC /* FavoritesViewController.m */; };
 		A05A22401CEE5BEC0082F20D /* FavoritesDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = A05A223F1CEE5BEC0082F20D /* FavoritesDeck.m */; };
+		A0801ED01D54F9D10026B856 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0801ECF1D54F9D10026B856 /* SignInViewController.m */; };
 		A089AB891CDC03EE008B3DB6 /* EmptyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */; };
 		A09E7A881D53E2DF00C79334 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E7A871D53E2DF00C79334 /* SignUpViewController.m */; };
 		A09E7A8B1D53EF4100C79334 /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E7A8A1D53EF4100C79334 /* Authentication.m */; };
@@ -56,6 +57,8 @@
 		A02232891CEAD066003161AC /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		A05A223E1CEE5BEC0082F20D /* FavoritesDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesDeck.h; sourceTree = "<group>"; };
 		A05A223F1CEE5BEC0082F20D /* FavoritesDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesDeck.m; sourceTree = "<group>"; };
+		A0801ECE1D54F9D10026B856 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		A0801ECF1D54F9D10026B856 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		A089AB871CDC03EE008B3DB6 /* EmptyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyCardViewController.h; sourceTree = "<group>"; };
 		A089AB881CDC03EE008B3DB6 /* EmptyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyCardViewController.m; sourceTree = "<group>"; };
 		A09E7A861D53E2DF00C79334 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 			children = (
 				A09E7A861D53E2DF00C79334 /* SignUpViewController.h */,
 				A09E7A871D53E2DF00C79334 /* SignUpViewController.m */,
+				A0801ECE1D54F9D10026B856 /* SignInViewController.h */,
+				A0801ECF1D54F9D10026B856 /* SignInViewController.m */,
 				A09E7A891D53EF4100C79334 /* Authentication.h */,
 				A09E7A8A1D53EF4100C79334 /* Authentication.m */,
 			);
@@ -437,6 +442,7 @@
 				A09E7A881D53E2DF00C79334 /* SignUpViewController.m in Sources */,
 				A0E80A161CEE113900627684 /* EmptyFavoritesViewController.m in Sources */,
 				A0150D361CD165B4009786D3 /* CardsViewController.m in Sources */,
+				A0801ED01D54F9D10026B856 /* SignInViewController.m in Sources */,
 				A0EF5F371CE1414B0015F612 /* TextCardViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,31 +1,26 @@
 //
-//  SignUpViewController.m
+//  SignInViewController.m
 //  ChimpNoise
 //
-//  Created by Andres Yepes on 8/4/16.
+//  Created by Andres Yepes on 8/5/16.
 //  Copyright © 2016 Andres Yepes. All rights reserved.
 //
 
-#import "SignUpViewController.h"
+#import "SignInViewController.h"
 
-@interface SignUpViewController ()
+@interface SignInViewController ()
 
 @end
 
-@implementation SignUpViewController
+@implementation SignInViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.auth = [[Authentication alloc] init];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(signUpStatus:)
-                                                 name:@"signUpStatus"
+                                             selector:@selector(signInStatus:)
+                                                 name:@"signInStatus"
                                                object:nil];
-    
-    NSLog(@"logged in: %s", [self.auth loggedIn] ? "true" : "false");
-    NSLog(@"logged in: %@", [self.auth userAuthToken]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,23 +28,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)signUp:(id)sender {
+- (IBAction)signIn:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *pass = self.passwordTextField.text;
-    NSString *confirmPass = self.confirmPasswordTextField.text;
-    if([self validateFieldsEmail:email password:pass confirm:confirmPass]){
-        [self.auth signUpWithEmail:email password:pass];
+    if([self validateFieldsEmail:email password:pass]){
+        [self.auth signInWithEmail:email password:pass];
     }
 }
 
 //Private
--(BOOL)validateFieldsEmail:(NSString *)email password:(NSString *) pass confirm:(NSString *) confirmPass {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign up"
+-(BOOL)validateFieldsEmail:(NSString *)email password:(NSString *) pass{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign in"
                                                     message:nil
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
-    if([email isEqualToString:@""] || [pass isEqualToString:@""] || [confirmPass isEqualToString:@""]){
+    if([email isEqualToString:@""] || [pass isEqualToString:@""]){
         alert.message = @"please fill in all fields";
         [alert show];
         return NO;
@@ -59,20 +53,17 @@
         [alert show];
         return NO;
     }
-    if (![pass isEqualToString:confirmPass]) {
-        alert.message = @"Please confirm your password";
-        [alert show];
-        return NO;
-    }
     return YES;
 }
 
-//Notifications
--(void) signUpStatus:(NSNotification *)notification{
+//Notification
+-(void) signInStatus:(NSNotification *)notification{
     NSNumber *status = [[notification userInfo] objectForKey:@"status"];
     if([status integerValue] == AUTHENTICATION_FAILED){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign up"
-                                                        message:@"Please enter valid information."
+        self.emailTextField.text = @"";
+        self.passwordTextField.text = @"";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sign in"
+                                                        message:@"Invalid Credentials"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -85,6 +76,5 @@
     }
     
 }
-
 
 @end

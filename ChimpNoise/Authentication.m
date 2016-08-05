@@ -46,6 +46,41 @@
                }
                failure:^(AFHTTPRequestOperation *operation, NSError *error){
                    NSLog(@"error %@", error);
+                   [[NSNotificationCenter defaultCenter] postNotificationName:@"signUpStatus"
+                                                                       object:nil
+                                                                     userInfo:@{@"status" : @AUTHENTICATION_FAILED}];
+               }];
+    return YES;
+}
+
+-(BOOL)signInWithEmail:(NSString *)email password:(NSString *)pass{
+    NSString *url = [[NSString alloc] initWithFormat:@"%@%@", SERVER_URL, SIGN_IN_URI];
+    NSDictionary *params = @{@"user": email,
+                             @"password": pass};
+    [self.manager POST:url
+            parameters:params
+               success:^(AFHTTPRequestOperation *operation, id responseObject){
+                   NSDictionary *response = responseObject;
+                   NSLog(@"%@", response);
+                   if([response[@"error"] integerValue] == 1){
+                       NSLog(@"%@", response[@"formErrors"]);
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"signInStatus"
+                                                                           object:nil
+                                                                         userInfo:@{@"status" : @AUTHENTICATION_FAILED}];
+                   }
+                   if([response[@"error"] integerValue] == 0){
+                       NSString *token = response[@"token"];
+                       [self.defaults setObject:token forKey:USER_AUTH_TOKEN];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"signInStatus"
+                                                                           object:nil
+                                                                         userInfo:@{@"status" : @AUTHENTICATION_SUCCESS}];
+                   }
+               }
+               failure:^(AFHTTPRequestOperation *operation, NSError *error){
+                   NSLog(@"error:%@", error);
+                   [[NSNotificationCenter defaultCenter] postNotificationName:@"signInStatus"
+                                                                       object:nil
+                                                                     userInfo:@{@"status" : @AUTHENTICATION_FAILED}];
                }];
     return YES;
 }
@@ -60,5 +95,14 @@
 
 -(NSString *)userAuthToken{
     return [self.defaults objectForKey:USER_AUTH_TOKEN];
+}
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString{
+    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
 }
 @end

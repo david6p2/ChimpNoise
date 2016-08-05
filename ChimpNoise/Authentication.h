@@ -25,7 +25,7 @@
 
 #define SERVER_URL @"http://www.chimpnoise.com/api/client"
 #define SIGN_UP_URI @""
-#define LOGIN_URI @"/login"
+#define SIGN_IN_URI @"/login"
 #define FAVORITES_URI @"/card/favorite/list"
 #define ADD_FAVORITE_URI @"/card/favorite/"
 #define REMOVE_FAVORITEURI @"/card/favorite/"
@@ -41,6 +41,8 @@
 @property (strong, nonatomic) NSUserDefaults *defaults;
 
 -(BOOL) signUpWithEmail:(NSString *)email password:(NSString *)pass;
+-(BOOL) signInWithEmail:(NSString *)email password:(NSString *)pass;
 -(BOOL) loggedIn;
 -(NSString *)userAuthToken;
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString;
 @end

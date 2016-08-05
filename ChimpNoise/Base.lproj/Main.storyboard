@@ -622,10 +622,10 @@
             </objects>
             <point key="canvasLocation" x="1080" y="3212"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="c7w-aO-aP2">
             <objects>
-                <viewController id="Jzw-0x-5Ca" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signInViewController" id="Jzw-0x-5Ca" customClass="SignInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0qh-il-bra"/>
                         <viewControllerLayoutGuide type="bottom" id="dlJ-Br-jpb"/>
@@ -660,6 +660,9 @@
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjj-0Q-OeI">
                                 <rect key="frame" x="20" y="375" width="280" height="50"/>
                                 <state key="normal" title="Button" image="btn_logIn.png"/>
+                                <connections>
+                                    <action selector="signIn:" destination="Jzw-0x-5Ca" eventType="touchUpInside" id="muo-Do-B23"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -680,6 +683,10 @@
                             <constraint firstItem="qjd-Qu-kBh" firstAttribute="leading" secondItem="z3s-0u-ZSx" secondAttribute="leadingMargin" constant="-20" id="ylk-R8-Rpa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Izc-Gr-5At" id="RnD-Zv-csm"/>
+                        <outlet property="passwordTextField" destination="FWy-Le-vDl" id="9UP-Co-p7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ov1-Up-zH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
