@@ -33,9 +33,14 @@
 #define AUTHENTICATION_SUCCESS 0
 #define AUTHENTICATION_FAILED 1
 
+#define USER_AUTH_TOKEN @"user_auth_token"
+
 
 @interface Authentication : NSObject
 @property (strong, nonatomic) AFHTTPRequestOperationManager *manager;
+@property (strong, nonatomic) NSUserDefaults *defaults;
 
 -(BOOL) signUpWithEmail:(NSString *)email password:(NSString *)pass;
+-(BOOL) loggedIn;
+-(NSString *)userAuthToken;
 @end

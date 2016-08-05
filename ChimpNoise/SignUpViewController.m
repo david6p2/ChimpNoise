@@ -23,6 +23,9 @@
                                              selector:@selector(signUpStatus:)
                                                  name:@"signUpStatus"
                                                object:nil];
+    
+    NSLog(@"logged in: %s", [self.auth loggedIn] ? "true" : "false");
+    NSLog(@"logged in: %@", [self.auth userAuthToken]);
 }
 
 - (void)didReceiveMemoryWarning {

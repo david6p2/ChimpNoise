@@ -13,6 +13,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.manager = [AFHTTPRequestOperationManager manager];
+        self.defaults = [NSUserDefaults standardUserDefaults];
     }
     return self;
 }
@@ -37,8 +38,7 @@
                    }
                    if([response[@"error"] integerValue] == 0){
                        NSString *token = response[@"token"];
-                       NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                       [defaults setObject:token forKey:@"user_auth_token"];
+                       [self.defaults setObject:token forKey:USER_AUTH_TOKEN];
                        [[NSNotificationCenter defaultCenter] postNotificationName:@"signUpStatus"
                                                                            object:nil
                                                                          userInfo:@{@"status" : @AUTHENTICATION_SUCCESS}];
@@ -48,5 +48,17 @@
                    NSLog(@"error %@", error);
                }];
     return YES;
+}
+
+-(BOOL)loggedIn{
+    NSString *token =[self.defaults objectForKey:USER_AUTH_TOKEN];
+    if(token == nil || [token isEqualToString:@""]){
+        return NO;
+    }
+    return YES;
+}
+
+-(NSString *)userAuthToken{
+    return [self.defaults objectForKey:USER_AUTH_TOKEN];
 }
 @end
