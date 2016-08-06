@@ -85,6 +85,22 @@
     return YES;
 }
 
+-(BOOL)addFavorite:(NSString *)cardId{
+    NSString *url = [[NSString alloc] initWithFormat:@"%@%@%@", SERVER_URL, ADD_FAVORITE_URI, cardId];
+    NSLog(@"url: %@", url);
+    NSDictionary *params = @{@"act": [self userAuthToken]};
+    NSLog(@"params: %@", params);
+    [self.manager POST:url
+            parameters:params
+               success:^(AFHTTPRequestOperation *operation, id responseObject){
+                   NSLog(@"add favorite success");
+               }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+                   NSLog(@"add favorite failure: %@", error);
+               }];
+    return YES;
+}
+
+
 -(BOOL)isLoggedIn{
     NSString *token =[self.defaults objectForKey:USER_AUTH_TOKEN];
     if(token == nil || [token isEqualToString:@""]){

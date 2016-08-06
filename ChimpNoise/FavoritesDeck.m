@@ -24,6 +24,7 @@ static FavoritesDeck *sharedInstance = nil;
 
 -(instancetype)init{
     if (self = [super init]) {
+        self.auth = [[Authentication alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(addFromNotification:)
                                                      name:@"addCardToFavorites"
@@ -37,6 +38,7 @@ static FavoritesDeck *sharedInstance = nil;
 }
 
 -(BOOL) add:(Card *)card{
+    [self.auth addFavorite:card.cardId];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *favorites = [defaults arrayForKey:@"favorites"];
     NSMutableArray *newFavorites = [NSMutableArray new];
@@ -103,25 +105,21 @@ static FavoritesDeck *sharedInstance = nil;
 
 #pragma mark - Notifications Handler
 -(void) addFromNotification:(NSNotification *) notification{
-    if ([notification.object isKindOfClass:[Card class]])
-    {
+    if ([notification.object isKindOfClass:[Card class]]){
         Card *card = [notification object];
         [self add:card];
     }
-    else
-    {
+    else{
         NSLog(@"Error, object not recognised.");
     }
 }
 
 -(void) removeFromNotification:(NSNotification *) notification{
-    if ([notification.object isKindOfClass:[Card class]])
-    {
+    if ([notification.object isKindOfClass:[Card class]]){
         Card *card = [notification object];
         [self remove:card];
     }
-    else
-    {
+    else{
         NSLog(@"Error, object not recognised.");
     }
 }

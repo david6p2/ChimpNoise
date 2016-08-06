@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "Card.h"
+#import "Authentication.h"
 
 @interface FavoritesDeck : NSObject
+@property (strong, nonatomic) Authentication *auth;
 + (FavoritesDeck *) sharedInstance;
 -(BOOL) add:(Card *)card;
 -(BOOL) remove:(Card *) card;

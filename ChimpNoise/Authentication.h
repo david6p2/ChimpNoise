@@ -28,7 +28,7 @@
 #define SIGN_IN_URI @"/login"
 #define FAVORITES_URI @"/card/favorite/list"
 #define ADD_FAVORITE_URI @"/card/favorite/"
-#define REMOVE_FAVORITEURI @"/card/favorite/"
+#define REMOVE_FAVORITE_URI @"/card/favorite/"
 
 #define AUTHENTICATION_SUCCESS 0
 #define AUTHENTICATION_FAILED 1
@@ -45,4 +45,5 @@
 -(BOOL) isLoggedIn;
 -(NSString *)userAuthToken;
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString;
+-(BOOL) addFavorite:(NSString *)cardId;
 @end
