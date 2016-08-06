@@ -85,7 +85,7 @@
     return YES;
 }
 
--(BOOL)loggedIn{
+-(BOOL)isLoggedIn{
     NSString *token =[self.defaults objectForKey:USER_AUTH_TOKEN];
     if(token == nil || [token isEqualToString:@""]){
         return NO;

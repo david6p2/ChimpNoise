@@ -16,6 +16,9 @@ bool a = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //init Authentication service
+    self.auth = [[Authentication alloc] init];
+    
     //init Favorite Deck
     self.favoritesDeck = [FavoritesDeck sharedInstance];
     
@@ -94,21 +97,36 @@ bool a = NO;
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     
     if ([self.favoritesDeck contains:self.card]) {
-        UIAlertAction* removeFromFavorites = [UIAlertAction actionWithTitle:@"Remove from My Decks"
-                                                                      style:UIAlertActionStyleDestructive
-                                                                    handler:^(UIAlertAction * action) {
-                                                                        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeCardToFavorites" object:self.card];
-                                                                        self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_add.png"];
-                                                                    }];
+        UIAlertAction* removeFromFavorites =
+        [UIAlertAction actionWithTitle:@"Remove from My Decks"
+                                 style:UIAlertActionStyleDestructive
+                               handler:^(UIAlertAction * action) {
+                                   if([self.auth isLoggedIn]){
+                                       [[NSNotificationCenter defaultCenter] postNotificationName:@"removeCardToFavorites" object:self.card];
+                                       self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_add.png"];
+                                   }
+                                   else{
+                                       UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SignInOrSignUpViewController"];
+                                       [self presentModalViewController:viewController animated:YES];
+                                   }
+                               }];
         [alert addAction:removeFromFavorites];
     }
     else{
-        UIAlertAction* addToFavorites = [UIAlertAction actionWithTitle:@"Add to My Decks"
-                                                                 style:UIAlertActionStyleDefault
-                                                               handler:^(UIAlertAction * action){
-                                                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"addCardToFavorites" object:self.card];
-                                                                   self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_remove.png"];
-                                                               }];
+        UIAlertAction* addToFavorites =
+            [UIAlertAction actionWithTitle:@"Add to My Decks"
+                                     style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action){
+                                       if([self.auth isLoggedIn]){
+                                           [[NSNotificationCenter defaultCenter] postNotificationName:@"addCardToFavorites" object:self.card];
+                                           self.favoriteHeartImageView.image =[UIImage imageNamed: @"favorite_heart_remove.png"];
+                                           return;
+                                       }
+                                       else{
+                                           UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SignInOrSignUpViewController"];
+                                           [self presentModalViewController:viewController animated:YES];
+                                       }
+                                   }];
         [alert addAction:addToFavorites];
     }
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Cancel"

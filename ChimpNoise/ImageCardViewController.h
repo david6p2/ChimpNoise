@@ -10,6 +10,7 @@
 #import "CardPageViewController.h"
 #import "FavoritesDeck.h"
 #import "Card.h"
+#import "Authentication.h"
 
 @interface ImageCardViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *containerView;
@@ -22,4 +23,5 @@
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) Card *card;
 @property (strong, nonatomic) FavoritesDeck *favoritesDeck;
+@property (strong, nonatomic) Authentication *auth;
 @end

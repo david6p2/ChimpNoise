@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Authentication.h"
 
-@interface SignInViewController : UIViewController
+@interface SignInViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) Authentication *auth;
 @end

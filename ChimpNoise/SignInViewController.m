@@ -21,6 +21,8 @@
                                              selector:@selector(signInStatus:)
                                                  name:@"signInStatus"
                                                object:nil];
+    [self.emailTextField setDelegate:self];
+    [self.passwordTextField setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,6 +77,11 @@
         [self presentModalViewController:viewController animated:YES];
     }
     
+}
+
+//Keyboard
+-(IBAction)textFieldReturn:(id)sender{
+    [sender resignFirstResponder];
 }
 
 @end

@@ -24,7 +24,7 @@
                                                  name:@"signUpStatus"
                                                object:nil];
     
-    NSLog(@"logged in: %s", [self.auth loggedIn] ? "true" : "false");
+    NSLog(@"logged in: %s", [self.auth isLoggedIn] ? "true" : "false");
     NSLog(@"logged in: %@", [self.auth userAuthToken]);
 }
 
@@ -84,6 +84,11 @@
         [self presentModalViewController:viewController animated:YES];
     }
     
+}
+
+//keyboard
+-(IBAction)textFieldReturn:(id)sender{
+    [sender resignFirstResponder];
 }
 
 

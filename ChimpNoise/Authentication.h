@@ -42,7 +42,7 @@
 
 -(BOOL) signUpWithEmail:(NSString *)email password:(NSString *)pass;
 -(BOOL) signInWithEmail:(NSString *)email password:(NSString *)pass;
--(BOOL) loggedIn;
+-(BOOL) isLoggedIn;
 -(NSString *)userAuthToken;
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString;
 @end
