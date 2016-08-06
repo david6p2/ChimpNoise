@@ -13,6 +13,8 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.manager = [AFHTTPRequestOperationManager manager];
+        [self.manager.requestSerializer setValue:@"application/json" forKey:@"Content-Type"];
+        [self.manager.requestSerializer setValue:@"application/json" forKey:@"Accept"];
         self.defaults = [NSUserDefaults standardUserDefaults];
     }
     return self;
